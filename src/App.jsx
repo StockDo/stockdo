@@ -3,13 +3,10 @@ import Navbar from "./components/Navbar/Navbar";
 import "./index.css";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <main className="">
-      <div className="">
+    <main className="min-h-screen">
         <Navbar />
-      </div>
     </main>
   );
 }

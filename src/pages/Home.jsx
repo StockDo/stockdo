@@ -22,7 +22,9 @@ export default function Home() {
       </div>
       {/* Sobre o software */}
       <div className="flex flex-col items-center justify-center bg-white mt-24">
-        <h1 className="text-6xl border-b pb-2 border-black font-['PT_Sans']">O Software</h1>
+        <h1 className="text-6xl border-b pb-2 border-black font-['PT_Sans']">
+          O Software
+        </h1>
         <SoftwareScreens />
       </div>
       {/* Footer */}

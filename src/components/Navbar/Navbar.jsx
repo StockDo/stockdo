@@ -1,10 +1,21 @@
 export default function Navbar() {
   return (
-    <div className="bg-slate-500 p-6">
-      <ul className="flex gap-10 justify-end text-white">
-        <li>Home</li>
-        <li>Planos</li>
-        <li>O Software</li>
+    <div className="bg-neutral-900 p-6 font-['Barlow']">
+      <ul className="flex items-center gap-5 justify-end text-white text-xl">
+        <li>
+          <a href="">Home</a>
+        </li>
+        <li>
+          <a href="">Planos</a>
+        </li>
+        <li>
+          <a href="">O Software</a>
+        </li>
+        <li>
+          <a href="" className="bg-orange-400 py-1 px-3 rounded-lg text-black">
+            Cadastre-se
+          </a>
+        </li>
       </ul>
     </div>
   );

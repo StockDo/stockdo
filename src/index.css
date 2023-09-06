@@ -1,3 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow&family=Electrolize&family=Fira+Sans&family=Open+Sans&family=PT+Sans:wght@700&family=Roboto:wght@300;400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  /* border: 1px solid red; */
+}
+
+html::-webkit-scrollbar {
+  width: 0.6em;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: rgb(27, 27, 27);
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: rgb(185, 107, 33);
+  width: 1em;
+}

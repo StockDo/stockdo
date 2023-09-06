@@ -1,13 +1,11 @@
-import { useState } from "react";
-import Navbar from "./components/Navbar/Navbar";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./Router";
 
 function App() {
-
   return (
-    <main className="min-h-screen">
-        <Navbar />
-    </main>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
 }
 

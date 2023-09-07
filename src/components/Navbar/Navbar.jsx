@@ -15,7 +15,7 @@ export default function Navbar() {
           <a href="">O Software</a>
         </li>
         <li>
-          <a href="" onClick={() => navigate("/signup")} className="bg-orange-400 py-1 px-3 rounded-lg text-black">
+          <a onClick={() => navigate("/signup")} className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-poiner">
             Cadastre-se
           </a>
         </li>

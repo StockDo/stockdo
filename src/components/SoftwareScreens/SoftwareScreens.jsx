@@ -16,12 +16,18 @@ export default function SoftwareScreens() {
         <p>
           A interface principal do software apresenta um conjunto de 8 botões
           localizados no topo da tela, incluindo opções como{" "}
-          <span>Adicionar</span> <span>Alterar</span> <span>Excluir</span>,{" "}
-          <span>Filtrar</span>, <span>Vendas</span>, <span>Perdas</span> e{" "}
-          <span>Trocar Área</span>. Além disso, 4 botões adicionais estão
-          dispostos lateralmente, oferecendo a funcionalidade de visualizar{" "}
-          <span>Estoques</span>, <span>Dashboard</span>,{" "}
-          <span>Minha Conta</span> e <span>Configurações</span>.
+          <span className="font-bold">Adicionar</span>{" "}
+          <span className="font-bold">Alterar</span>{" "}
+          <span className="font-bold">Excluir</span>,{" "}
+          <span className="font-bold">Filtrar</span>,{" "}
+          <span className="font-bold">Vendas</span>,{" "}
+          <span className="font-bold">Perdas</span> e{" "}
+          <span className="font-bold">Trocar Área</span>. Além disso, 4 botões
+          adicionais estão dispostos lateralmente, oferecendo a funcionalidade
+          de visualizar <span className="font-bold">Estoques</span>,{" "}
+          <span className="font-bold">Dashboard</span>,{" "}
+          <span className="font-bold">Minha Conta</span> e{" "}
+          <span className="font-bold">Configurações</span>.
         </p>
       </div>
       <div className="flex flex-row-reverse gap-10 mt-32 w-[70%] font-['Open_Sans'] text-2xl leading-[4rem] text-justify">
@@ -34,12 +40,18 @@ export default function SoftwareScreens() {
         <p>
           A interface principal do software apresenta um conjunto de 8 botões
           localizados no topo da tela, incluindo opções como{" "}
-          <span>Adicionar</span> <span>Alterar</span> <span>Excluir</span>,{" "}
-          <span>Filtrar</span>, <span>Vendas</span>, <span>Perdas</span> e{" "}
-          <span>Trocar Área</span>. Além disso, 4 botões adicionais estão
-          dispostos lateralmente, oferecendo a funcionalidade de visualizar{" "}
-          <span>Estoques</span>, <span>Dashboard</span>,{" "}
-          <span>Minha Conta</span> e <span>Configurações</span>.
+          <span className="font-bold">Adicionar</span>{" "}
+          <span className="font-bold">Alterar</span>{" "}
+          <span className="font-bold">Excluir</span>,{" "}
+          <span className="font-bold">Filtrar</span>,{" "}
+          <span className="font-bold">Vendas</span>,{" "}
+          <span className="font-bold">Perdas</span> e{" "}
+          <span className="font-bold">Trocar Área</span>. Além disso, 4 botões
+          adicionais estão dispostos lateralmente, oferecendo a funcionalidade
+          de visualizar <span className="font-bold">Estoques</span>,{" "}
+          <span className="font-bold">Dashboard</span>,{" "}
+          <span className="font-bold">Minha Conta</span> e{" "}
+          <span className="font-bold">Configurações</span>.
         </p>
       </div>
       <div className="flex gap-10 mt-32 w-[70%] font-['Open_Sans'] text-2xl leading-[4rem] text-justify">
@@ -52,12 +64,18 @@ export default function SoftwareScreens() {
         <p>
           A interface principal do software apresenta um conjunto de 8 botões
           localizados no topo da tela, incluindo opções como{" "}
-          <span>Adicionar</span> <span>Alterar</span> <span>Excluir</span>,{" "}
-          <span>Filtrar</span>, <span>Vendas</span>, <span>Perdas</span> e{" "}
-          <span>Trocar Área</span>. Além disso, 4 botões adicionais estão
-          dispostos lateralmente, oferecendo a funcionalidade de visualizar{" "}
-          <span>Estoques</span>, <span>Dashboard</span>,{" "}
-          <span>Minha Conta</span> e <span>Configurações</span>.
+          <span className="font-bold">Adicionar</span>{" "}
+          <span className="font-bold">Alterar</span>{" "}
+          <span className="font-bold">Excluir</span>,{" "}
+          <span className="font-bold">Filtrar</span>,{" "}
+          <span className="font-bold">Vendas</span>,{" "}
+          <span className="font-bold">Perdas</span> e{" "}
+          <span className="font-bold">Trocar Área</span>. Além disso, 4 botões
+          adicionais estão dispostos lateralmente, oferecendo a funcionalidade
+          de visualizar <span className="font-bold">Estoques</span>,{" "}
+          <span className="font-bold">Dashboard</span>,{" "}
+          <span className="font-bold">Minha Conta</span> e{" "}
+          <span className="font-bold">Configurações</span>.
         </p>
       </div>
     </main>

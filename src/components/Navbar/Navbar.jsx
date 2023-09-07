@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import StockDoLogo from "../../assets/imgs/stockdo.svg";
 
 export default function Navbar() {
   const navigate = useNavigate();
   return (
-    <div className="bg-neutral-900 p-6 font-['Barlow']">
+    <div className="flex justify-between bg-neutral-900 p-4 font-['Barlow'] fixed w-full z-50">
+      <img src={StockDoLogo} alt="StockDo logo" width={"150px"} />
       <ul className="flex items-center gap-5 justify-end text-white text-xl">
         <li>
           <a href="">Home</a>
@@ -15,8 +17,10 @@ export default function Navbar() {
           <a href="">O Software</a>
         </li>
         <li>
-          <a onClick={() => navigate("/signup")} className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-poiner">
-            Cadastre-se
+          <a
+            onClick={() => navigate("/signup")}
+            className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
+            Entrar <i class="fa-solid fa-right-to-bracket ml-1"></i>
           </a>
         </li>
       </ul>

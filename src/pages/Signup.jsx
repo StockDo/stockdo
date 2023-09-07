@@ -1,8 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import SignupBackground from "../assets/imgs/signup-bg.png";
+import StockDoLogo from "../assets/imgs/stockdo.svg";
 
 export default function Signup() {
+  const navigate = useNavigate();
   return (
-    <main className="flex justify-center items-center min-h-screen bg-slate-100">
+    <main className="flex flex-col justify-center items-center min-h-screen bg-slate-100">
+      <img
+        src={StockDoLogo}
+        alt="StockDo logo"
+        width="250px"
+        className="-translate-y-10 cursor-pointer"
+        onClick={() => navigate("/")}
+      />
       <div className="flex items-center shadow-xl rounded-xl">
         <div className="bg-slate-400 rounded-s-xl p-12">
           <img

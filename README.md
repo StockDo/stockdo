@@ -3,7 +3,7 @@
 </h1>
 
 ## Descrição
-A StockDo é uma plataforma desenvolvida projeto de TCC da ETEC Dra. Ruth Cardoso. Com a finalidade de aprimorar a eficiência e o controle na administração de estoques empresariais, a StockDo tem como missão unir gestores de estoque e fornecedores em um ambiente centralizado. O website foi desenvolvido para disponibilizar downloads e autenticação de usuários que desejam utilizar a plataforma.
+StockDo é um software desenvolvido como projeto de TCC da ETEC Dra. Ruth Cardoso. Com a finalidade de aprimorar a eficiência e o controle na administração de estoques de pequenas e médias empresas, o StockDo tem como missão unir gestores de estoque e fornecedores em um ambiente centralizado. O website foi desenvolvido para disponibilizar downloads e autenticação de usuários que desejam utilizar a plataforma.
 
 ## Tela inicial
 

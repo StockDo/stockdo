@@ -13,15 +13,15 @@ export default function Signup() {
         className="-translate-y-10 cursor-pointer"
         onClick={() => navigate("/")}
       />
-      <div className="flex items-center shadow-xl rounded-xl">
-        <div className="bg-slate-400 rounded-s-xl p-12">
+      <div className="bg-slate-400 flex items-center shadow-xl rounded-xl mx-12 max-lg:mx-5">
+        <div className="px-8 max-lg:hidden">
           <img
             src={SignupBackground}
-            width="595px"
+            width="500px"
             alt="Warehouse background"
           />
         </div>
-        <div className="flex flex-col p-12 bg-white rounded-e-xl">
+        <div className="flex flex-col p-12 bg-white rounded-e-xl max-lg:rounded-xl">
           <h1 className="text-3xl font-['PT_Sans']">Cadastre-se aqui</h1>
           <form
             action=""

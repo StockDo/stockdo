@@ -20,7 +20,7 @@ export default function Navbar() {
           <a
             onClick={() => navigate("/signup")}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
-            Entrar <i class="fa-solid fa-right-to-bracket ml-1"></i>
+            Entrar <i className="fa-solid fa-right-to-bracket ml-1"></i>
           </a>
         </li>
       </ul>

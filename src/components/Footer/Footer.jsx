@@ -1,6 +1,8 @@
 import StockDoLogo from "../../assets/imgs/stockdo.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center pt-44 pb-12 bg-neutral-900 text-xl text-white font-['Open_Sans']">
       <div className="flex gap-24">
@@ -36,65 +38,45 @@ export default function Footer() {
         <ul className="flex flex-col gap-5">
           <li className="font-semibold text-2xl">Produto</li>
           <li>
-            <a href="" className="hover:underline">
-              Download
-            </a>
+            <a className="hover:underline cursor-pointer">Download</a>
           </li>
           <li>
-            <a href="" className="hover:underline">
-              Planos
-            </a>
+            <a className="hover:underline cursor-pointer">Planos</a>
           </li>
           <li>
-            <a href="" className="hover:underline">
-              Versões
-            </a>
+            <a className="hover:underline cursor-pointer">Versões</a>
           </li>
         </ul>
         <ul className="flex flex-col gap-5">
           <li className="font-semibold text-2xl">Suporte</li>
           <li>
-            <a href="" className="hover:underline">
-              Central de ajuda
-            </a>
+            <a className="hover:underline cursor-pointer">Central de ajuda</a>
           </li>
           <li>
-            <a href="" className="hover:underline">
-              Fórum
-            </a>
+            <a className="hover:underline cursor-pointer">Fórum</a>
           </li>
           <li>
-            <a href="" className="hover:underline">
-              Contato
-            </a>
+            <a className="hover:underline cursor-pointer">Contato</a>
           </li>
         </ul>
         <ul className="flex flex-col gap-5">
           <li className="font-semibold text-2xl">Termos de uso</li>
           <li>
-            <a href="/termos" className="hover:underline">
-              Termos
-            </a>
+            <a onClick={() => navigate("/termos")} className="hover:underline cursor-pointer">Termos</a>
           </li>
           <li>
-            <a href="/privacidade" className="hover:underline">
-              Privacidade
-            </a>
+            <a onClick={() => navigate("/privacidade")} className="hover:underline cursor-pointer">Privacidade</a>
           </li>
           <li>
-            <a href="/licenca" className="hover:underline">
-              Licença de uso
-            </a>
+            <a onClick={() => navigate("/licenca")} className="hover:underline cursor-pointer">Licença de uso</a>
           </li>
           {/* <li>
-            <a href="" className="hover:underline">
+            <a className="hover:underline cursor-pointer">
               Guia
             </a>
           </li> */}
           <li>
-            <a href="" className="hover:underline">
-              Gerenciamento de cookies
-            </a>
+            <a className="hover:underline cursor-pointer">Gerenciamento de cookies</a>
           </li>
         </ul>
       </div>

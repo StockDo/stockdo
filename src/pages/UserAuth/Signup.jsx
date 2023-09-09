@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import SignupBackground from "../assets/imgs/signup-bg.png";
-import StockDoLogo from "../assets/imgs/stockdo.svg";
+import SignupBackground from "../../assets/imgs/signup-bg.png";
+import StockDoLogo from "../../assets/imgs/stockdo.svg";
 import { useState } from "react";
 
 export default function Signup() {
@@ -38,15 +38,6 @@ export default function Signup() {
             className="flex flex-col mt-5 font-['Open_Sans']"
             autoComplete="off">
             <label htmlFor="" className="font-bold">
-              Nome completo
-            </label>
-            <input
-              type="text"
-              name="nome_user"
-              className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none"
-              // placeholder="Nome completo"
-            />
-            <label htmlFor="" className="font-bold">
               CNPJ
             </label>
             <input
@@ -55,9 +46,18 @@ export default function Signup() {
               value={cnpj}
               maxLength={18}
               onChange={(e) => formatCNPJ(e.target.value)}
-              className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 py-2 rounded-md outline-none"
+              className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none"
               // placeholder="CNPJ"
             />
+            {/* <label htmlFor="" className="font-bold">
+              Nome completo
+            </label>
+            <input
+              type="text"
+              name="nome_user"
+              className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none"
+              // placeholder="Nome completo"
+            /> */}
             <label htmlFor="" className="font-bold">
               E-mail
             </label>
@@ -72,7 +72,7 @@ export default function Signup() {
             </label>
             <input
               type="password"
-              name="pass"
+              name="password"
               className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 py-2 rounded-md outline-none"
               // placeholder="Senha"
             />

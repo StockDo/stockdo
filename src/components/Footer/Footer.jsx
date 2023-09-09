@@ -33,8 +33,8 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <ul className="flex flex-col gap-3">
-          <li className="font-semibold">Produto</li>
+        <ul className="flex flex-col gap-5">
+          <li className="font-semibold text-2xl">Produto</li>
           <li>
             <a href="" className="hover:underline">
               Download
@@ -51,8 +51,8 @@ export default function Footer() {
             </a>
           </li>
         </ul>
-        <ul className="flex flex-col gap-3">
-          <li className="font-semibold">Suporte</li>
+        <ul className="flex flex-col gap-5">
+          <li className="font-semibold text-2xl">Suporte</li>
           <li>
             <a href="" className="hover:underline">
               Central de ajuda
@@ -69,31 +69,31 @@ export default function Footer() {
             </a>
           </li>
         </ul>
-        <ul className="flex flex-col gap-3">
-          <li className="font-semibold">Termos de uso</li>
+        <ul className="flex flex-col gap-5">
+          <li className="font-semibold text-2xl">Termos de uso</li>
           <li>
-            <a href="" className="hover:underline">
+            <a href="/termos" className="hover:underline">
               Termos
             </a>
           </li>
           <li>
-            <a href="" className="hover:underline">
+            <a href="/privacidade" className="hover:underline">
               Privacidade
             </a>
           </li>
           <li>
-            <a href="" className="hover:underline">
+            <a href="/licenca" className="hover:underline">
               Licença de uso
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="" className="hover:underline">
               Guia
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="" className="hover:underline">
-              Configurações de cookies
+              Gerenciamento de cookies
             </a>
           </li>
         </ul>

@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Signup from "./pages/UserAuth/Signup";
 import Termos from "./pages/Termos/Termos";
 import Licenca from "./pages/Termos/Licenca";
 import Privacidade from "./pages/Termos/Privacidade";
+import Signup from "./pages/UserAuth/Signup";
 import EmailAuth from "./pages/UserAuth/EmailAuth";
 
 export default function Router() {

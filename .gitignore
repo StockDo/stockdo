@@ -10,7 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-db.js
+server
+authEmail.html
 *.local
 
 # Editor directories and files

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import SignupBackground from "../../assets/imgs/signup-bg.png";
 import StockDoLogo from "../../assets/imgs/stockdo.svg";
 import { useState } from "react";
+import "animate.css";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -12,6 +13,22 @@ export default function Signup() {
     setCnpj(
       value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
     );
+  };
+
+  const [formData, setFormData] = useState({
+    cnpj: "",
+  });
+
+  const [validatedFields, setValidatedFields] = useState({
+    cnpj: false,
+  });
+
+  function validateFields() {}
+
+  const handleSubmit = (e) => {
+    if (validatedFields.cnpj === false) {
+      e.preventDefault();
+    }
   };
   return (
     <main className="flex flex-col justify-center items-center min-h-screen bg-slate-100">
@@ -34,6 +51,7 @@ export default function Signup() {
           <h1 className="text-3xl font-['PT_Sans']">Cadastre-se aqui</h1>
           <form
             action="/submit"
+            onSubmit={handleSubmit}
             method="post"
             className="flex flex-col mt-5 font-['Open_Sans']"
             autoComplete="off">
@@ -46,18 +64,12 @@ export default function Signup() {
               value={cnpj}
               maxLength={18}
               onChange={(e) => formatCNPJ(e.target.value)}
-              className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none"
-              // placeholder="CNPJ"
+              className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none ${
+                cnpj.length < 10
+                  ? "animate__animated animate__shakeX text-red-600 border-red-600"
+                  : null
+              } `}
             />
-            {/* <label htmlFor="" className="font-bold">
-              Nome completo
-            </label>
-            <input
-              type="text"
-              name="nome_user"
-              className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none"
-              // placeholder="Nome completo"
-            /> */}
             <label htmlFor="" className="font-bold">
               E-mail
             </label>
@@ -65,7 +77,6 @@ export default function Signup() {
               type="text"
               name="email"
               className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 py-2 rounded-md outline-none"
-              // placeholder="Email"
             />
             <label htmlFor="" className="font-bold">
               Senha
@@ -74,7 +85,6 @@ export default function Signup() {
               type="password"
               name="password"
               className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 py-2 rounded-md outline-none"
-              // placeholder="Senha"
             />
             <label htmlFor="" className="font-bold">
               Repetir senha
@@ -83,7 +93,6 @@ export default function Signup() {
               type="password"
               name="pass2"
               className="mt-1 border border-[rgba(0,0,0,0.25)] pl-2 py-2 rounded-md outline-none"
-              // placeholder="Repita a senha"
             />
             <button
               type="submit"

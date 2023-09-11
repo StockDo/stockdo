@@ -24,7 +24,6 @@ export default function Signup() {
   const userInput = (e) => {
     const { name, value } = e.target;
 
-    // let isValid = true;
     let formattedInput = value;
 
     if (name === "cnpj") {
@@ -32,9 +31,21 @@ export default function Signup() {
         .replace(/[a-zA-Z\s]/, "")
         .replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
         .slice(0, 18);
-    } else if (name === "password") {
+    } 
+    else if (name === "email") {
+      formattedInput = value.slice(0, 80);
+    }
+    else if (name === "password") {
       formattedInput = value.slice(0, 45);
     }
+    else if (name === "password_repeat") {
+      formattedInput = value.slice(0, 45);
+    }
+
+    setValidatedFields({
+      ...validatedFields,
+      [name]: true,
+    });
 
     setFormData({
       ...formData,
@@ -42,15 +53,7 @@ export default function Signup() {
     });
   };
 
-  const [checkSubmit, setCheckSubmit] = useState(false);
   const handleSubmit = (e) => {
-    // for (const key in validatedFields) {
-    //   const element = validatedFields[key];
-    //   if (element === false) {
-    //     e.preventDefault();
-    //     setCheckSubmit(true);
-    //   }
-    // }
     let isValid = true;
     if (!/\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/.test(formData.cnpj)) {
       setValidatedFields({
@@ -86,23 +89,16 @@ export default function Signup() {
       e.preventDefault();
     }
 
-    setTimeout(() => {
-      setValidatedFields({
-        cnpj: true,
-        email: true,
-        password: true,
-      });
-    }, 1000);
+    // setTimeout(() => {
+    //   setValidatedFields({
+    //     cnpj: true,
+    //     email: true,
+    //     password: true,
+    //   });
+    // }, 1000);
   };
   return (
-    <main className="flex flex-col justify-center items-center min-h-screen bg-slate-100">
-      <img
-        src={StockDoLogo}
-        alt="StockDo logo"
-        width="250px"
-        className="-translate-y-10 cursor-pointer"
-        onClick={() => navigate("/")}
-      />
+    <main className="flex justify-center items-center min-h-screen bg-slate-100">
       <div className="bg-slate-400 flex items-center shadow-xl rounded-xl mx-12 max-lg:mx-5">
         <div className="px-8 max-lg:hidden">
           <img
@@ -112,27 +108,39 @@ export default function Signup() {
           />
         </div>
         <div className="flex flex-col p-12 bg-white rounded-e-xl max-lg:rounded-xl">
-          <h1 className="text-3xl font-['PT_Sans']">Cadastre-se aqui</h1>
+          <img
+            src={StockDoLogo}
+            alt="StockDo logo"
+            width="150px"
+            className="cursor-pointer m-auto mb-2"
+            onClick={() => navigate("/")}
+          />
+          <h1 className="text-3xl font-['PT_Sans'] m-auto">
+            Cadastre uma conta
+          </h1>
           <form
             action="/submit"
             onSubmit={handleSubmit}
             method="post"
             className="flex flex-col mt-5 font-['Open_Sans']"
             autoComplete="off">
-            <label htmlFor="" className="font-bold mt-1">
-              CNPJ{" "}
-              <span
-                className={` ${
-                  validatedFields.cnpj === false
-                    ? "text-red-600 border-red-600"
-                    : "hidden"
-                }`}>
-                inválido
-              </span>
+            <label
+              htmlFor="cnpj"
+              className={` ${
+                validatedFields.cnpj === false
+                  ? "animate__animated animate__shakeX text-red-600 "
+                  : null
+              }`}>
+              {validatedFields.cnpj === false
+                ? formData.cnpj === ""
+                  ? "Preencha este campo"
+                  : "CNPJ inválido"
+                : "CNPJ"}
             </label>
             <input
               type="text"
               name="cnpj"
+              id="cnpj"
               value={formData.cnpj}
               onChange={userInput}
               className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none ${
@@ -142,20 +150,23 @@ export default function Signup() {
               } `}
             />
 
-            <label htmlFor="" className="font-bold mt-1">
-              E-mail{" "}
-              <span
-                className={` ${
-                  validatedFields.email === false
-                    ? "text-red-600 border-red-600"
-                    : "hidden"
-                }`}>
-                inválido
-              </span>
+            <label
+              htmlFor="email"
+              className={` ${
+                validatedFields.email === false
+                  ? "animate__animated animate__shakeX text-red-600 "
+                  : null
+              }`}>
+              {validatedFields.email === false
+                ? formData.email === ""
+                  ? "Preencha este campo"
+                  : "Email inválido"
+                : "Email"}
             </label>
             <input
               type="text"
               name="email"
+              id="email"
               value={formData.email}
               onChange={userInput}
               className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none ${
@@ -165,20 +176,23 @@ export default function Signup() {
               } `}
             />
 
-            <label htmlFor="" className="font-bold mt-1">
-              Senha{" "}
-              <span
-                className={` ${
-                  validatedFields.password === false
-                    ? "text-red-600 border-red-600"
-                    : "hidden"
-                }`}>
-                fraca
-              </span>
+            <label
+              htmlFor="password"
+              className={` ${
+                validatedFields.password === false
+                  ? "animate__animated animate__shakeX text-red-600 "
+                  : null
+              }`}>
+              {validatedFields.password === false
+                ? formData.password === ""
+                  ? "Preencha este campo"
+                  : "Senha muito fraca"
+                : "Senha"}
             </label>
             <input
               type="password"
               name="password"
+              id="password"
               value={formData.password}
               onChange={userInput}
               className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none ${
@@ -187,20 +201,23 @@ export default function Signup() {
                   : null
               } `}
             />
-            <label htmlFor="" className="font-bold mt-1">
-              Repetir senha 
-              <span
-                className={` ${
-                  validatedFields.password_repeat === false
-                    ? "text-red-600 border-red-600"
-                    : "hidden"
-                }`}>
-                não se coincidem
-              </span>
+            <label
+              htmlFor="password_repeat"
+              className={` ${
+                validatedFields.password_repeat === false
+                  ? "animate__animated animate__shakeX text-red-600 "
+                  : null
+              }`}>
+              {validatedFields.password_repeat === false
+                ? formData.password_repeat === ""
+                  ? "Preencha este campo"
+                  : "As senhas não se coincidem"
+                : "Repita a senha"}
             </label>
             <input
               type="password"
               name="password_repeat"
+              id="password_repeat"
               value={formData.password_repeat}
               onChange={userInput}
               className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none ${
@@ -211,7 +228,7 @@ export default function Signup() {
             />
             <button
               type="submit"
-              className="bg-orange-400 mt-7 py-2 rounded-lg font-bold">
+              className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">
               Cadastrar
             </button>
             <span className="m-auto mt-4">

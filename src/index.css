@@ -8,6 +8,10 @@
   /* border: 1px solid red; */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html::-webkit-scrollbar {
   width: 0.6em;
 }

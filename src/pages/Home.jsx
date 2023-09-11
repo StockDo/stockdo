@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import "../index.css";
-import Buttons from "../components/Buttons/Buttons";
 import SoftwareScreens from "../components/SoftwareScreens/SoftwareScreens";
 import Footer from "../components/Footer/Footer";
 import Planos from "../components/Planos/Planos";

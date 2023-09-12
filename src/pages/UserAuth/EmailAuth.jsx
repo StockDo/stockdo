@@ -28,7 +28,7 @@ export default function EmailAuth() {
 
   const [authError, setAuthError] = useState(false);
   function delayAuthError() {
-    if (noAuth !== "2121") {
+    if (noAuth !== "3971") {
       setAuthError(true);
       setTimeout(() => {
         setAuthError(false);

@@ -52,6 +52,8 @@ export default function Signup() {
   };
 
   const handleSubmit = (e) => {
+    
+    e.preventDefault();
     let isValid = true;
     if (validarCNPJ(formData.cnpj) === false) {
       setValidatedFields({
@@ -91,8 +93,8 @@ export default function Signup() {
       isValid = false;
     }
 
-    if (isValid === false) {
-      e.preventDefault();
+    if (isValid === true) {
+      navigate("/#");
     }
 
     // setTimeout(() => {

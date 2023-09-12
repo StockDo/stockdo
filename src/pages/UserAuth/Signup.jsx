@@ -125,7 +125,7 @@ export default function Signup() {
             Cadastre uma conta
           </h1>
           <form
-            action="/submit"
+            action="/#"
             onSubmit={handleSubmit}
             method="post"
             className="flex flex-col mt-5 font-['Open_Sans']"

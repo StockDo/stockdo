@@ -3,6 +3,7 @@ import SignupBackground from "../../assets/imgs/signup-bg.png";
 import StockDoLogo from "../../assets/imgs/stockdo.svg";
 import { useEffect, useState } from "react";
 import "animate.css";
+import validarCNPJ from "./cnpj";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -31,14 +32,11 @@ export default function Signup() {
         .replace(/[a-zA-Z\s]/, "")
         .replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
         .slice(0, 18);
-    } 
-    else if (name === "email") {
+    } else if (name === "email") {
       formattedInput = value.slice(0, 80);
-    }
-    else if (name === "password") {
+    } else if (name === "password") {
       formattedInput = value.slice(0, 45);
-    }
-    else if (name === "password_repeat") {
+    } else if (name === "password_repeat") {
       formattedInput = value.slice(0, 45);
     }
 
@@ -55,13 +53,21 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     let isValid = true;
-    if (!/\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/.test(formData.cnpj)) {
+    if (validarCNPJ(formData.cnpj) === false) {
       setValidatedFields({
         ...validatedFields,
         cnpj: false,
       });
       isValid = false;
-    } else if (!/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/.test(formData.email)) {
+    }
+    // if (!/\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/.test(formData.cnpj)) {
+    //   setValidatedFields({
+    //     ...validatedFields,
+    //     cnpj: false,
+    //   });
+    //   isValid = false;
+    // }
+    else if (!/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/.test(formData.email)) {
       setValidatedFields({
         ...validatedFields,
         email: false,

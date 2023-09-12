@@ -16,18 +16,13 @@ export default function SoftwareScreens() {
         <p>
           A interface principal do software apresenta um conjunto de 8 botões
           localizados no topo da tela, incluindo opções como{" "}
-          <span className="font-bold">Adicionar</span>{" "}
-          <span className="font-bold">Alterar</span>{" "}
-          <span className="font-bold">Excluir</span>,{" "}
-          <span className="font-bold">Filtrar</span>,{" "}
-          <span className="font-bold">Vendas</span>,{" "}
-          <span className="font-bold">Perdas</span> e{" "}
-          <span className="font-bold">Trocar Área</span>. Além disso, 4 botões
-          adicionais estão dispostos lateralmente, oferecendo a funcionalidade
-          de visualizar <span className="font-bold">Estoques</span>,{" "}
-          <span className="font-bold">Dashboard</span>,{" "}
-          <span className="font-bold">Minha Conta</span> e{" "}
-          <span className="font-bold">Configurações</span>.
+          <strong>Adicionar</strong> <strong>Alterar</strong>{" "}
+          <strong>Excluir</strong>, <strong>Filtrar</strong>,{" "}
+          <strong>Vendas</strong>, <strong>Perdas</strong> e{" "}
+          <strong>Trocar Área</strong>. Além disso, 4 botões adicionais estão
+          dispostos lateralmente, oferecendo a funcionalidade de visualizar{" "}
+          <strong>Estoques</strong>, <strong>Dashboard</strong>,{" "}
+          <strong>Minha Conta</strong> e <strong>Configurações</strong>.
         </p>
       </div>
       <div className="flex items-center flex-row-reverse gap-10 mt-32 w-[70%] font-['Open_Sans'] text-2xl leading-[4rem] text-justify">
@@ -38,20 +33,13 @@ export default function SoftwareScreens() {
           className="shadow-xl"
         />
         <p>
-          A interface principal do software apresenta um conjunto de 8 botões
-          localizados no topo da tela, incluindo opções como{" "}
-          <span className="font-bold">Adicionar</span>{" "}
-          <span className="font-bold">Alterar</span>{" "}
-          <span className="font-bold">Excluir</span>,{" "}
-          <span className="font-bold">Filtrar</span>,{" "}
-          <span className="font-bold">Vendas</span>,{" "}
-          <span className="font-bold">Perdas</span> e{" "}
-          <span className="font-bold">Trocar Área</span>. Além disso, 4 botões
-          adicionais estão dispostos lateralmente, oferecendo a funcionalidade
-          de visualizar <span className="font-bold">Estoques</span>,{" "}
-          <span className="font-bold">Dashboard</span>,{" "}
-          <span className="font-bold">Minha Conta</span> e{" "}
-          <span className="font-bold">Configurações</span>.
+          A tela <strong>Minha Conta</strong> exibe informações essenciais sobre
+          o usuário, incluindo seu <strong>Nome</strong>, <strong>CPF</strong>,{" "}
+          <strong>Endereço de email</strong>,{" "}
+          <strong>Número de telefone</strong> e{" "}
+          <strong>Cargo do usuário</strong>. Esses detalhes são facilmente
+          acessíveis e editáveis, proporcionando uma experiência de usuário
+          completa e personalizada.
         </p>
       </div>
       <div className="flex items-center gap-10 mt-32 w-[70%] font-['Open_Sans'] text-2xl leading-[4rem] text-justify">
@@ -62,20 +50,13 @@ export default function SoftwareScreens() {
           className="shadow-xl"
         />
         <p>
-          A interface principal do software apresenta um conjunto de 8 botões
-          localizados no topo da tela, incluindo opções como{" "}
-          <span className="font-bold">Adicionar</span>{" "}
-          <span className="font-bold">Alterar</span>{" "}
-          <span className="font-bold">Excluir</span>,{" "}
-          <span className="font-bold">Filtrar</span>,{" "}
-          <span className="font-bold">Vendas</span>,{" "}
-          <span className="font-bold">Perdas</span> e{" "}
-          <span className="font-bold">Trocar Área</span>. Além disso, 4 botões
-          adicionais estão dispostos lateralmente, oferecendo a funcionalidade
-          de visualizar <span className="font-bold">Estoques</span>,{" "}
-          <span className="font-bold">Dashboard</span>,{" "}
-          <span className="font-bold">Minha Conta</span> e{" "}
-          <span className="font-bold">Configurações</span>.
+          Dentro da tela de <strong>Configurações</strong>, os usuários podem
+          acessar opções relacionadas ao <strong>software</strong>, como{" "}
+          <strong>Atalhos do teclado</strong>,{" "}
+          <strong>Configurações de idioma</strong> e{" "}
+          <strong>Verificar atualizações</strong> disponíveis. Essas
+          configurações permitem personalizar a experiência de uso do software
+          de acordo com as preferências e necessidades individuais.
         </p>
       </div>
     </main>

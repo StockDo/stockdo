@@ -28,7 +28,20 @@ export default function EmailAuth() {
 
   const [authError, setAuthError] = useState(false);
   function delayAuthError() {
-    if (noAuth !== "3971") {
+    let numAuth = "";
+    fetch("/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Set the content type to JSON
+      },
+      body: JSON.stringify({ auth: noAuth }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        numAuth = data.authCode;
+        console.log(data.authCode);
+      });
+    if (noAuth !== "5971") {
       setAuthError(true);
       setTimeout(() => {
         setAuthError(false);
@@ -83,7 +96,7 @@ export default function EmailAuth() {
                 maxLength={4}
                 value={noAuth}
                 onChange={(e) => formatNoAuth(e.target.value)}
-                name="na1"
+                name="numAuth"
                 className={`w-44 border text-center text-4xl py-2 mt-2 border-[rgba(0,0,0,0.25)] outline-none ${
                   authError === true
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"

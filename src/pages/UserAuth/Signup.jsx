@@ -59,15 +59,7 @@ export default function Signup() {
         cnpj: false,
       });
       isValid = false;
-    }
-    // if (!/\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/.test(formData.cnpj)) {
-    //   setValidatedFields({
-    //     ...validatedFields,
-    //     cnpj: false,
-    //   });
-    //   isValid = false;
-    // }
-    else if (!/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/.test(formData.email)) {
+    } else if (!/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/.test(formData.email)) {
       setValidatedFields({
         ...validatedFields,
         email: false,
@@ -129,7 +121,7 @@ export default function Signup() {
             onSubmit={handleSubmit}
             method="post"
             className="flex flex-col mt-5 font-['Open_Sans']"
-            autoComplete="off">
+            autoComplete="on">
             <label
               htmlFor="cnpj"
               className={` ${

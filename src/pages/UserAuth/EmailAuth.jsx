@@ -28,31 +28,22 @@ export default function EmailAuth() {
 
   const [authError, setAuthError] = useState(false);
   function delayAuthError() {
-    let numAuth = "";
-    fetch("/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // Set the content type to JSON
-      },
-      body: JSON.stringify({ auth: noAuth }),
-    })
+    fetch("../../../auth.json")
       .then((res) => res.json())
       .then((data) => {
-        numAuth = data.authCode;
-        console.log(data.authCode);
+        if (noAuth !== data.auth) {
+          setAuthError(true);
+          setTimeout(() => {
+            setAuthError(false);
+            setNoAuth("");
+          }, 1000);
+        } else {
+          setAuthError("Success");
+          setTimeout(() => {
+            navigate("/#/");
+          }, 1000);
+        }
       });
-    if (noAuth !== "5971") {
-      setAuthError(true);
-      setTimeout(() => {
-        setAuthError(false);
-        setNoAuth("");
-      }, 1000);
-    } else {
-      setAuthError("Success");
-      setTimeout(() => {
-        navigate("/#/");
-      }, 1000);
-    }
   }
 
   return (
@@ -84,7 +75,7 @@ export default function EmailAuth() {
           <form
             action=""
             onSubmit={handleSubmit}
-            method="post"
+            method="get"
             className="flex flex-col mt-5 font-['Open_Sans']"
             autoComplete="off">
             <div className="flex flex-col items-center mb-5 text-center">

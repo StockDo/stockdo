@@ -52,6 +52,8 @@ export default function Signup() {
   };
 
   const handleSubmit = (e) => {
+    
+    e.preventDefault();
     let isValid = true;
     if (validarCNPJ(formData.cnpj) === false) {
       setValidatedFields({
@@ -83,8 +85,8 @@ export default function Signup() {
       isValid = false;
     }
 
-    if (isValid === false) {
-      e.preventDefault();
+    if (isValid === true) {
+      navigate("/#");
     }
 
     // setTimeout(() => {
@@ -117,7 +119,7 @@ export default function Signup() {
             Cadastre uma conta
           </h1>
           <form
-            action="/submit"
+            action="/#"
             onSubmit={handleSubmit}
             method="post"
             className="flex flex-col mt-5 font-['Open_Sans']"

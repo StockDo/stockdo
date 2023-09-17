@@ -4,7 +4,6 @@ import "../index.css";
 import SoftwareScreens from "../components/SoftwareScreens/SoftwareScreens";
 import Footer from "../components/Footer/Footer";
 import Planos from "../components/Planos/Planos";
-import "animate.css";
 
 export default function Home() {
   const myRef = useRef();

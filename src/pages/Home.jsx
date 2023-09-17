@@ -4,6 +4,7 @@ import "../index.css";
 import SoftwareScreens from "../components/SoftwareScreens/SoftwareScreens";
 import Footer from "../components/Footer/Footer";
 import Planos from "../components/Planos/Planos";
+import "animate.css";
 
 export default function Home() {
   const myRef = useRef();
@@ -41,11 +42,11 @@ export default function Home() {
       {/* Sobre o software */}
       <div className="" ref={myRef}></div>
       <div className="flex flex-col items-center justify-center bg-white mt-24">
-        <h1
-          className="text-6xl border-b pb-2 border-black font-['PT_Sans']"
-          id="software_title">
-          O Software
-        </h1>
+          <h1
+            className="text-6xl border-b pb-2 border-black font-['PT_Sans']"
+            id="software_title">
+            O Software
+          </h1>
         <SoftwareScreens />
       </div>
       <div ref={refPlanos}></div>

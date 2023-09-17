@@ -3,7 +3,7 @@ import SignupBackground from "../../assets/imgs/signup-bg.png";
 import StockDoLogo from "../../assets/imgs/stockdo.svg";
 import { useEffect, useState } from "react";
 import "animate.css";
-import validarCNPJ from "./cnpj";
+import validarCNPJ from "./cnpj_validation.js";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -52,7 +52,6 @@ export default function Signup() {
   };
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
     let isValid = true;
     if (validarCNPJ(formData.cnpj) === false) {

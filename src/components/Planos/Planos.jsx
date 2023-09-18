@@ -46,7 +46,7 @@ export default function Planos() {
             Obter
           </button>
         </div>
-        <div className="flex flex-col py-16 px-8 -translate-y-6 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl inline-block mt-10 bg-gradient-to-tr from-[#d6fcff] to-[#efffd3]">
+        <div className="flex flex-col px-14 py-16 -translate-y-6 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl inline-block mt-10 bg-gradient-to-tr from-[#d6fcff] to-[#efffd3]">
           <div className="flex flex-col items-center gap-3">
             <div className="flex gap-4">
               <h1 className="font-['PT_Sans'] text-5xl max-xl:text-3xl">

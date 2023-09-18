@@ -5,16 +5,19 @@ import Licenca from "./pages/Termos/Licenca";
 import Privacidade from "./pages/Termos/Privacidade";
 import Signup from "./pages/UserAuth/Signup";
 import EmailAuth from "./pages/UserAuth/EmailAuth";
+import RegisterUser from "./pages/RegisterUser";
 
 export default function Router() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="*" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/termos" element={<Termos />} />
       <Route path="/licenca" element={<Licenca />} />
       <Route path="/privacidade" element={<Privacidade />} />
       <Route path="/verification" element={<EmailAuth />} />
+      <Route path="/registro" element={<RegisterUser />} />
     </Routes>
   );
 }

@@ -94,7 +94,7 @@ export default function Signup() {
     <>
       <Navbar />
       <main className="flex justify-center items-center min-h-screen bg-slate-100">
-        <div className="bg-slate-400 flex items-center shadow-xl rounded-xl max-lg:mx-5">
+        <div className="bg-slate-400 flex items-center shadow-xl rounded-xl mx-5 my-32">
           <div className="px-8 max-lg:hidden">
             <img
               src={SignupBackground}

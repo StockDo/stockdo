@@ -6,10 +6,12 @@ import Navbar from "../components/Navbar/Navbar";
 export default function RegisterUser() {
   const [rua, setRua] = useState("");
   const [bairro, setBairro] = useState("");
+  const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [cidade, setCidade] = useState("");
   const [estado, setEstado] = useState("");
   const [cep, setCep] = useState("");
+  const [cpf, setCpf] = useState("");
   useEffect(() => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
@@ -18,7 +20,6 @@ export default function RegisterUser() {
         setRua(data.logradouro);
         setBairro(data.bairro);
         setEstado(data.uf);
-        setComplemento(data.complemento);
       });
   }, [cep]);
   return (
@@ -64,6 +65,19 @@ export default function RegisterUser() {
             </div>
           </div>
           <div className="flex gap-4">
+            <div className="flex flex-col pb-5 w-full">
+              <label
+                htmlFor=""
+                className="after:content-['*'] after:text-red-600 after:pl-1">
+                CPF do proprietário
+              </label>
+              <input
+                type="text"
+                name=""
+                placeholder=""
+                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+              />
+            </div>
             <div className="flex flex-col pb-5 w-full">
               <label
                 htmlFor=""
@@ -136,6 +150,17 @@ export default function RegisterUser() {
                   value={bairro}
                   onChange={(e) => setBairro(e.target.value)}
                   placeholder="Bairro"
+                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                <label htmlFor="local" className="after:content-['*'] after:text-red-600 after:pl-1">Número</label>
+                <input
+                  type="text"
+                  name=""
+                  value={numero}
+                  onChange={(e) => setNumero(e.target.value)}
+                  placeholder="Número"
                   className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
                 />
               </div>

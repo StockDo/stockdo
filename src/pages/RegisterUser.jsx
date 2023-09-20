@@ -16,14 +16,18 @@ export default function RegisterUser() {
   const [cepError, setCepError] = useState(false);
   const [cpf, setCpf] = useState("");
   useEffect(() => {
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCidade(data.localidade);
-        setRua(data.logradouro);
-        setBairro(data.bairro);
-        setEstado(data.uf);
-      });
+    axios.get(`https://viacep.com.br/ws/${cep}/json/`).then((res) => {
+      if (res.data.erro) {
+        setCepError(true);
+      } else {
+        setCepError(false);
+        setCidade(res.data.localidade);
+        setRua(res.data.logradouro);
+        setBairro(res.data.bairro);
+        setEstado(res.data.uf);
+        setComplemento(res.data.complemento);
+      }
+    });
   }, [cep]);
 
   const cepInput = (e) => {
@@ -178,7 +182,11 @@ export default function RegisterUser() {
                 />
               </div>
               <div className="flex flex-col w-full">
-                <label htmlFor="local" className="after:content-['*'] after:text-red-600 after:pl-1">Número</label>
+                <label
+                  htmlFor="local"
+                  className="after:content-['*'] after:text-red-600 after:pl-1">
+                  Número
+                </label>
                 <input
                   type="text"
                   name=""

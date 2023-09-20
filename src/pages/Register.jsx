@@ -5,11 +5,10 @@ import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
 import "animate.css";
 
-export default function RegisterUser() {
+export default function Register() {
   const [rua, setRua] = useState("");
   const [bairro, setBairro] = useState("");
   const [numero, setNumero] = useState("");
-  const [complemento, setComplemento] = useState("");
   const [cidade, setCidade] = useState("");
   const [estado, setEstado] = useState("");
   const [cep, setCep] = useState("");
@@ -25,7 +24,6 @@ export default function RegisterUser() {
         setRua(res.data.logradouro);
         setBairro(res.data.bairro);
         setEstado(res.data.uf);
-        setComplemento(res.data.complemento);
       }
     });
   }, [cep]);
@@ -39,18 +37,27 @@ export default function RegisterUser() {
       .slice(0, 9);
     setCep(format);
   };
+
+  const cpfInput = (e) => {
+    const value = e.target.value;
+    const format = value
+      .replace(/[a-zA-Z\s]/, "")
+      .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+      .slice(0, 14);
+    setCpf(format);
+  };
   return (
     <>
       <Navbar />
       <div className="flex flex-col items-center">
         <img src={StockDoLogo} width={"300px"} className="mb-12 mt-32" />
-        <h1 className="text-4xl font-['PT_Sans'] mb-5">Cadastro da empresa</h1>
+        <h1 className="text-4xl font-['PT_Sans'] mb-5">Registro da empresa</h1>
         <form
           action=""
           method="post"
           autoComplete="off"
           className="font-['Open_Sans'] pb-24 max-w-[80rem] w-full px-5">
-          <h1 className="text-2xl font-['PT_Sans'] mt-5 mb-2 underline">
+          <h1 className="text-2xl font-['PT_Sans'] my-5 underline">
             Dados da empresa
           </h1>
           <div className="flex gap-4">
@@ -91,6 +98,8 @@ export default function RegisterUser() {
               <input
                 type="text"
                 name=""
+                value={cpf}
+                onChange={cpfInput}
                 placeholder=""
                 className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
               />
@@ -99,7 +108,7 @@ export default function RegisterUser() {
               <label
                 htmlFor=""
                 className="after:content-['*'] after:text-red-600 after:pl-1">
-                Telefone
+                Telefone/Cel.
               </label>
               <input
                 type="text"
@@ -109,7 +118,11 @@ export default function RegisterUser() {
               />
             </div>
             <div className="flex flex-col pb-5 w-full">
-              <label htmlFor="">Contato (ex. WhatsApp, Email)</label>
+              <label
+                htmlFor=""
+                className="after:content-['*'] after:text-red-600 after:pl-1">
+                Contato (ex. WhatsApp, Email)
+              </label>
               <input
                 type="text"
                 name="phone"
@@ -118,52 +131,54 @@ export default function RegisterUser() {
               />
             </div>
           </div>
-          <h1 className="text-2xl font-['PT_Sans'] mt-5 mb-2 underline">
+          <h1 className="text-2xl font-['PT_Sans'] my-5 underline">
             Endereço da empresa
           </h1>
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col">
-              <label
-                htmlFor="local"
-                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                  cepError
-                    ? "animate__animated animate__shakeX text-red-600 "
-                    : null
-                }`}>
-                {cepError
-                  ? cepError === ""
-                    ? "Preencha este campo"
-                    : "CEP inválido"
-                  : "CEP"}
-              </label>
-              <input
-                type="text"
-                name="zip"
-                value={cep}
-                onChange={cepInput}
-                id="local"
-                placeholder="CEP"
-                className={`border border-neutral-300 p-3 outline-none focus:border-orange-400 ${
-                  cepError
-                    ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                    : null
-                }`}
-              />
-            </div>
-            <div className="flex flex-col">
-              <label
-                htmlFor="local"
-                className="after:content-['*'] after:text-red-600 after:pl-1">
-                Rua
-              </label>
-              <input
-                type="text"
-                name="rua"
-                value={rua}
-                onChange={(e) => setRua(e.target.value)}
-                placeholder="Rua"
-                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
-              />
+            <div className="flex gap-4">
+              <div className="flex flex-col w-full">
+                <label
+                  htmlFor="local"
+                  className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                    cepError
+                      ? "animate__animated animate__shakeX text-red-600 "
+                      : null
+                  }`}>
+                  {cepError
+                    ? cepError === ""
+                      ? "Preencha este campo"
+                      : "CEP inválido"
+                    : "CEP"}
+                </label>
+                <input
+                  type="text"
+                  name="zip"
+                  value={cep}
+                  onChange={cepInput}
+                  id="local"
+                  placeholder="CEP"
+                  className={`border border-neutral-300 p-3 outline-none focus:border-orange-400 ${
+                    cepError
+                      ? "animate__animated animate__shakeX text-red-600 border-red-600"
+                      : null
+                  }`}
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                <label
+                  htmlFor="local"
+                  className="after:content-['*'] after:text-red-600 after:pl-1">
+                  Rua
+                </label>
+                <input
+                  type="text"
+                  name="rua"
+                  value={rua}
+                  onChange={(e) => setRua(e.target.value)}
+                  placeholder="Rua"
+                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                />
+              </div>
             </div>
             <div className="flex gap-4">
               <div className="flex flex-col w-full">
@@ -201,8 +216,6 @@ export default function RegisterUser() {
                 <input
                   type="text"
                   name=""
-                  value={complemento}
-                  onChange={(e) => setComplemento(e.target.value)}
                   placeholder="Complemento"
                   className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
                 />
@@ -240,6 +253,11 @@ export default function RegisterUser() {
                 />
               </div>
             </div>
+            <button
+              type="submit"
+              className="px-24 py-4 bg-orange-400 m-auto rounded-xl text-2xl font-['PT_Sans'] mt-10 hover:bg-orange-500 duration-200">
+              Finalizar cadastro
+            </button>
           </div>
         </form>
       </div>

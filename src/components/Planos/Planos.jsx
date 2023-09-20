@@ -87,7 +87,7 @@ export default function Planos() {
             Obter
           </button>
         </div>
-        <div className="flex flex-col p-10 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl inline-block mt-10">
+        <div className="flex flex-col p-10 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl mt-10">
           <div className="flex flex-col items-center gap-3">
             <h1 className="font-['PT_Sans'] text-5xl">Plano Básico</h1>
             <h2 className="font-['PT_Sans'] text-5xl">

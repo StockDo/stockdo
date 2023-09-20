@@ -40,7 +40,7 @@ export default function EmailAuth() {
         } else {
           setAuthError("Success");
           setTimeout(() => {
-            navigate("/#/");
+            navigate("/registro");
           }, 1000);
         }
       });

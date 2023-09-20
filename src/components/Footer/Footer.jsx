@@ -81,7 +81,7 @@ export default function Footer() {
         </ul>
       </div>
       <p className="text-2xl mt-24">
-        Copyright © 2023 • <span className="font-bold">NoEqual Solutions</span>{" "}
+        Copyright © 2023 • <span className="font-bold">NoEqual</span>{" "}
         • Termos de uso
       </p>
     </div>

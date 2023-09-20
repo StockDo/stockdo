@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import StockDoLogo from "../assets/imgs/stockdo.svg";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import axios from "axios";
+import "animate.css";
 
 export default function RegisterUser() {
   const [rua, setRua] = useState("");
@@ -10,20 +12,34 @@ export default function RegisterUser() {
   const [cidade, setCidade] = useState("");
   const [estado, setEstado] = useState("");
   const [cep, setCep] = useState("");
+  const [cepError, setCepError] = useState(false);
   useEffect(() => {
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCidade(data.localidade);
-        setRua(data.logradouro);
-        setBairro(data.bairro);
-        setEstado(data.uf);
-        setComplemento(data.complemento);
-      });
+    axios.get(`https://viacep.com.br/ws/${cep}/json/`).then((res) => {
+      if (res.data.erro) {
+        setCepError(true);
+      } else {
+        setCepError(false);
+        setCidade(res.data.localidade);
+        setRua(res.data.logradouro);
+        setBairro(res.data.bairro);
+        setEstado(res.data.uf);
+        setComplemento(res.data.complemento);
+      }
+    });
   }, [cep]);
+
+  const cepInput = (e) => {
+    setCepError(false);
+    const value = e.target.value;
+    const format = value
+      .replace(/[a-zA-Z\s]/, "")
+      .replace(/(\d{5})(\d{3})/, "$1-$2")
+      .slice(0, 9);
+    setCep(format);
+  };
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="flex flex-col items-center">
         <img src={StockDoLogo} width={"300px"} className="mb-12 mt-32" />
         <h1 className="text-4xl font-['PT_Sans'] mb-5">Cadastro da empresa</h1>
@@ -94,18 +110,29 @@ export default function RegisterUser() {
             <div className="flex flex-col">
               <label
                 htmlFor="local"
-                className="after:content-['*'] after:text-red-600 after:pl-1">
-                CEP
+                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                  cepError
+                    ? "animate__animated animate__shakeX text-red-600 "
+                    : null
+                }`}>
+                {cepError
+                  ? cepError === ""
+                    ? "Preencha este campo"
+                    : "CEP inválido"
+                  : "CEP"}
               </label>
               <input
                 type="text"
                 name="zip"
                 value={cep}
-                onChange={(e) => setCep(e.target.value)}
+                onChange={cepInput}
                 id="local"
                 placeholder="CEP"
-                maxLength={9}
-                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                className={`border border-neutral-300 p-3 outline-none focus:border-orange-400 ${
+                  cepError
+                    ? "animate__animated animate__shakeX text-red-600 border-red-600"
+                    : null
+                }`}
               />
             </div>
             <div className="flex flex-col">

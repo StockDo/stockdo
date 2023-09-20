@@ -8,24 +8,22 @@ import "animate.css";
 export default function RegisterUser() {
   const [rua, setRua] = useState("");
   const [bairro, setBairro] = useState("");
+  const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [cidade, setCidade] = useState("");
   const [estado, setEstado] = useState("");
   const [cep, setCep] = useState("");
   const [cepError, setCepError] = useState(false);
+  const [cpf, setCpf] = useState("");
   useEffect(() => {
-    axios.get(`https://viacep.com.br/ws/${cep}/json/`).then((res) => {
-      if (res.data.erro) {
-        setCepError(true);
-      } else {
-        setCepError(false);
-        setCidade(res.data.localidade);
-        setRua(res.data.logradouro);
-        setBairro(res.data.bairro);
-        setEstado(res.data.uf);
-        setComplemento(res.data.complemento);
-      }
-    });
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCidade(data.localidade);
+        setRua(data.logradouro);
+        setBairro(data.bairro);
+        setEstado(data.uf);
+      });
   }, [cep]);
 
   const cepInput = (e) => {
@@ -80,6 +78,19 @@ export default function RegisterUser() {
             </div>
           </div>
           <div className="flex gap-4">
+            <div className="flex flex-col pb-5 w-full">
+              <label
+                htmlFor=""
+                className="after:content-['*'] after:text-red-600 after:pl-1">
+                CPF do proprietário
+              </label>
+              <input
+                type="text"
+                name=""
+                placeholder=""
+                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+              />
+            </div>
             <div className="flex flex-col pb-5 w-full">
               <label
                 htmlFor=""
@@ -163,6 +174,17 @@ export default function RegisterUser() {
                   value={bairro}
                   onChange={(e) => setBairro(e.target.value)}
                   placeholder="Bairro"
+                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                <label htmlFor="local" className="after:content-['*'] after:text-red-600 after:pl-1">Número</label>
+                <input
+                  type="text"
+                  name=""
+                  value={numero}
+                  onChange={(e) => setNumero(e.target.value)}
+                  placeholder="Número"
                   className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
                 />
               </div>

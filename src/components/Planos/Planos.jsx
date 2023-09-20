@@ -46,13 +46,13 @@ export default function Planos() {
             Obter
           </button>
         </div>
-        <div className="flex flex-col px-14 py-16 -translate-y-6 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl inline-block mt-10 bg-gradient-to-tr from-[#d6fcff] to-[#efffd3]">
+        <div className="flex flex-col px-14 py-16 -translate-y-6 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl mt-10 bg-gradient-to-tr from-[#d6fcff] to-[#efffd3]">
           <div className="flex flex-col items-center gap-3">
-            <div className="flex gap-4">
-              <h1 className="font-['PT_Sans'] text-5xl max-xl:text-3xl">
+            <div className="flex gap-4 items-center">
+              <h1 className="font-['PT_Sans'] text-5xl max-2xl:text-4xl">
                 Plano Popular{" "}
               </h1>
-              <i className="fa-solid fa-crown  text-5xl text-yellow-500"></i>
+              <i className="fa-solid fa-crown text-4xl text-yellow-500"></i>
             </div>
             <h2 className="font-['PT_Sans'] text-5xl">
               <span className="font-sans text-3xl">R$</span>89,99

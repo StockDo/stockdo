@@ -53,7 +53,7 @@ export default function Register() {
         <img src={StockDoLogo} width={"300px"} className="mb-12 mt-32" />
         <h1 className="text-4xl font-['PT_Sans'] mb-5">Registro da empresa</h1>
         <form
-          action=""
+          action="/register_submit"
           method="post"
           autoComplete="off"
           className="font-['Open_Sans'] pb-24 max-w-[80rem] w-full px-5">
@@ -204,7 +204,7 @@ export default function Register() {
                 </label>
                 <input
                   type="text"
-                  name=""
+                  name="numero"
                   value={numero}
                   onChange={(e) => setNumero(e.target.value)}
                   placeholder="Número"
@@ -215,7 +215,7 @@ export default function Register() {
                 <label htmlFor="local">Complemento (opcional)</label>
                 <input
                   type="text"
-                  name=""
+                  name="complemento"
                   placeholder="Complemento"
                   className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
                 />

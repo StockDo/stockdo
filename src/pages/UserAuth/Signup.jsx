@@ -227,9 +227,11 @@ export default function Signup() {
               </button>
               <span className="m-auto mt-4">
                 Já possui uma conta?{" "}
-                <a href="" className="text-orange-700 hover:underline">
+                <span
+                  onClick={() => navigate("/login")}
+                  className="text-orange-700 hover:underline cursor-pointer">
                   Entre aqui.
-                </a>
+                </span>
               </span>
             </form>
           </div>

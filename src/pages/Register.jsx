@@ -6,27 +6,63 @@ import axios from "axios";
 import "animate.css";
 
 export default function Register() {
-  const [rua, setRua] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [numero, setNumero] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
-  const [cep, setCep] = useState("");
+  const [formData, setFormData] = useState({
+    nome_empresa: "",
+    nome_prop: "",
+    cpf: "",
+    tel_cel: "",
+    contato: "",
+    cep: "",
+    rua: "",
+    bairro: "",
+    numero: "",
+    complemento: "",
+    cidade: "",
+    estado: "",
+  });
+  const [validatedFields, setValidatedFields] = useState({
+    nome_empresa: true,
+    nome_prop: true,
+    cpf: true,
+    tel_cel: true,
+    contato: true,
+    cep: true,
+    rua: true,
+    bairro: true,
+    numero: true,
+    complemento: true,
+    cidade: true,
+    estado: true,
+  });
   const [cepError, setCepError] = useState(false);
-  const [cpf, setCpf] = useState("");
   useEffect(() => {
-    axios.get(`https://viacep.com.br/ws/${cep}/json/`).then((res) => {
+    axios.get(`https://viacep.com.br/ws/${formData.cep}/json/`).then((res) => {
       if (res.data.erro) {
         setCepError(true);
       } else {
+        setFormData({
+          ...formData,
+          cidade: res.data.localidade,
+          rua: res.data.logradouro,
+          bairro: res.data.bairro,
+          estado: res.data.uf,
+        });
         setCepError(false);
-        setCidade(res.data.localidade);
-        setRua(res.data.logradouro);
-        setBairro(res.data.bairro);
-        setEstado(res.data.uf);
       }
     });
-  }, [cep]);
+  }, [formData.cep]);
+
+  const userInput = (e) => {
+    const { name, value } = e.target;
+    setValidatedFields({
+      ...validatedFields,
+      [name]: true,
+    });
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const cepInput = (e) => {
     setCepError(false);
@@ -35,7 +71,10 @@ export default function Register() {
       .replace(/[a-zA-Z\s]/, "")
       .replace(/(\d{5})(\d{3})/, "$1-$2")
       .slice(0, 9);
-    setCep(format);
+    setFormData({
+      ...formData,
+      cep: format,
+    });
   };
 
   const cpfInput = (e) => {
@@ -44,7 +83,57 @@ export default function Register() {
       .replace(/[a-zA-Z\s]/, "")
       .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
       .slice(0, 14);
-    setCpf(format);
+    setFormData({
+      ...formData,
+      cpf: format,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    let isValid = true;
+    if (
+      formData.nome_empresa === "" ||
+      formData.nome_prop === "" ||
+      formData.cpf === "" ||
+      formData.tel_cel === "" ||
+      formData.contato === "" ||
+      formData.cep === "" ||
+      formData.rua === "" ||
+      formData.numero === "" ||
+      formData.cidade === "" ||
+      formData.estado === ""
+    ) {
+      isValid = false;
+    }
+    const formDataValues = [
+      "nome_empresa",
+      "nome_prop",
+      "cpf",
+      "tel_cel",
+      "contato",
+      "cpf",
+      "cep",
+      "rua",
+      "bairro",
+      "numero",
+      "cidade",
+      "estado",
+    ];
+    const dataValues = {};
+
+    for (const element of formDataValues) {
+      if (formData[element] === "") {
+        dataValues[element] = false;
+      }
+    }
+    
+    setValidatedFields({
+      ...validatedFields,
+      ...dataValues,
+    });
+    if (isValid === false) {
+      e.preventDefault();
+    }
   };
   return (
     <>
@@ -55,6 +144,7 @@ export default function Register() {
         <form
           action="/register_submit"
           method="post"
+          onSubmit={handleSubmit}
           autoComplete="off"
           className="font-['Open_Sans'] pb-24 max-w-[80rem] w-full px-5">
           <h1 className="text-2xl font-['PT_Sans'] my-5 underline">
@@ -64,27 +154,51 @@ export default function Register() {
             <div className="flex flex-col pb-5 w-full">
               <label
                 htmlFor=""
-                className="after:content-['*'] after:text-red-600 after:pl-1">
-                Nome da empresa
+                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                  validatedFields.nome_empresa === false
+                    ? "animate__animated animate__shakeX text-red-600"
+                    : null
+                }`}>
+                {validatedFields.nome_empresa === false
+                  ? "Campo obrigatório"
+                  : "Nome da empresa"}
               </label>
               <input
                 type="text"
-                name=""
-                placeholder=""
-                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                name="nome_empresa"
+                value={formData.nome_empresa}
+                onChange={userInput}
+                placeholder="Nome da empresa"
+                className={`border border-neutral-300 p-3 outline-none ${
+                  validatedFields.nome_empresa === false
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
+                }`}
               />
             </div>
             <div className="flex flex-col pb-5 w-full">
               <label
-                htmlFor=""
-                className="after:content-['*'] after:text-red-600 after:pl-1">
-                Nome do proprietário
+                htmlFor="nome_prop"
+                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                  validatedFields.nome_prop === false
+                    ? "animate__animated animate__shakeX text-red-600"
+                    : null
+                }`}>
+                {validatedFields.nome_prop === false
+                  ? "Campo obrigatório"
+                  : "Nome do proprietário"}
               </label>
               <input
                 type="text"
-                name=""
-                placeholder=""
-                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                name="nome_prop"
+                value={formData.nome_prop}
+                onChange={userInput}
+                placeholder="Nome do proprietário"
+                className={`border border-neutral-300 p-3 outline-none ${
+                  validatedFields.rua === false
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
+                }`}
               />
             </div>
           </div>
@@ -92,42 +206,76 @@ export default function Register() {
             <div className="flex flex-col pb-5 w-full">
               <label
                 htmlFor=""
-                className="after:content-['*'] after:text-red-600 after:pl-1">
-                CPF do proprietário
+                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                  validatedFields.cpf === false
+                    ? "animate__animated animate__shakeX text-red-600"
+                    : null
+                }`}>
+                {validatedFields.cpf === false
+                  ? "Campo obrigatório"
+                  : "CPF do proprietário"}
               </label>
               <input
                 type="text"
-                name=""
-                value={cpf}
+                name="cpf"
+                value={formData.cpf}
                 onChange={cpfInput}
-                placeholder=""
-                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                placeholder="CPF do proprietário"
+                className={`border border-neutral-300 p-3 outline-none ${
+                  validatedFields.cpf === false
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
+                }`}
               />
             </div>
             <div className="flex flex-col pb-5 w-full">
               <label
                 htmlFor=""
-                className="after:content-['*'] after:text-red-600 after:pl-1">
-                Telefone/Cel.
+                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                  validatedFields.tel_cel === false
+                    ? "animate__animated animate__shakeX text-red-600"
+                    : null
+                }`}>
+                {validatedFields.tel_cel === false
+                  ? "Campo obrigatório"
+                  : "Telefone/Cel."}
               </label>
               <input
                 type="text"
-                name=""
-                placeholder=""
-                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                name="tel_cel"
+                value={formData.tel_cel}
+                onChange={userInput}
+                placeholder="Telefone/Cel."
+                className={`border border-neutral-300 p-3 outline-none ${
+                  validatedFields.tel_cel === false
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
+                }`}
               />
             </div>
             <div className="flex flex-col pb-5 w-full">
               <label
                 htmlFor=""
-                className="after:content-['*'] after:text-red-600 after:pl-1">
-                Contato (ex. WhatsApp, Email)
+                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                  validatedFields.contato === false
+                    ? "animate__animated animate__shakeX text-red-600"
+                    : null
+                }`}>
+                {validatedFields.contato === false
+                  ? "Campo obrigatório"
+                  : "Contato (ex. WhatsApp, Email)"}
               </label>
               <input
                 type="text"
-                name="phone"
-                placeholder=""
-                className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                name="contato"
+                value={formData.contato}
+                onChange={userInput}
+                placeholder="Contato (ex. WhatsApp, Email)"
+                className={`border border-neutral-300 p-3 outline-none ${
+                  validatedFields.contato === false
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
+                }`}
               />
             </div>
           </div>
@@ -140,43 +288,51 @@ export default function Register() {
                 <label
                   htmlFor="local"
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                    cepError
+                    cepError || validatedFields.cep === false
                       ? "animate__animated animate__shakeX text-red-600 "
                       : null
                   }`}>
-                  {cepError
-                    ? cepError === ""
-                      ? "Preencha este campo"
-                      : "CEP inválido"
+                  {validatedFields.cep === false
+                    ? "Campo obrigatório"
+                    : cepError
+                    ? "CEP inválido"
                     : "CEP"}
                 </label>
                 <input
                   type="text"
-                  name="zip"
-                  value={cep}
+                  name="cep"
+                  value={formData.cep}
                   onChange={cepInput}
                   id="local"
                   placeholder="CEP"
-                  className={`border border-neutral-300 p-3 outline-none focus:border-orange-400 ${
-                    cepError
+                  className={`border border-neutral-300 p-3 outline-none ${
+                    validatedFields.cep === false || cepError
                       ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                      : null
+                      : "focus:border-orange-400"
                   }`}
                 />
               </div>
               <div className="flex flex-col w-full">
                 <label
                   htmlFor="local"
-                  className="after:content-['*'] after:text-red-600 after:pl-1">
-                  Rua
+                  className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                    validatedFields.rua === false
+                      ? "animate__animated animate__shakeX text-red-600"
+                      : null
+                  }`}>
+                  {validatedFields.rua === false ? "Campo obrigatório" : "Rua"}
                 </label>
                 <input
                   type="text"
                   name="rua"
-                  value={rua}
-                  onChange={(e) => setRua(e.target.value)}
+                  value={formData.rua}
+                  onChange={userInput}
                   placeholder="Rua"
-                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                  className={`border border-neutral-300 p-3 outline-none ${
+                    validatedFields.rua === false
+                      ? "animate__animated animate__shakeX border-red-600"
+                      : "focus:border-orange-400"
+                  }`}
                 />
               </div>
             </div>
@@ -184,31 +340,51 @@ export default function Register() {
               <div className="flex flex-col w-full">
                 <label
                   htmlFor="local"
-                  className="after:content-['*'] after:text-red-600 after:pl-1">
-                  Bairro
+                  className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                    validatedFields.bairro === false
+                      ? "animate__animated animate__shakeX text-red-600"
+                      : null
+                  }`}>
+                  {validatedFields.bairro === false
+                    ? "Campo obrigatório"
+                    : "Bairro"}
                 </label>
                 <input
                   type="text"
                   name="bairro"
-                  value={bairro}
-                  onChange={(e) => setBairro(e.target.value)}
+                  value={formData.bairro}
+                  onChange={userInput}
                   placeholder="Bairro"
-                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                  className={`border border-neutral-300 p-3 outline-none ${
+                    validatedFields.bairro === false
+                      ? "animate__animated animate__shakeX border-red-600"
+                      : "focus:border-orange-400"
+                  }`}
                 />
               </div>
               <div className="flex flex-col w-full">
                 <label
                   htmlFor="local"
-                  className="after:content-['*'] after:text-red-600 after:pl-1">
-                  Número
+                  className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                    validatedFields.numero === false
+                      ? "animate__animated animate__shakeX text-red-600"
+                      : null
+                  }`}>
+                  {validatedFields.numero === false
+                    ? "Campo obrigatório"
+                    : "Número"}
                 </label>
                 <input
                   type="text"
                   name="numero"
-                  value={numero}
-                  onChange={(e) => setNumero(e.target.value)}
+                  value={formData.numero}
+                  onChange={userInput}
                   placeholder="Número"
-                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                  className={`border border-neutral-300 p-3 outline-none ${
+                    validatedFields.numero === false
+                      ? "animate__animated animate__shakeX border-red-600"
+                      : "focus:border-orange-400"
+                  }`}
                 />
               </div>
               <div className="flex flex-col w-full">
@@ -225,31 +401,51 @@ export default function Register() {
               <div className="flex flex-col w-full">
                 <label
                   htmlFor="local"
-                  className="after:content-['*'] after:text-red-600 after:pl-1">
-                  Cidade
+                  className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                    validatedFields.cidade === false
+                      ? "animate__animated animate__shakeX text-red-600"
+                      : null
+                  }`}>
+                  {validatedFields.cidade === false
+                    ? "Campo obrigatório"
+                    : "Cidade"}
                 </label>
                 <input
                   type="text"
                   name="cidade"
-                  value={cidade}
-                  onChange={(e) => setCidade(e.target.value)}
+                  value={formData.cidade}
+                  onChange={userInput}
                   placeholder="Cidade"
-                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                  className={`border border-neutral-300 p-3 outline-none ${
+                    validatedFields.cidade === false
+                      ? "animate__animated animate__shakeX border-red-600"
+                      : "focus:border-orange-400"
+                  }`}
                 />
               </div>
               <div className="flex flex-col w-full">
                 <label
                   htmlFor="local"
-                  className="after:content-['*'] after:text-red-600 after:pl-1">
-                  Estado
+                  className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                    validatedFields.estado === false
+                      ? "animate__animated animate__shakeX text-red-600"
+                      : null
+                  }`}>
+                  {validatedFields.estado === false
+                    ? "Campo obrigatório"
+                    : "Estado"}
                 </label>
                 <input
                   type="text"
                   name="estado"
-                  value={estado}
-                  onChange={(e) => setEstado(e.target.value)}
+                  value={formData.estado}
+                  onChange={userInput}
                   placeholder="Estado"
-                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                  className={`border border-neutral-300 p-3 outline-none ${
+                    validatedFields.estado === false
+                      ? "animate__animated animate__shakeX border-red-600"
+                      : "focus:border-orange-400"
+                  }`}
                 />
               </div>
             </div>

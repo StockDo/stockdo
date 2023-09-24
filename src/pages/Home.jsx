@@ -8,12 +8,12 @@ import Planos from "../components/Planos/Planos";
 export default function Home() {
   const myRef = useRef();
   const refPlanos = useRef();
-  const executeScroll = () => myRef.current.scrollIntoView();
+  const saibaMaisScroll = () => myRef.current.scrollIntoView();
   const planosScroll = () => refPlanos.current.scrollIntoView();
   return (
     <main className="min-h-screen">
       <div className="bg-[url('./assets/imgs/sd-bg1.png')] bg-cover bg-no-repeat">
-        <Navbar />
+        <Navbar saibaMaisScroll={saibaMaisScroll} planosScroll={planosScroll} />
         <div className="bg-gradient-to-r from-[rgba(0,0,0,0.83)] h-screen">
           <div className="pt-80 pl-16">
             <h1 className="text-8xl text-white font-['PT_Sans'] max-2xl:text-6xl">
@@ -22,10 +22,9 @@ export default function Home() {
             <p className="text-2xl font-['Open_Sans'] text-white">
               Agilize o processo, reduza perdas.
             </p>
-            {/* <Buttons /> */}
             <div className="flex gap-3 text-2xl font-['Open_Sans']">
               <button
-                onClick={executeScroll}
+                onClick={saibaMaisScroll}
                 className="bg-orange-500 px-5 py-2 rounded-lg mt-5">
                 Saiba mais
               </button>
@@ -41,11 +40,11 @@ export default function Home() {
       {/* Sobre o software */}
       <div className="" ref={myRef}></div>
       <div className="flex flex-col items-center justify-center bg-white mt-24">
-          <h1
-            className="text-6xl border-b pb-2 border-black font-['PT_Sans']"
-            id="software_title">
-            O Software
-          </h1>
+        <h1
+          className="text-6xl border-b pb-2 border-black font-['PT_Sans']"
+          id="software_title">
+          O Software
+        </h1>
         <SoftwareScreens />
       </div>
       <div ref={refPlanos}></div>

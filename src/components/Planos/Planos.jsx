@@ -38,7 +38,7 @@ export default function Planos() {
           </ul>
           <button
             onClick={() => navigate("/signup")}
-            className="m-auto mt-10 py-2 px-7 rounded-xl bg-slate-900 text-white text-3xl  font-bold duration-200 hover:scale-105">
+            className="m-auto mt-10 py-2 px-7 rounded-xl bg-slate-900 text-white text-3xl font-['Open_Sans'] font-bold duration-200 hover:scale-105">
             Obter
           </button>
         </div>

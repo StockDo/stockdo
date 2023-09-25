@@ -7,6 +7,10 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 
 export default function Login() {
+  const [formData, setFormData] = useState({
+    cnpj: "",
+    pass: "",
+  });
   const navigate = useNavigate();
 
   return (
@@ -35,11 +39,22 @@ export default function Login() {
             <form
               action="/login_submit"
               method="post"
+              onSubmit={(e) => {
+                e.preventDefault();
+                localStorage.setItem("auth", "true");
+              }}
               className="flex flex-col mt-5 font-['Open_Sans']"
               autoComplete="on">
               <label htmlFor="cnpj">CNPJ</label>
               <input
                 type="text"
+                value={formData.cnpj}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    cnpj: e.target.value,
+                  })
+                }
                 name="cnpj"
                 id="cnpj"
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none focus:border-orange-400 `}
@@ -49,6 +64,13 @@ export default function Login() {
               <input
                 type="password"
                 name="pass"
+                value={formData.pass}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    pass: e.target.value,
+                  })
+                }
                 id="password"
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none focus:border-orange-400 `}
               />

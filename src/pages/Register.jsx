@@ -20,20 +20,22 @@ export default function Register() {
     cidade: "",
     estado: "",
   });
-  const [validatedFields, setValidatedFields] = useState({
-    nome_empresa: true,
-    nome_prop: true,
-    cpf: true,
-    tel_cel: true,
-    contato: true,
-    cep: true,
-    rua: true,
-    bairro: true,
-    numero: true,
-    complemento: true,
-    cidade: true,
-    estado: true,
-  });
+  const [validatedFields, setValidatedFields] = useState([
+    {
+      nome_empresa: true,
+      nome_prop: true,
+      cpf: true,
+      tel_cel: true,
+      contato: true,
+      cep: true,
+      rua: true,
+      bairro: true,
+      numero: true,
+      complemento: true,
+      cidade: true,
+      estado: true,
+    },
+  ]);
   const [cepError, setCepError] = useState(false);
   useEffect(() => {
     axios.get(`https://viacep.com.br/ws/${formData.cep}/json/`).then((res) => {
@@ -47,6 +49,13 @@ export default function Register() {
           bairro: res.data.bairro,
           estado: res.data.uf,
         });
+        setValidatedFields({
+          ...validatedFields,
+          cidade: true,
+          rua: true,
+          bairro: true,
+          estado: true,
+        });
         setCepError(false);
       }
     });
@@ -54,6 +63,14 @@ export default function Register() {
 
   const userInput = (e) => {
     const { name, value } = e.target;
+    let formatCpf;
+    if (name == "cpf") {
+      formatCpf = value
+        .replace(/[a-zA-Z\s]/, "")
+        .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+        .slice(0, 14);
+    }
+
     setValidatedFields({
       ...validatedFields,
       [name]: true,
@@ -61,6 +78,7 @@ export default function Register() {
     setFormData({
       ...formData,
       [name]: value,
+      cpf: formatCpf,
     });
   };
 
@@ -75,36 +93,13 @@ export default function Register() {
       ...formData,
       cep: format,
     });
-  };
-
-  const cpfInput = (e) => {
-    const value = e.target.value;
-    const format = value
-      .replace(/[a-zA-Z\s]/, "")
-      .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
-      .slice(0, 14);
-    setFormData({
-      ...formData,
-      cpf: format,
+    setValidatedFields({
+      ...validatedFields,
+      cep: true,
     });
   };
 
   const handleSubmit = (e) => {
-    let isValid = true;
-    if (
-      formData.nome_empresa === "" ||
-      formData.nome_prop === "" ||
-      formData.cpf === "" ||
-      formData.tel_cel === "" ||
-      formData.contato === "" ||
-      formData.cep === "" ||
-      formData.rua === "" ||
-      formData.numero === "" ||
-      formData.cidade === "" ||
-      formData.estado === ""
-    ) {
-      isValid = false;
-    }
     const formDataValues = [
       "nome_empresa",
       "nome_prop",
@@ -126,13 +121,14 @@ export default function Register() {
         dataValues[element] = false;
       }
     }
-    
+
     setValidatedFields({
       ...validatedFields,
       ...dataValues,
     });
-    if (isValid === false) {
-      e.preventDefault();
+    for (const key in validatedFields) {
+      const element = validatedFields[key]
+      
     }
   };
   return (
@@ -195,7 +191,7 @@ export default function Register() {
                 onChange={userInput}
                 placeholder="Nome do proprietário"
                 className={`border border-neutral-300 p-3 outline-none ${
-                  validatedFields.rua === false
+                  validatedFields.nome_prop === false
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
                 }`}
@@ -219,7 +215,7 @@ export default function Register() {
                 type="text"
                 name="cpf"
                 value={formData.cpf}
-                onChange={cpfInput}
+                onChange={userInput}
                 placeholder="CPF do proprietário"
                 className={`border border-neutral-300 p-3 outline-none ${
                   validatedFields.cpf === false
@@ -306,7 +302,9 @@ export default function Register() {
                   id="local"
                   placeholder="CEP"
                   className={`border border-neutral-300 p-3 outline-none ${
-                    validatedFields.cep === false || cepError
+                    validatedFields.cep === false
+                      ? "animate__animated animate__shakeX border-red-600"
+                      : cepError
                       ? "animate__animated animate__shakeX text-red-600 border-red-600"
                       : "focus:border-orange-400"
                   }`}

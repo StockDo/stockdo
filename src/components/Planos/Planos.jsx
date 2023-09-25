@@ -9,12 +9,13 @@ export default function Planos() {
       </h1>
       <div className="flex items-center gap-24 mt-10 px-10">
         <div className="flex flex-col items-center p-10 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl mt-10">
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center">
             <h1 className="font-['PT_Sans'] text-5xl max-xl:text-3xl">
               Plano Básico
             </h1>
-            <h2 className="font-['PT_Sans'] text-5xl">
-              <span className="font-sans text-3xl">R$</span>39,99
+            <h2 className="font-['PT_Sans'] text-5xl mr-5 pt-4 pb-2">
+              <span className="font-sans text-3xl">R$</span>39
+              <span className="text-2xl absolute">,99</span>
             </h2>
             <p>Por mês</p>
           </div>
@@ -24,15 +25,15 @@ export default function Planos() {
               Armazenamento ilimitado
             </li>
             <li className=" text-[rgba(0,0,0,0.5)]">
-              <i className="fa-regular fa-circle-xmark text-red-800 mr-3"></i>
+              <i className="fa-regular fa-circle-xmark text-red-700 mr-3"></i>
               Gerador de relatórios
             </li>
             <li className=" text-[rgba(0,0,0,0.5)]">
-              <i className="fa-regular fa-circle-xmark text-red-800 mr-3"></i>
+              <i className="fa-regular fa-circle-xmark text-red-700 mr-3"></i>
               Relatórios avançados
             </li>
             <li className=" text-[rgba(0,0,0,0.5)]">
-              <i className="fa-regular fa-circle-xmark text-red-800 mr-3"></i>
+              <i className="fa-regular fa-circle-xmark text-red-700 mr-3"></i>
               Gerenciamento pelo aplicativo
             </li>
           </ul>
@@ -43,15 +44,16 @@ export default function Planos() {
           </button>
         </div>
         <div className="flex flex-col px-14 py-16 -translate-y-8 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl mt-10 bg-gradient-to-tr from-[#d6fcff] to-[#efffd3]">
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center">
             <div className="flex gap-4 items-center">
               <h1 className="font-['PT_Sans'] text-5xl max-2xl:text-4xl">
                 Plano Popular{" "}
               </h1>
               <i className="fa-solid fa-crown text-4xl text-yellow-500"></i>
             </div>
-            <h2 className="font-['PT_Sans'] text-5xl">
-              <span className="font-sans text-3xl">R$</span>89,99
+            <h2 className="font-['PT_Sans'] text-5xl mr-5 pt-4 pb-2">
+              <span className="font-sans text-3xl">R$</span>89
+              <span className="text-2xl absolute">,99</span>
             </h2>
             <p>Por mês</p>
           </div>
@@ -64,12 +66,12 @@ export default function Planos() {
               <i className="fa-regular fa-circle-check text-green-700 mr-3"></i>
               Gerador de relatórios
             </li>
-            <li>
-              <i className="fa-regular fa-circle-check text-green-700 mr-3"></i>
+            <li className="text-[rgba(0,0,0,0.5)]">
+              <i className="fa-regular fa-circle-xmark text-red-700 mr-3"></i>
               Relatórios avançados
             </li>
             <li className=" text-[rgba(0,0,0,0.5)]">
-              <i className="fa-regular fa-circle-xmark text-red-800 mr-3"></i>
+              <i className="fa-regular fa-circle-xmark text-red-700 mr-3"></i>
               Gerenciamento pelo aplicativo
             </li>
           </ul>
@@ -80,10 +82,11 @@ export default function Planos() {
           </button>
         </div>
         <div className="flex flex-col p-10 bg-white shadow-2xl shadow-[rgba(0,0,0,0.16)] rounded-2xl mt-10">
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center">
             <h1 className="font-['PT_Sans'] text-5xl">Plano Pro</h1>
-            <h2 className="font-['PT_Sans'] text-5xl">
-              <span className="font-sans text-3xl">R$</span>149,99
+            <h2 className="font-['PT_Sans'] text-5xl mr-5 pt-4 pb-2">
+              <span className="font-sans text-3xl">R$</span>149
+              <span className="text-2xl absolute">,99</span>
             </h2>
             <p>Por mês</p>
           </div>

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import { Suspense, lazy } from "react";
 
@@ -9,6 +9,11 @@ const Termos = lazy(() => import("./pages/Termos/Termos"));
 const Licenca = lazy(() => import("./pages/Termos/Licenca"));
 const Privacidade = lazy(() => import("./pages/Termos/Privacidade"));
 const Signup = lazy(() => import("./pages/UserAuth/Signup"));
+
+const Private = ({ children }) => {
+  const auth = localStorage.getItem("auth");
+  return auth ? children : <Navigate to="/login" />;
+};
 
 export default function Router() {
   return (
@@ -21,8 +26,24 @@ export default function Router() {
         <Route path="/termos" element={<Termos />} />
         <Route path="/licenca" element={<Licenca />} />
         <Route path="/privacidade" element={<Privacidade />} />
-        <Route path="/verification" element={<EmailAuth />} />
-        <Route path="/registro" element={<Register />} />
+
+        <Route
+          path="/verification"
+          element={
+            <Private>
+              <EmailAuth />
+            </Private>
+          }
+        />
+
+        <Route
+          path="/registro"
+          element={
+            <Private>
+              <Register />
+            </Private>
+          }
+        />
       </Routes>
     </Suspense>
   );

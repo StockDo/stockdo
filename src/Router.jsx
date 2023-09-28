@@ -5,6 +5,7 @@ import { Suspense, lazy } from "react";
 const EmailAuth = lazy(() => import("./pages/UserAuth/EmailAuth"));
 const Register = lazy(() => import("./pages/Register"));
 const Login = lazy(() => import("./pages/UserAuth/Login"));
+const Planos = lazy(() => import("./pages/Planos"));
 const Termos = lazy(() => import("./pages/Termos/Termos"));
 const Licenca = lazy(() => import("./pages/Termos/Licenca"));
 const Privacidade = lazy(() => import("./pages/Termos/Privacidade"));
@@ -23,6 +24,7 @@ export default function Router() {
         <Route path="*" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/planos" element={<Planos />} />
         <Route path="/termos" element={<Termos />} />
         <Route path="/licenca" element={<Licenca />} />
         <Route path="/privacidade" element={<Privacidade />} />

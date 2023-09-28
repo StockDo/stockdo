@@ -39,10 +39,6 @@ export default function Login() {
             <form
               action="/login_submit"
               method="post"
-              onSubmit={(e) => {
-                e.preventDefault();
-                localStorage.setItem("auth", "true");
-              }}
               className="flex flex-col mt-5 font-['Open_Sans']"
               autoComplete="on">
               <label htmlFor="cnpj">CNPJ</label>

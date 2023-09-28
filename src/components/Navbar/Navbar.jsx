@@ -24,7 +24,7 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
           </span>
         </li>
         <li>
-          <span onClick={planosScroll} className="cursor-pointer">
+          <span onClick={() => navigate("/planos")} className="cursor-pointer">
             Planos
           </span>
         </li>

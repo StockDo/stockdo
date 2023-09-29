@@ -20,22 +20,19 @@ export default function Register() {
     cidade: "",
     estado: "",
   });
-  const [validatedFields, setValidatedFields] = useState([
-    {
-      nome_empresa: true,
-      nome_prop: true,
-      cpf: true,
-      tel_cel: true,
-      contato: true,
-      cep: true,
-      rua: true,
-      bairro: true,
-      numero: true,
-      complemento: true,
-      cidade: true,
-      estado: true,
-    },
-  ]);
+  const [validatedFields, setValidatedFields] = useState({
+    nome_empresa: "",
+    nome_prop: "",
+    cpf: "",
+    tel_cel: "",
+    contato: "",
+    cep: "",
+    rua: "",
+    bairro: "",
+    numero: "",
+    cidade: "",
+    estado: "",
+  });
   const [cepError, setCepError] = useState(false);
   useEffect(() => {
     axios.get(`https://viacep.com.br/ws/${formData.cep}/json/`).then((res) => {
@@ -126,9 +123,11 @@ export default function Register() {
       ...validatedFields,
       ...dataValues,
     });
-    for (const key in validatedFields) {
-      const element = validatedFields[key]
-      
+    const isValid = Object.values(validatedFields).some((val) => val != true);
+    console.log(isValid);
+    console.log(validatedFields);
+    if (isValid) {
+      e.preventDefault();
     }
   };
   return (

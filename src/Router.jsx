@@ -13,7 +13,7 @@ const Signup = lazy(() => import("./pages/UserAuth/Signup"));
 
 const Private = ({ children }) => {
   const auth = localStorage.getItem("auth");
-  return auth ? children : <Navigate to="/login" />;
+  return !auth ? children : <Navigate to="/login" />;
 };
 
 export default function Router() {

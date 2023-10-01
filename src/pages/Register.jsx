@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import StockDoLogo from "../assets/imgs/stockdo.svg";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
@@ -6,6 +7,7 @@ import axios from "axios";
 import "animate.css";
 
 export default function Register() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nome_empresa: "",
     nome_prop: "",
@@ -33,6 +35,25 @@ export default function Register() {
     cidade: "",
     estado: "",
   });
+
+  const http_values = {
+    method: "POST",
+    url: `/register`,
+    data: {
+      nome_empresa: formData.nome_empresa,
+      nome_prop: formData.nome_prop,
+      cpf: formData.cpf,
+      tel_cel: formData.tel_cel,
+      contato: formData.contato,
+      cep: formData.cep,
+      rua: formData.rua,
+      bairro: formData.bairro,
+      numero: formData.numero,
+      cidade: formData.cidade,
+      estado: formData.estado,
+    },
+  };
+
   const [cepError, setCepError] = useState(false);
   useEffect(() => {
     axios.get(`https://viacep.com.br/ws/${formData.cep}/json/`).then((res) => {
@@ -97,6 +118,7 @@ export default function Register() {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const formDataValues = [
       "nome_empresa",
       "nome_prop",
@@ -126,8 +148,12 @@ export default function Register() {
     const isValid = Object.values(validatedFields).some((val) => val != true);
     console.log(isValid);
     console.log(validatedFields);
-    if (isValid) {
-      e.preventDefault();
+    if (isValid != false) {
+      axios(http_values).catch(({ response }) => {
+        console.log(response);
+      });
+      console.log(validatedFields);
+      // navigate("/planos");
     }
   };
   return (
@@ -137,8 +163,6 @@ export default function Register() {
         <img src={StockDoLogo} width={"300px"} className="mb-12 mt-32" />
         <h1 className="text-4xl font-['PT_Sans'] mb-5">Registro da empresa</h1>
         <form
-          action="/register_submit"
-          method="post"
           onSubmit={handleSubmit}
           autoComplete="off"
           className="font-['Open_Sans'] pb-24 max-w-[80rem] w-full px-5">

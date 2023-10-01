@@ -71,7 +71,7 @@ export default function Planos() {
             </div>
           </div>
           <h1 className="text-xl mt-10 font-bold mx-auto font-['Open_Sans'] cursor-pointer hover:underline">
-            Escolher mais tarde
+            Escolher mais tarde <i className="fa-solid fa-play text-lg"></i>
           </h1>
         </div>
       </main>

@@ -29,23 +29,9 @@ export default function Router() {
         <Route path="/licenca" element={<Licenca />} />
         <Route path="/privacidade" element={<Privacidade />} />
 
-        <Route
-          path="/verification"
-          element={
-            <Private>
-              <EmailAuth />
-            </Private>
-          }
-        />
+        <Route path="/verification" element={<EmailAuth />} />
 
-        <Route
-          path="/registro"
-          element={
-            <Private>
-              <Register />
-            </Private>
-          }
-        />
+        <Route path="/registro" element={<Register />} />
       </Routes>
     </Suspense>
   );

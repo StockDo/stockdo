@@ -23,3 +23,4 @@ server
 *.njsproj
 *.sln
 *.sw?
+*.env

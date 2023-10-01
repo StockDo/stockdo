@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import SignupBackground from "../../assets/imgs/signup-bg.png";
 import StockDoLogo from "../../assets/imgs/stockdo.svg";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import "animate.css";
 import validarCNPJ from "../../utils/cnpj_validation.js";
 import Navbar from "../../components/Navbar/Navbar";
@@ -23,6 +24,16 @@ export default function Signup() {
     password: true,
     password_repeat: true,
   });
+
+  const http_values = {
+    method: "POST",
+    url: `/signup`,
+    data: {
+      cnpj: formData.cnpj,
+      email: formData.email,
+      password: formData.password,
+    },
+  };
 
   const userInput = (e) => {
     const { name, value } = e.target;
@@ -54,6 +65,8 @@ export default function Signup() {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(import.meta.env.VITE_KEY);
     let isValid = true;
     if (validarCNPJ(formData.cnpj) === false) {
       setValidatedFields({
@@ -85,8 +98,11 @@ export default function Signup() {
       isValid = false;
     }
 
-    if (isValid === false) {
-      e.preventDefault();
+    if (isValid != false) {
+      axios(http_values).catch(({ response }) => {
+        console.log(response);
+      });
+      navigate("/verification");
     }
   };
   return (
@@ -113,9 +129,7 @@ export default function Signup() {
               Cadastre uma conta
             </h1>
             <form
-              action="/submit"
               onSubmit={handleSubmit}
-              method="post"
               className="flex flex-col mt-5 font-['Open_Sans']"
               autoComplete="on">
               <label

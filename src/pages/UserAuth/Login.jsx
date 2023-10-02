@@ -5,14 +5,36 @@ import { useState } from "react";
 import "animate.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import axios from "axios";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [error, setError] = useState(false);
   const [formData, setFormData] = useState({
     cnpj: "",
     pass: "",
   });
-  const navigate = useNavigate();
-
+  const http_values = {
+    method: "POST",
+    url: `/login`,
+    data: {
+      cnpj: formData.cnpj,
+      pass: formData.pass,
+    },
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios(http_values)
+      .then((e) => {
+        console.log(e);
+        setError(false);
+        navigate("/registro");
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      });
+  };
   return (
     <>
       <Navbar />
@@ -37,23 +59,25 @@ export default function Login() {
               Entre em sua conta
             </h1>
             <form
-              action="/login_submit"
-              method="post"
+              onSubmit={handleSubmit}
               className="flex flex-col mt-5 font-['Open_Sans']"
               autoComplete="on">
               <label htmlFor="cnpj">CNPJ</label>
               <input
                 type="text"
                 value={formData.cnpj}
-                onChange={(e) =>
+                onChange={(e) => {
                   setFormData({
                     ...formData,
                     cnpj: e.target.value,
-                  })
-                }
+                  });
+                  setError(false);
+                }}
                 name="cnpj"
                 id="cnpj"
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none focus:border-orange-400 `}
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none ${
+                  error ? "border-red-600" : "focus:border-orange-400"
+                }`}
               />
 
               <label htmlFor="password">Senha</label>
@@ -68,9 +92,16 @@ export default function Login() {
                   })
                 }
                 id="password"
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none focus:border-orange-400 `}
+                className={`mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
+                  error ? "border-red-600" : "focus:border-orange-400"
+                }`}
               />
-
+              <span
+                onClick={() => navigate("/verify_reset")}
+                className="text-sm mt-2 text-orange-700 hover:underline cursor-pointer">
+                Esqueceu sua senha?
+              </span>
+              {error && <span className="text-red-600">Dados incorretos</span>}
               <button
                 type="submit"
                 className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">

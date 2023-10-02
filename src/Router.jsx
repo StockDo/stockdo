@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import { Suspense, lazy } from "react";
+import VerifyResetPass from "./pages/UserAuth/VerifyResetPass";
+import ResetPass from "./pages/UserAuth/ResetPass";
 
 const EmailAuth = lazy(() => import("./pages/UserAuth/EmailAuth"));
 const Register = lazy(() => import("./pages/Register"));
@@ -30,6 +32,8 @@ export default function Router() {
         <Route path="/privacidade" element={<Privacidade />} />
 
         <Route path="/verification" element={<EmailAuth />} />
+        <Route path="/verify_reset" element={<VerifyResetPass />} />
+        <Route path="/reset_password" element={<ResetPass />} />
 
         <Route path="/registro" element={<Register />} />
       </Routes>

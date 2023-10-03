@@ -10,7 +10,7 @@ export default function ResetPass() {
   const [pass, setPass] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
   const [error, setError] = useState(false);
-  const http_values = {
+  const request = {
     method: "POST",
     url: "/reset_pass",
     data: {
@@ -23,7 +23,7 @@ export default function ResetPass() {
     if (pass != repeatPass) {
       setError(true);
     } else {
-      axios(http_values).catch((err) => {
+      axios(request).catch((err) => {
         console.log(err);
       });
     }

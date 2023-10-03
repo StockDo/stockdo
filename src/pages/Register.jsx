@@ -36,7 +36,7 @@ export default function Register() {
     estado: "",
   });
 
-  const http_values = {
+  const request = {
     method: "POST",
     url: `/register`,
     data: {
@@ -149,7 +149,7 @@ export default function Register() {
     console.log(isValid);
     console.log(validatedFields);
     if (isValid != false) {
-      axios(http_values).catch(({ response }) => {
+      axios(request).catch(({ response }) => {
         console.log(response);
       });
       console.log(validatedFields);

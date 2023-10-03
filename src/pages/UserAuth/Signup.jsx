@@ -25,7 +25,7 @@ export default function Signup() {
     password_repeat: true,
   });
 
-  const http_values = {
+  const request = {
     method: "POST",
     url: `/signup`,
     data: {
@@ -99,7 +99,7 @@ export default function Signup() {
     }
 
     if (isValid != false) {
-      axios(http_values).catch(({ response }) => {
+      axios(request).catch(({ response }) => {
         console.log(response);
       });
       navigate("/verification");

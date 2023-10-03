@@ -14,7 +14,7 @@ export default function Login() {
     cnpj: "",
     pass: "",
   });
-  const http_values = {
+  const request = {
     method: "POST",
     url: `/login`,
     data: {
@@ -24,7 +24,7 @@ export default function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios(http_values)
+    axios(request)
       .then((e) => {
         console.log(e);
         setError(false);

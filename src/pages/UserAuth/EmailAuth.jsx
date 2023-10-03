@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import StockDoLogo from "../../assets/imgs/stockdo.svg";
 import EmailGif from "../../assets/imgs/email-auth.gif";
+import CheckAnim from "../../assets/imgs/check.gif";
 import { useEffect, useState } from "react";
 import "animate.css";
+import axios from "axios";
 
 export default function EmailAuth() {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ export default function EmailAuth() {
   };
 
   const [resend, setResend] = useState(5);
+  const [authError, setAuthError] = useState(false);
   function resendCount() {
     resend != 0 ? setResend(resend - 1) : setResend(0);
   }
@@ -22,29 +25,51 @@ export default function EmailAuth() {
     }, 1000);
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const request = {
+    method: "POST",
+    url: `/auth_code`,
+    data: {
+      code: noAuth,
+    },
   };
 
-  const [authError, setAuthError] = useState(false);
-  function delayAuthError() {
-    fetch("../../../auth.json")
-      .then((res) => res.json())
-      .then((data) => {
-        if (noAuth !== data.auth) {
-          setAuthError(true);
-          setTimeout(() => {
-            setAuthError(false);
-            setNoAuth("");
-          }, 1000);
-        } else {
-          setAuthError("Success");
-          setTimeout(() => {
-            navigate("/registro");
-          }, 1000);
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios(request)
+      .then(() => {
+        setAuthError("Success");
+        setTimeout(() => {
+          navigate("/registro");
+        }, 2000);
+      })
+      .catch((err) => {
+        console.log(err);
+        setAuthError(true);
+        setTimeout(() => {
+          setAuthError(false);
+          setNoAuth("");
+        }, 1000);
       });
-  }
+  };
+
+  // function delayAuthError() {
+  //   fetch("../../../auth.json")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (noAuth !== data.auth) {
+  //         setAuthError(true);
+  //         setTimeout(() => {
+  //           setAuthError(false);
+  //           setNoAuth("");
+  //         }, 1000);
+  //       } else {
+  //         setAuthError("Success");
+  //         setTimeout(() => {
+  //           navigate("/registro");
+  //         }, 1000);
+  //       }
+  //     });
+  // }
 
   return (
     <main className="flex flex-col justify-center items-center min-h-screen bg-slate-100">
@@ -58,10 +83,10 @@ export default function EmailAuth() {
       <div className="bg-slate-400 flex justify-center items-center shadow-xl rounded-xl mx-12 max-lg:mx-5">
         <div className="flex flex-col p-12 px-16 bg-white rounded-xl">
           <img
-            src={EmailGif}
+            src={authError === "Success" ? CheckAnim : EmailGif}
             alt="Animated email"
             width="180px"
-            className="m-auto translate-x-4"
+            className="m-auto"
             onClick={() => navigate("/")}
           />
           <div className="flex flex-col items-center gap-4">
@@ -73,9 +98,7 @@ export default function EmailAuth() {
             </div>
           </div>
           <form
-            action=""
             onSubmit={handleSubmit}
-            method="get"
             className="flex flex-col mt-5 font-['Open_Sans']"
             autoComplete="off">
             <div className="flex flex-col items-center mb-5 text-center">
@@ -96,9 +119,7 @@ export default function EmailAuth() {
                 }`}
               />
             </div>
-            <button
-              onClick={() => delayAuthError()}
-              className="bg-orange-400 py-2 rounded-lg font-bold">
+            <button className="bg-orange-400 py-2 rounded-lg font-bold">
               Verificar
             </button>
           </form>

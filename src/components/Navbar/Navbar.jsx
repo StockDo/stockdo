@@ -42,7 +42,7 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
         </li>
         <li className={sair ? "hidden" : "block"}>
           <a
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/login")}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
             Entrar<i className="fa-solid fa-right-to-bracket ml-1"></i>
           </a>

@@ -22,6 +22,20 @@ export default function Login() {
       pass: formData.pass,
     },
   };
+
+  const cnpjInput = (e) => {
+    setError(false);
+    const { value } = e.target;
+    const formattedInput = value
+      .replace(/[a-zA-Z\s]/, "")
+      .replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
+      .slice(0, 18);
+    setFormData({
+      ...formData,
+      cnpj: formattedInput,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios(request)
@@ -52,7 +66,7 @@ export default function Login() {
               src={StockDoLogo}
               alt="StockDo logo"
               width="150px"
-              className="cursor-pointer m-auto mb-2"
+              className="cursor-pointer m-auto mb-2 pb-5"
               onClick={() => navigate("/")}
             />
             <h1 className="text-3xl font-['PT_Sans'] m-auto">
@@ -62,21 +76,22 @@ export default function Login() {
               onSubmit={handleSubmit}
               className="flex flex-col mt-5 font-['Open_Sans']"
               autoComplete="on">
+              {error && (
+                <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">
+                  CNPJ ou senha inválidos
+                </span>
+              )}
               <label htmlFor="cnpj">CNPJ</label>
               <input
                 type="text"
                 value={formData.cnpj}
-                onChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    cnpj: e.target.value,
-                  });
-                  setError(false);
-                }}
+                onChange={cnpjInput}
                 name="cnpj"
                 id="cnpj"
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none ${
-                  error ? "border-red-600" : "focus:border-orange-400"
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none ${
+                  error
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
                 }`}
               />
 
@@ -85,15 +100,18 @@ export default function Login() {
                 type="password"
                 name="pass"
                 value={formData.pass}
-                onChange={(e) =>
+                onChange={(e) => {
                   setFormData({
                     ...formData,
                     pass: e.target.value,
-                  })
-                }
+                  });
+                  setError(false);
+                }}
                 id="password"
                 className={`mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
-                  error ? "border-red-600" : "focus:border-orange-400"
+                  error
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
                 }`}
               />
               <span
@@ -101,7 +119,6 @@ export default function Login() {
                 className="text-sm mt-2 text-orange-700 hover:underline cursor-pointer">
                 Esqueceu sua senha?
               </span>
-              {error && <span className="text-red-600">Dados incorretos</span>}
               <button
                 type="submit"
                 className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">

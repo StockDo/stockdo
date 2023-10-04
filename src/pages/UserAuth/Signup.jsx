@@ -48,9 +48,9 @@ export default function Signup() {
     } else if (name === "email") {
       formattedInput = value.slice(0, 80);
     } else if (name === "password") {
-      formattedInput = value.slice(0, 45);
+      formattedInput = value.slice(0, 255);
     } else if (name === "password_repeat") {
-      formattedInput = value.slice(0, 45);
+      formattedInput = value.slice(0, 255);
     }
 
     setValidatedFields({
@@ -151,10 +151,10 @@ export default function Signup() {
                 id="cnpj"
                 value={formData.cnpj}
                 onChange={userInput}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none focus:border-orange-400 ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none  ${
                   validatedFields.cnpj === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                    : null
+                    : "focus:border-orange-400"
                 } `}
               />
 
@@ -177,25 +177,15 @@ export default function Signup() {
                 id="email"
                 value={formData.email}
                 onChange={userInput}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none focus:border-orange-400 ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
                   validatedFields.email === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                    : null
+                    : "focus:border-orange-400"
                 } `}
               />
 
-              <label
-                htmlFor="password"
-                className={` ${
-                  validatedFields.password === false
-                    ? "animate__animated animate__shakeX text-red-600 "
-                    : null
-                }`}>
-                {validatedFields.password === false
-                  ? formData.password === ""
-                    ? "Preencha este campo"
-                    : "Senha muito fraca"
-                  : "Senha"}
+              <label htmlFor="password">
+                {formData.password === "" ? "Preencha este campo" : "Senha"}
               </label>
               <input
                 type="password"
@@ -203,10 +193,10 @@ export default function Signup() {
                 id="password"
                 value={formData.password}
                 onChange={userInput}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none focus:border-orange-400 ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
                   validatedFields.password === false
-                    ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                    : null
+                    ? "border-red-600"
+                    : "focus:border-orange-400"
                 } `}
               />
               <label
@@ -228,12 +218,51 @@ export default function Signup() {
                 id="password_repeat"
                 value={formData.password_repeat}
                 onChange={userInput}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none focus:border-orange-400 ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
                   validatedFields.password_repeat === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                    : null
+                    : "focus:border-orange-400"
                 } `}
               />
+              <ul
+                className={`text-sm ${
+                  validatedFields.password === false &&
+                  "animate__animated animate__shakeX text-red-600"
+                }`}>
+                <li className="font-bold">A senha deve conter pelo menos:</li>
+                <li
+                  className={formData.password.length >= 8 && "text-green-800"}>
+                  Mínimo de 8{" "}
+                  {formData.password.length >= 8 && (
+                    <i className="fa-solid fa-check ml-1"></i>
+                  )}
+                </li>
+                <li
+                  className={/\d/.test(formData.password) && "text-green-800"}>
+                  Um número
+                  {/\d/.test(formData.password) && (
+                    <i className="fa-solid fa-check ml-1"></i>
+                  )}
+                </li>
+                <li
+                  className={
+                    /[A-Z]/.test(formData.password) && "text-green-800"
+                  }>
+                  Uma letra maiúscula
+                  {/[A-Z]/.test(formData.password) && (
+                    <i className="fa-solid fa-check ml-1"></i>
+                  )}
+                </li>
+                <li
+                  className={
+                    /[a-z]/.test(formData.password) && "text-green-800"
+                  }>
+                  Uma letra minúscula
+                  {/[a-z]/.test(formData.password) && (
+                    <i className="fa-solid fa-check ml-1"></i>
+                  )}
+                </li>
+              </ul>
               <button
                 type="submit"
                 className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">

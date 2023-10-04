@@ -125,7 +125,6 @@ export default function Register() {
       "cpf",
       "tel_cel",
       "contato",
-      "cpf",
       "cep",
       "rua",
       "bairro",
@@ -145,15 +144,21 @@ export default function Register() {
       ...validatedFields,
       ...dataValues,
     });
-    const isValid = Object.values(validatedFields).some((val) => val != true);
-    console.log(isValid);
+    const isNotValid = Object.values(validatedFields).some(
+      (val) => val != true
+    );
+    console.log(isNotValid);
     console.log(validatedFields);
-    if (isValid != false) {
-      axios(request).catch(({ response }) => {
-        console.log(response);
-      });
+    if (isNotValid === false) {
+      axios(request)
+        .then((res) => {
+          console.log(res);
+          navigate("/planos");
+        })
+        .catch(({ response }) => {
+          console.log(response);
+        });
       console.log(validatedFields);
-      // navigate("/planos");
     }
   };
   return (
@@ -470,9 +475,7 @@ export default function Register() {
                 />
               </div>
             </div>
-            <button
-              type="submit"
-              className="px-24 py-4 bg-orange-400 m-auto rounded-xl text-2xl font-['PT_Sans'] mt-10 hover:bg-orange-500 duration-200">
+            <button className="px-24 py-4 bg-orange-400 m-auto rounded-xl text-2xl font-['PT_Sans'] mt-10 hover:bg-orange-500 duration-200">
               Finalizar cadastro
             </button>
           </div>

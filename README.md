@@ -18,3 +18,4 @@ StockDo é um software desenvolvido como projeto de TCC da ETEC Dra. Ruth Cardos
 - [@Renan Almeida](https://www.github.com/RenanL15)
 - [@Nícolas Lopes](https://www.github.com/nicolasallp)
 - [@Davi Pimentel](https://www.github.com/eusomaluco)
+- [@Gabriel de Nóbrega](https://www.github.com/gabrieldn02)

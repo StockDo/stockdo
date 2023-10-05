@@ -35,6 +35,8 @@ export default function Signup() {
     },
   };
 
+  const [error, setError] = useState(false);
+
   const userInput = (e) => {
     const { name, value } = e.target;
 
@@ -99,10 +101,14 @@ export default function Signup() {
     }
 
     if (isValid != false) {
-      axios(request).catch(({ response }) => {
-        console.log(response);
-      });
-      navigate("/verification");
+      axios(request)
+        .then(() => {
+          navigate("/verification");
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          setError(true);
+        });
     }
   };
   return (
@@ -132,12 +138,16 @@ export default function Signup() {
               onSubmit={handleSubmit}
               className="flex flex-col mt-5 font-['Open_Sans']"
               autoComplete="on">
+              {error && (
+                <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">
+                  CNPJ ou email já cadastrados
+                </span>
+              )}
               <label
                 htmlFor="cnpj"
                 className={` ${
-                  validatedFields.cnpj === false
-                    ? "animate__animated animate__shakeX text-red-600 "
-                    : null
+                  validatedFields.cnpj === false &&
+                  "animate__animated animate__shakeX text-red-600 "
                 }`}>
                 {validatedFields.cnpj === false
                   ? formData.cnpj === ""
@@ -150,7 +160,10 @@ export default function Signup() {
                 name="cnpj"
                 id="cnpj"
                 value={formData.cnpj}
-                onChange={userInput}
+                onChange={(e) => {
+                  userInput(e);
+                  setError(false);
+                }}
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none  ${
                   validatedFields.cnpj === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
@@ -161,9 +174,8 @@ export default function Signup() {
               <label
                 htmlFor="email"
                 className={` ${
-                  validatedFields.email === false
-                    ? "animate__animated animate__shakeX text-red-600 "
-                    : null
+                  validatedFields.email === false &&
+                  "animate__animated animate__shakeX text-red-600 "
                 }`}>
                 {validatedFields.email === false
                   ? formData.email === ""
@@ -176,7 +188,10 @@ export default function Signup() {
                 name="email"
                 id="email"
                 value={formData.email}
-                onChange={userInput}
+                onChange={(e) => {
+                  userInput(e);
+                  setError(false);
+                }}
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
                   validatedFields.email === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
@@ -184,27 +199,36 @@ export default function Signup() {
                 } `}
               />
 
-              <label htmlFor="password">
-                {formData.password === "" ? "Preencha este campo" : "Senha"}
+              <label
+                htmlFor="password"
+                className={` ${
+                  validatedFields.password === false &&
+                  "animate__animated animate__shakeX text-red-600"
+                }`}>
+                {validatedFields.password === false && formData.password === ""
+                  ? "Preencha este campo"
+                  : "Senha"}
               </label>
               <input
                 type="password"
                 name="password"
                 id="password"
                 value={formData.password}
-                onChange={userInput}
+                onChange={(e) => {
+                  userInput(e);
+                  setError(false);
+                }}
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
                   validatedFields.password === false
-                    ? "border-red-600"
+                    ? "border-red-600 animate__animated animate__shakeX"
                     : "focus:border-orange-400"
                 } `}
               />
               <label
                 htmlFor="password_repeat"
                 className={` ${
-                  validatedFields.password_repeat === false
-                    ? "animate__animated animate__shakeX text-red-600 "
-                    : null
+                  validatedFields.password_repeat === false &&
+                  "animate__animated animate__shakeX text-red-600"
                 }`}>
                 {validatedFields.password_repeat === false
                   ? formData.password_repeat === ""
@@ -217,7 +241,10 @@ export default function Signup() {
                 name="password_repeat"
                 id="password_repeat"
                 value={formData.password_repeat}
-                onChange={userInput}
+                onChange={(e) => {
+                  userInput(e);
+                  setError(false);
+                }}
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
                   validatedFields.password_repeat === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"

@@ -4,12 +4,8 @@ import { useEffect, useState } from "react";
 
 export default function Navbar({ saibaMaisScroll, planosScroll }) {
   const navigate = useNavigate();
-  const [sair, setSair] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("auth") === true) {
-      setSair(true);
-    }
-  });
+  // const [sair, setSair] = useState(false);
+  const auth = localStorage.getItem("auth");
 
   const sairClick = () => {
     localStorage.removeItem("auth");
@@ -40,14 +36,14 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
             Planos
           </span>
         </li>
-        <li className={sair ? "hidden" : "block"}>
+        <li className={auth ? "hidden" : "block"}>
           <a
             onClick={() => navigate("/login")}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
             Entrar<i className="fa-solid fa-right-to-bracket ml-1"></i>
           </a>
         </li>
-        <li className={sair ? "block" : "hidden"}>
+        <li className={auth ? "block" : "hidden"}>
           <a
             onClick={sairClick}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">

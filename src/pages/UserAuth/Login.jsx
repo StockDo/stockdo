@@ -41,6 +41,8 @@ export default function Login() {
     axios(request)
       .then((e) => {
         console.log(e);
+        localStorage.setItem("authorizationToken", e.data.token);
+        localStorage.setItem("auth", true)
         setError(false);
         navigate("/registro");
       })

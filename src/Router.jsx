@@ -1,9 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import { Suspense, lazy } from "react";
-import VerifyResetPass from "./pages/UserAuth/VerifyResetPass";
-import ResetPass from "./pages/UserAuth/ResetPass";
 
+const VerifyResetPass = lazy(() => import("./pages/UserAuth/VerifyResetPass"));
+const ResetPass = lazy(() => import("./pages/UserAuth/ResetPass"));
+const EmailAuthResetPass = lazy(() =>
+  import("./pages/UserAuth/EmailAuthResetPass")
+);
 const EmailAuth = lazy(() => import("./pages/UserAuth/EmailAuth"));
 const Register = lazy(() => import("./pages/Register"));
 const Login = lazy(() => import("./pages/UserAuth/Login"));
@@ -15,7 +18,12 @@ const Signup = lazy(() => import("./pages/UserAuth/Signup"));
 
 const Private = ({ children }) => {
   const auth = localStorage.getItem("auth");
-  return !auth ? children : <Navigate to="/login" />;
+  return auth ? children : <Navigate to="/login" />;
+};
+
+const NoAuth = ({ children }) => {
+  const auth = localStorage.getItem("auth");
+  return !auth ? children : <Navigate to="/" />;
 };
 
 export default function Router() {
@@ -24,18 +32,38 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/signup"
+          element={
+            <NoAuth>
+              <Signup />
+            </NoAuth>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <NoAuth>
+              <Login />
+            </NoAuth>
+          }
+        />
         <Route path="/planos" element={<Planos />} />
         <Route path="/termos" element={<Termos />} />
         <Route path="/licenca" element={<Licenca />} />
         <Route path="/privacidade" element={<Privacidade />} />
-
+        <Route path="/verification_reset" element={<EmailAuthResetPass />} />
         <Route path="/verification" element={<EmailAuth />} />
         <Route path="/verify_reset" element={<VerifyResetPass />} />
         <Route path="/reset_password" element={<ResetPass />} />
-
-        <Route path="/registro" element={<Register />} />
+        <Route
+          path="/registro"
+          element={
+            <Private>
+              <Register />
+            </Private>
+          }
+        />
       </Routes>
     </Suspense>
   );

@@ -49,7 +49,7 @@ export default function ResetPass() {
               onClick={() => navigate("/")}
             />
             <div className="flex flex-col items-center gap-4">
-              <h1 className="text-3xl font-['PT_Sans']">Altere sua senha</h1>
+              <h1 className="text-3xl font-['PT_Sans']">Redefina sua senha</h1>
             </div>
             <form
               onSubmit={handleSubmit}

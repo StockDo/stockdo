@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import "animate.css";
 import axios from "axios";
 
-export default function EmailAuth() {
+export default function EmailAuthResetPass() {
   const navigate = useNavigate();
   const [noAuth, setNoAuth] = useState("");
   const formatNoAuth = (value) => {
@@ -38,9 +38,8 @@ export default function EmailAuth() {
     axios(request)
       .then(() => {
         setAuthError("Success");
-        localStorage.setItem("auth", true);
         setTimeout(() => {
-          navigate("/registro");
+          navigate("/reset_password");
         }, 1500);
       })
       .catch((err) => {

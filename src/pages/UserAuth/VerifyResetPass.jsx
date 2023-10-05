@@ -4,10 +4,31 @@ import StockDoLogo from "../../assets/imgs/stockdo.svg";
 import LockLogo from "../../assets/imgs/lock.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 export default function VerifyResetPass() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+  const request = {
+    method: "POST",
+    url: "/verify_reset",
+    data: {
+      email: email,
+    },
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios(request)
+      .then(() => {
+        localStorage.setItem("email", email);
+        navigate("/verification_reset");
+      })
+      .catch(() => {
+        setError(true);
+      });
+  };
   return (
     <>
       <Navbar />
@@ -29,29 +50,32 @@ export default function VerifyResetPass() {
               onClick={() => navigate("/")}
             />
             <div className="flex flex-col items-center gap-4">
-              <h1 className="text-3xl font-['PT_Sans']">Altere sua senha</h1>
+              <h1 className="text-3xl font-['PT_Sans']">Redefina sua senha</h1>
             </div>
             <form
-              method="get"
+              onSubmit={handleSubmit}
               className="flex flex-col mt-5 font-['Open_Sans']"
               autoComplete="off">
-              <div className="flex flex-col items-center mb-5">
+              <div className="flex flex-col mb-5">
                 <label htmlFor="" className="font-['Roboto'] text-xl">
                   Insira seu email
                 </label>
                 <input
                   type="text"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] outline-none`}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError(false);
+                  }}
+                  className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] outline-none ${
+                    error && "border-red-600"
+                  }`}
                 />
+                {error && (
+                  <span className="text-red-600">Email não encontrado</span>
+                )}
               </div>
-              <button
-                onClick={() => {
-                  localStorage.setItem("email", email);
-                  navigate("/reset_password");
-                }}
-                className="bg-orange-400 py-2 rounded-lg font-bold">
+              <button className="bg-orange-400 py-2 rounded-lg font-bold">
                 Verificar
               </button>
             </form>

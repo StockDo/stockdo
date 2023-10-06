@@ -251,7 +251,7 @@ export default function Signup() {
                     : "focus:border-orange-400"
                 } `}
               />
-              <ul
+              {/* <ul
                 className={`text-sm ${
                   validatedFields.password === false &&
                   "animate__animated animate__shakeX text-red-600"
@@ -289,7 +289,7 @@ export default function Signup() {
                     <i className="fa-solid fa-check ml-1"></i>
                   )}
                 </li>
-              </ul>
+              </ul> */}
               <button
                 type="submit"
                 className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">

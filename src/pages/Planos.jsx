@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 
 export default function Planos() {
+  const navigate = useNavigate()
   return (
     <>
       <Navbar />
@@ -15,7 +17,7 @@ export default function Planos() {
               <h1 className="text-4xl font-bold mx-auto">Plano Básico</h1>
               <ul className="flex flex-col gap-6 list-disc">
                 <li>Armazenamento ilimitado</li>
-                <li className="opacity-30">Gerador de relatórios</li>
+                <li>Gerador de relatórios</li>
                 <li className="opacity-30">Relatórios avançados</li>
                 <li className="opacity-30">Gerenciamento pelo aplicativo</li>
               </ul>
@@ -38,7 +40,7 @@ export default function Planos() {
               <ul className="flex flex-col gap-6 list-disc">
                 <li>Armazenamento ilimitado</li>
                 <li>Gerador de relatórios</li>
-                <li className="opacity-30">Relatórios avançados</li>
+                <li>Relatórios avançados</li>
                 <li className="opacity-30">Gerenciamento pelo aplicativo</li>
               </ul>
               <h2 className="font-['PT_Sans'] text-5xl m-auto">
@@ -70,7 +72,7 @@ export default function Planos() {
               </a>
             </div>
           </div>
-          <h1 className="text-xl mt-10 font-bold mx-auto font-['Open_Sans'] cursor-pointer hover:underline">
+          <h1 onClick={() => navigate("/success")} className="text-xl mt-10 font-bold mx-auto font-['Open_Sans'] cursor-pointer hover:underline">
             Escolher mais tarde <i className="fa-solid fa-play text-lg"></i>
           </h1>
         </div>

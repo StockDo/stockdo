@@ -7,6 +7,7 @@ import "animate.css";
 import validarCNPJ from "../../utils/cnpj_validation.js";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -36,6 +37,9 @@ export default function Signup() {
   };
 
   const [error, setError] = useState(false);
+
+  const [showPass, setShowPass] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const userInput = (e) => {
     const { name, value } = e.target;
@@ -105,9 +109,10 @@ export default function Signup() {
         .then(() => {
           navigate("/verification");
         })
-        .catch(({ response }) => {
-          console.log(response);
+        .catch((res) => {
+          console.log(res);
           setError(true);
+          setErrorMessage(res.response.data.message);
         });
     }
   };
@@ -140,9 +145,15 @@ export default function Signup() {
               autoComplete="on">
               {error && (
                 <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">
-                  CNPJ ou email já cadastrados
+                  {errorMessage}
                 </span>
               )}
+              <button
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                className={`relative -m-2 self-end top-[14.5rem] mr-2 text-2xl text-orange-600`}>
+                {showPass ? <BsEyeSlash /> : <BsEye />}
+              </button>
               <label
                 htmlFor="cnpj"
                 className={` ${
@@ -210,7 +221,7 @@ export default function Signup() {
                   : "Senha"}
               </label>
               <input
-                type="password"
+                type={showPass ? "text" : "password"}
                 name="password"
                 id="password"
                 value={formData.password}
@@ -224,6 +235,7 @@ export default function Signup() {
                     : "focus:border-orange-400"
                 } `}
               />
+
               <label
                 htmlFor="password_repeat"
                 className={` ${
@@ -237,7 +249,7 @@ export default function Signup() {
                   : "Repita a senha"}
               </label>
               <input
-                type="password"
+                type={showPass ? "text" : "password"}
                 name="password_repeat"
                 id="password_repeat"
                 value={formData.password_repeat}
@@ -251,12 +263,14 @@ export default function Signup() {
                     : "focus:border-orange-400"
                 } `}
               />
-              {/* <ul
+              <ul
                 className={`text-sm ${
                   validatedFields.password === false &&
                   "animate__animated animate__shakeX text-red-600"
                 }`}>
-                <li className="font-bold">A senha deve conter pelo menos:</li>
+                <li className="font-bold text-black">
+                  A senha deve conter pelo menos:
+                </li>
                 <li
                   className={formData.password.length >= 8 && "text-green-800"}>
                   Mínimo de 8{" "}
@@ -289,7 +303,7 @@ export default function Signup() {
                     <i className="fa-solid fa-check ml-1"></i>
                   )}
                 </li>
-              </ul> */}
+              </ul>
               <button
                 type="submit"
                 className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">

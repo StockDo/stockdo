@@ -27,3 +27,8 @@ html::-webkit-scrollbar-thumb {
   background-color: rgb(185, 107, 33);
   width: 1em;
 }
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}

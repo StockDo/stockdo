@@ -48,7 +48,7 @@ export default function Home() {
         <SoftwareScreens />
       </div>
       <div ref={refPlanos}></div>
-      <Planos />
+      <Planos title="Planos" />
       {/* Footer */}
       <Footer />
     </main>

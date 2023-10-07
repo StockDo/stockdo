@@ -6,10 +6,12 @@ import "animate.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export default function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const [showPass, setShowPass] = useState(false);
   const [formData, setFormData] = useState({
     cnpj: "",
     pass: "",
@@ -42,7 +44,7 @@ export default function Login() {
       .then((e) => {
         console.log(e);
         localStorage.setItem("authorizationToken", e.data.token);
-        localStorage.setItem("auth", true)
+        localStorage.setItem("auth", true);
         setError(false);
         navigate("/registro");
       })
@@ -83,6 +85,12 @@ export default function Login() {
                   CNPJ ou senha inválidos
                 </span>
               )}
+              <button
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                className={`relative -m-2 self-end top-[8.8rem] mr-2 text-2xl text-orange-600`}>
+                {showPass ? <BsEyeSlash /> : <BsEye />}
+              </button>
               <label htmlFor="cnpj">CNPJ</label>
               <input
                 type="text"
@@ -99,7 +107,7 @@ export default function Login() {
 
               <label htmlFor="password">Senha</label>
               <input
-                type="password"
+                type={showPass ? "text" : "password"}
                 name="pass"
                 value={formData.pass}
                 onChange={(e) => {

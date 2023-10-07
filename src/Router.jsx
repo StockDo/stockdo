@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import { Suspense, lazy } from "react";
+import Success from "./pages/Success";
 
 const VerifyResetPass = lazy(() => import("./pages/UserAuth/VerifyResetPass"));
 const ResetPass = lazy(() => import("./pages/UserAuth/ResetPass"));
@@ -49,6 +50,7 @@ export default function Router() {
           }
         />
         <Route path="/planos" element={<Planos />} />
+        <Route path="/success" element={<Success />} />
         <Route path="/termos" element={<Termos />} />
         <Route path="/licenca" element={<Licenca />} />
         <Route path="/privacidade" element={<Privacidade />} />

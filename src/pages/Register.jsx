@@ -82,11 +82,17 @@ export default function Register() {
   const userInput = (e) => {
     const { name, value } = e.target;
     let formatCpf;
+    let formatTel;
     if (name == "cpf") {
       formatCpf = value
         .replace(/[a-zA-Z\s]/, "")
         .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
         .slice(0, 14);
+    }
+    if (name == "tel_cel") {
+      formatTel = value
+        .replace(/(\d{0})(\d{2})(\d{0})(\d{5})(\d{4})/, "$1($2)$3 $4-$5")
+        .slice(0, 15);
     }
 
     setValidatedFields({
@@ -97,6 +103,7 @@ export default function Register() {
       ...formData,
       [name]: value,
       cpf: formatCpf,
+      tel_cel: formatTel,
     });
   };
 

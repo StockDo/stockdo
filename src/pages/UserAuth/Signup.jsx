@@ -107,6 +107,7 @@ export default function Signup() {
     if (isValid != false) {
       axios(request)
         .then(() => {
+          localStorage.setItem("emailAuth", formData.email);
           navigate("/verification");
         })
         .catch((res) => {

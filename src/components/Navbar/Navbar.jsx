@@ -45,8 +45,15 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
         </li>
         <li className={auth ? "block" : "hidden"}>
           <a
-            onClick={sairClick}
+            onClick={() => navigate("/control_panel")}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
+            Painel<i className="fa-solid fa-layer-group ml-1"></i>
+          </a>
+        </li>
+        <li className={auth ? "block" : "hidden"}>
+          <a
+            onClick={sairClick}
+            className="bg-red-400 py-1 px-3 rounded-lg text-black cursor-pointer">
             Sair<i className="fa-solid fa-power-off ml-1"></i>
           </a>
         </li>

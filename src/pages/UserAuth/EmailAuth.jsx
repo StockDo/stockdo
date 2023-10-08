@@ -8,13 +8,28 @@ import axios from "axios";
 
 export default function EmailAuth() {
   const navigate = useNavigate();
-  const [noAuth, setNoAuth] = useState("");
+  const [authCode, setAuthCode] = useState("");
   const formatNoAuth = (value) => {
-    setNoAuth(value.replace(/\D/, ""));
+    setAuthCode(value.replace(/\D/, ""));
   };
 
   const [resend, setResend] = useState(5);
   const [authError, setAuthError] = useState(false);
+  const request = {
+    method: "POST",
+    url: `/auth_code`,
+    data: {
+      code: authCode,
+    },
+  };
+
+  const request_resend = {
+    method: "POST",
+    url: `/resend_code`,
+    data: {
+      email: localStorage.getItem("emailAuth"),
+    },
+  };
   function resendCount() {
     resend != 0 ? setResend(resend - 1) : setResend(0);
   }
@@ -24,14 +39,6 @@ export default function EmailAuth() {
       resendCount();
     }, 1000);
   });
-
-  const request = {
-    method: "POST",
-    url: `/auth_code`,
-    data: {
-      code: noAuth,
-    },
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,29 +55,10 @@ export default function EmailAuth() {
         setAuthError(true);
         setTimeout(() => {
           setAuthError(false);
-          setNoAuth("");
+          setAuthCode("");
         }, 1000);
       });
   };
-
-  // function delayAuthError() {
-  //   fetch("../../../auth.json")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (noAuth !== data.auth) {
-  //         setAuthError(true);
-  //         setTimeout(() => {
-  //           setAuthError(false);
-  //           setNoAuth("");
-  //         }, 1000);
-  //       } else {
-  //         setAuthError("Success");
-  //         setTimeout(() => {
-  //           navigate("/registro");
-  //         }, 1000);
-  //       }
-  //     });
-  // }
 
   return (
     <main className="flex flex-col justify-center items-center min-h-screen bg-slate-100">
@@ -109,7 +97,7 @@ export default function EmailAuth() {
               <input
                 type="text"
                 maxLength={4}
-                value={noAuth}
+                value={authCode}
                 onChange={(e) => formatNoAuth(e.target.value)}
                 className={`w-44 border text-center text-4xl py-2 mt-2 border-[rgba(0,0,0,0.25)] outline-none ${
                   authError === true
@@ -127,7 +115,17 @@ export default function EmailAuth() {
           <div className="flex flex-col items-center">
             <span className="m-auto mt-4 mb-1">Código não foi recebido? </span>
             <span
-              onClick={() => (resend === 0 ? setResend(30) : null)}
+              onClick={() => {
+                resend === 0 &&
+                  axios(request_resend)
+                    .then((e) => {
+                      console.log(e);
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
+                resend === 0 && setResend(30);
+              }}
               className={
                 resend === 0
                   ? `text-orange-700 cursor-pointer hover:underline`

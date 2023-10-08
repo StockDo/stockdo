@@ -28,6 +28,10 @@ html::-webkit-scrollbar-thumb {
   width: 1em;
 }
 
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
 input::-ms-reveal,
 input::-ms-clear {
   display: none;

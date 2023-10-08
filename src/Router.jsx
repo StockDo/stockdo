@@ -16,6 +16,7 @@ const Termos = lazy(() => import("./pages/Termos/Termos"));
 const Licenca = lazy(() => import("./pages/Termos/Licenca"));
 const Privacidade = lazy(() => import("./pages/Termos/Privacidade"));
 const Signup = lazy(() => import("./pages/UserAuth/Signup"));
+const ControlPanel = lazy(() => import("./pages/ControlPanel"));
 
 const Private = ({ children }) => {
   const auth = localStorage.getItem("auth");
@@ -58,6 +59,7 @@ export default function Router() {
         <Route path="/verification" element={<EmailAuth />} />
         <Route path="/verify_reset" element={<VerifyResetPass />} />
         <Route path="/reset_password" element={<ResetPass />} />
+        <Route path="/control_panel" element={<ControlPanel />} />
         <Route
           path="/registro"
           element={

@@ -110,7 +110,7 @@ export default function EmailAuthResetPass() {
                 maxLength={4}
                 value={noAuth}
                 onChange={(e) => formatNoAuth(e.target.value)}
-                className={`w-44 border text-center text-4xl py-2 mt-2 border-[rgba(0,0,0,0.25)] outline-none ${
+                className={`w-44 border text-center text-4xl py-2 mt-2 border-[rgba(0,0,0,0.25)]  ${
                   authError === true
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
                     : authError === "Success"

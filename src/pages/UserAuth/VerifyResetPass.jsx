@@ -67,7 +67,7 @@ export default function VerifyResetPass() {
                     setEmail(e.target.value);
                     setError(false);
                   }}
-                  className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] outline-none ${
+                  className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)]  ${
                     error && "border-red-600"
                   }`}
                 />

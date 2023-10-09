@@ -200,7 +200,7 @@ export default function Register() {
                 value={formData.nome_empresa}
                 onChange={userInput}
                 placeholder="Nome da empresa"
-                className={`border border-neutral-300 p-3 outline-none ${
+                className={`border border-neutral-300 p-3  ${
                   validatedFields.nome_empresa === false
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
@@ -225,7 +225,7 @@ export default function Register() {
                 value={formData.nome_prop}
                 onChange={userInput}
                 placeholder="Nome do proprietário"
-                className={`border border-neutral-300 p-3 outline-none ${
+                className={`border border-neutral-300 p-3  ${
                   validatedFields.nome_prop === false
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
@@ -252,7 +252,7 @@ export default function Register() {
                 value={formData.cpf}
                 onChange={userInput}
                 placeholder="CPF do proprietário"
-                className={`border border-neutral-300 p-3 outline-none ${
+                className={`border border-neutral-300 p-3  ${
                   validatedFields.cpf === false
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
@@ -277,7 +277,7 @@ export default function Register() {
                 value={formData.tel_cel}
                 onChange={userInput}
                 placeholder="Telefone/Cel."
-                className={`border border-neutral-300 p-3 outline-none ${
+                className={`border border-neutral-300 p-3  ${
                   validatedFields.tel_cel === false
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
@@ -302,7 +302,7 @@ export default function Register() {
                 value={formData.contato}
                 onChange={userInput}
                 placeholder="Contato (ex. WhatsApp, Email)"
-                className={`border border-neutral-300 p-3 outline-none ${
+                className={`border border-neutral-300 p-3  ${
                   validatedFields.contato === false
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
@@ -336,7 +336,7 @@ export default function Register() {
                   onChange={cepInput}
                   id="local"
                   placeholder="CEP"
-                  className={`border border-neutral-300 p-3 outline-none ${
+                  className={`border border-neutral-300 p-3  ${
                     validatedFields.cep === false
                       ? "animate__animated animate__shakeX border-red-600"
                       : cepError
@@ -361,7 +361,7 @@ export default function Register() {
                   value={formData.rua}
                   onChange={userInput}
                   placeholder="Rua"
-                  className={`border border-neutral-300 p-3 outline-none ${
+                  className={`border border-neutral-300 p-3  ${
                     validatedFields.rua === false
                       ? "animate__animated animate__shakeX border-red-600"
                       : "focus:border-orange-400"
@@ -388,7 +388,7 @@ export default function Register() {
                   value={formData.bairro}
                   onChange={userInput}
                   placeholder="Bairro"
-                  className={`border border-neutral-300 p-3 outline-none ${
+                  className={`border border-neutral-300 p-3  ${
                     validatedFields.bairro === false
                       ? "animate__animated animate__shakeX border-red-600"
                       : "focus:border-orange-400"
@@ -413,7 +413,7 @@ export default function Register() {
                   value={formData.numero}
                   onChange={userInput}
                   placeholder="Número"
-                  className={`border border-neutral-300 p-3 outline-none ${
+                  className={`border border-neutral-300 p-3  ${
                     validatedFields.numero === false
                       ? "animate__animated animate__shakeX border-red-600"
                       : "focus:border-orange-400"
@@ -426,7 +426,7 @@ export default function Register() {
                   type="text"
                   name="complemento"
                   placeholder="Complemento"
-                  className="border border-neutral-300 p-3 outline-none focus:border-orange-400"
+                  className="border border-neutral-300 p-3  focus:border-orange-400"
                 />
               </div>
             </div>
@@ -449,7 +449,7 @@ export default function Register() {
                   value={formData.cidade}
                   onChange={userInput}
                   placeholder="Cidade"
-                  className={`border border-neutral-300 p-3 outline-none ${
+                  className={`border border-neutral-300 p-3  ${
                     validatedFields.cidade === false
                       ? "animate__animated animate__shakeX border-red-600"
                       : "focus:border-orange-400"
@@ -474,7 +474,7 @@ export default function Register() {
                   value={formData.estado}
                   onChange={userInput}
                   placeholder="Estado"
-                  className={`border border-neutral-300 p-3 outline-none ${
+                  className={`border border-neutral-300 p-3  ${
                     validatedFields.estado === false
                       ? "animate__animated animate__shakeX border-red-600"
                       : "focus:border-orange-400"

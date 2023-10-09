@@ -98,7 +98,7 @@ export default function Login() {
                 onChange={cnpjInput}
                 name="cnpj"
                 id="cnpj"
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md  ${
                   error
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
@@ -118,7 +118,7 @@ export default function Login() {
                   setError(false);
                 }}
                 id="password"
-                className={`mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
+                className={`mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md   ${
                   error
                     ? "animate__animated animate__shakeX border-red-600"
                     : "focus:border-orange-400"
@@ -131,7 +131,7 @@ export default function Login() {
               </span>
               <button
                 type="submit"
-                className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">
+                className="bg-orange-400 mt-7 py-2 rounded-lg font-bold  duration-200 hover:bg-orange-500">
                 Entrar
               </button>
               <span className="m-auto mt-4">

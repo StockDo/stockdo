@@ -64,7 +64,7 @@ export default function NewPass({ resetSuccess }) {
             type="password"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
-            className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] outline-none`}
+            className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] `}
           />
           <label htmlFor="" className="font-['Open_Sans'] mt-4">
             Repita a senha
@@ -73,7 +73,7 @@ export default function NewPass({ resetSuccess }) {
             type="password"
             value={repeatPass}
             onChange={(e) => setRepeatPass(e.target.value)}
-            className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] outline-none`}
+            className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] `}
           />
           {error && (
             <span className="text-red-600 mt-2">
@@ -81,7 +81,9 @@ export default function NewPass({ resetSuccess }) {
             </span>
           )}
         </div>
-        <button onClick={resetSuccess} className="bg-orange-400 py-2 rounded-lg font-bold">
+        <button
+          onClick={resetSuccess}
+          className="bg-orange-400 py-2 rounded-lg font-bold">
           Alterar senha
         </button>
       </form>

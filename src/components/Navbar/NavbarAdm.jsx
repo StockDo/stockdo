@@ -14,30 +14,13 @@ export default function NavbarAdm() {
       <ul className="flex items-center gap-5 justify-end text-white text-xl">
         <li>
           <span onClick={() => navigate("/")} className="cursor-pointer">
-            Home
+            Página inicial
           </span>
         </li>
         <li>
-          <span className="cursor-pointer">
-            O Software
-          </span>
-        </li>
-        <li>
-          <span onClick={() => navigate("/planos")} className="cursor-pointer">
-            Planos
-          </span>
-        </li>
-        <li className={auth ? "hidden" : "block"}>
-          <a
-            onClick={() => navigate("/login")}
-            className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
-            Entrar<i className="fa-solid fa-right-to-bracket ml-1"></i>
-          </a>
-        </li>
-        <li className={auth ? "block" : "hidden"}>
           <a
             onClick={sairClick}
-            className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
+            className="bg-red-400 py-1 px-3 rounded-lg text-black cursor-pointer">
             Sair<i className="fa-solid fa-power-off ml-1"></i>
           </a>
         </li>

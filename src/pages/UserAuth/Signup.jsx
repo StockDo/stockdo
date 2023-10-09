@@ -176,7 +176,7 @@ export default function Signup() {
                   userInput(e);
                   setError(false);
                 }}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md outline-none  ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md   ${
                   validatedFields.cnpj === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
                     : "focus:border-orange-400"
@@ -204,7 +204,7 @@ export default function Signup() {
                   userInput(e);
                   setError(false);
                 }}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md   ${
                   validatedFields.email === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
                     : "focus:border-orange-400"
@@ -230,7 +230,7 @@ export default function Signup() {
                   userInput(e);
                   setError(false);
                 }}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md   ${
                   validatedFields.password === false
                     ? "border-red-600 animate__animated animate__shakeX"
                     : "focus:border-orange-400"
@@ -258,7 +258,7 @@ export default function Signup() {
                   userInput(e);
                   setError(false);
                 }}
-                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md outline-none  ${
+                className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md   ${
                   validatedFields.password_repeat === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
                     : "focus:border-orange-400"
@@ -307,7 +307,7 @@ export default function Signup() {
               </ul>
               <button
                 type="submit"
-                className="bg-orange-400 mt-7 py-2 rounded-lg font-bold outline-none duration-200 hover:bg-orange-500">
+                className="bg-orange-400 mt-7 py-2 rounded-lg font-bold  duration-200 hover:bg-orange-500">
                 Cadastrar
               </button>
               <span className="m-auto mt-4">

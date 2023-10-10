@@ -10,6 +10,7 @@ export default function AddMember({ members, setMembers, setAddMember }) {
   const [admin, setAdmin] = useState(false);
   const [funcionario, setFuncionario] = useState(false);
   const [data, setData] = useState({
+    id: "",
     name: "",
     cpf: "",
     role: "",
@@ -46,6 +47,7 @@ export default function AddMember({ members, setMembers, setAddMember }) {
       setError(true);
       return;
     }
+    setData({ ...data, id: 4 });
     console.log(data);
     setMembers([...members, data]);
     setAddMember(false);
@@ -92,7 +94,7 @@ export default function AddMember({ members, setMembers, setAddMember }) {
             <button
               type="button"
               onClick={() => {
-                setError(false)
+                setError(false);
                 setAdmin(true);
                 setFuncionario(false);
                 setData({ ...data, role: "Funcionário" });
@@ -106,7 +108,7 @@ export default function AddMember({ members, setMembers, setAddMember }) {
             <button
               type="button"
               onClick={() => {
-                setError(false)
+                setError(false);
                 setAdmin(false);
                 setFuncionario(true);
                 setData({ ...data, role: "Administrador" });

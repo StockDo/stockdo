@@ -28,18 +28,24 @@ export default function EditMember({
         .replace(/[a-zA-Z\s]/, "")
         .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
         .slice(0, 14);
+      setData({
+        ...data,
+        [name]: value.slice(0, 80),
+        cpf: formatCpf,
+      });
+    } else {
+      setData({
+        ...data,
+        [name]: value.slice(0, 80),
+      });
     }
-    setData({
-      ...data,
-      [name]: value.slice(0, 80),
-      cpf: formatCpf,
-    });
+
     setError(false);
   };
 
-  const handleAdd = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
-    if (data.cpf === "") {
+    if (data.cpf === undefined) {
       setError(true);
       return;
     }
@@ -55,13 +61,29 @@ export default function EditMember({
     setMembers(
       members.map((element) => {
         if (element.id === editMember[1]) {
-          return { ...element, name: data.name, cpf: data.cpf };
+          return {
+            ...element,
+            id: members[editMember[1]].id,
+            name: data.name,
+            cpf: data.cpf,
+            role: data.role,
+          };
         }
         return element;
       })
     );
     setEditMember(false);
     document.body.style.overflow = "visible";
+  };
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log(members);
+    console.log(members.filter((element) => element.id != editMember[1]));
+    setMembers(members.filter((element) => element.id != editMember[1]));
+    setEditMember(false);
+    document.body.style.overflow = "visible";
+    console.log(members);
+    console.log(data);
   };
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
@@ -105,12 +127,17 @@ export default function EditMember({
               type="button"
               onClick={() => {
                 setError(false);
-                setAdmin(true);
-                setFuncionario(false);
+                setAdmin(false);
+                setFuncionario(true);
                 setData({ ...data, role: "Funcionário" });
               }}
               className={`flex flex-col items-center border-2 rounded-lg p-2 ${
-                admin ? "text-orange-400 border-orange-400" : "text-neutral-300"
+                funcionario
+                  ? "text-orange-400 border-orange-400"
+                  : "text-neutral-300"
+              } ${
+                data.role === "Funcionário" &&
+                "text-orange-400 border-orange-400"
               }`}>
               <FaHardHat size={50} />
               <span className="text-lg">Funcionário</span>
@@ -119,23 +146,29 @@ export default function EditMember({
               type="button"
               onClick={() => {
                 setError(false);
-                setAdmin(false);
-                setFuncionario(true);
+                setAdmin(true);
+                setFuncionario(false);
                 setData({ ...data, role: "Administrador" });
               }}
               className={`flex flex-col items-center border-2 rounded-lg p-2 ${
-                funcionario
-                  ? "text-orange-400 border-orange-400"
-                  : "text-neutral-300"
+                admin ? "text-orange-400 border-orange-400" : "text-neutral-300"
+              } ${
+                data.role === "Administrador" &&
+                "text-orange-400 border-orange-400"
               }`}>
               <FaUserShield size={50} />
               <span className="text-lg">Administrador</span>
             </button>
+            <button
+              onClick={handleDelete}
+              className="px-5 py-2 mt-3 text-center text-white bg-red-600 rounded-md">
+              Deletar membro
+            </button>
           </div>
           <button
-            onClick={handleAdd}
+            onClick={handleEdit}
             className="px-5 py-2 text-center bg-orange-400 rounded-md">
-            Editar membro
+            Editar
           </button>
         </div>
       </form>

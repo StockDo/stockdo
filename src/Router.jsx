@@ -59,7 +59,14 @@ export default function Router() {
         <Route path="/verification" element={<EmailAuth />} />
         <Route path="/verify_reset" element={<VerifyResetPass />} />
         <Route path="/reset_password" element={<ResetPass />} />
-        <Route path="/control_panel" element={<ControlPanel />} />
+        <Route
+          path="/control_panel"
+          element={
+            <Private>
+              <ControlPanel />
+            </Private>
+          }
+        />
         <Route
           path="/registro"
           element={

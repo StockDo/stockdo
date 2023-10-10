@@ -18,7 +18,7 @@ export default function Success() {
           />
           <h1 className="font-bold text-5xl">Obrigado por obter StockDo.</h1>
           <a
-            href="https://raw.githubusercontent.com/nicolasallp/stockdo/master/stockdo-project/bin/Debug/stockdo-project.exe"
+            href="https://raw.githubusercontent.com/nicolasallp/stockdo/master/StockDoInstaller.msi"
             className="text-xl text-orange-600 underline">
             Faça o download do software aqui.
           </a>

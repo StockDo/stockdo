@@ -3,18 +3,31 @@ import { GrUserWorker, GrUserAdmin } from "react-icons/gr";
 import { RiAdminFill } from "react-icons/ri";
 import { FaHardHat, FaUserShield } from "react-icons/fa";
 import "animate.css";
+import ReactLoading from "react-loading";
 import { useState } from "react";
+import axios from "axios";
 
 export default function AddMember({ members, setMembers, setAddMember }) {
   const [error, setError] = useState(false);
   const [admin, setAdmin] = useState(false);
-  const [funcionario, setFuncionario] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [funcionario, setFuncionario] = useState();
   const [data, setData] = useState({
-    id: "",
     name: "",
     cpf: "",
     role: "",
   });
+
+  const request = {
+    method: "POST",
+    url: "add_membros",
+    data: {
+      id: data.id,
+      name: data.name,
+      cpf: data.cpf,
+      role: data.role,
+    },
+  };
 
   const userInput = (e) => {
     const { name, value } = e.target;
@@ -35,6 +48,7 @@ export default function AddMember({ members, setMembers, setAddMember }) {
 
   const handleAdd = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (data.cpf === undefined) {
       setError(true);
       return;
@@ -47,11 +61,17 @@ export default function AddMember({ members, setMembers, setAddMember }) {
       setError(true);
       return;
     }
-    setData({ ...data, id: 4 });
-    console.log(data);
-    setMembers([...members, data]);
-    setAddMember(false);
-    document.body.style.overflow = "visible";
+    axios(request)
+      .then(() => {
+        setLoading(false);
+        setAddMember(false);
+        document.body.style.overflow = "visible";
+        // setMembers([...members, data]);
+      })
+      .catch((err) => {
+        console.log(data);
+        console.log(err);
+      });
   };
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
@@ -123,9 +143,22 @@ export default function AddMember({ members, setMembers, setAddMember }) {
             </button>
           </div>
           <button
-            onClick={handleAdd}
+            onClick={(e) => {
+              setLoading(true);
+              handleAdd(e);
+            }}
             className="px-5 py-2 text-center bg-orange-400 rounded-md">
-            Adicionar membro
+            {loading ? (
+              <ReactLoading
+                type="bars"
+                color="#523c08"
+                height={"10%"}
+                width={"10%"}
+                className="m-auto"
+              />
+            ) : (
+              "Adicionar"
+            )}
           </button>
         </div>
       </form>

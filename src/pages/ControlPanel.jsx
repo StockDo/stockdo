@@ -1,35 +1,25 @@
 // import Footer from "../components/Footer/Footer";
 import NavbarAdm from "../components/Navbar/NavbarAdm";
 import Members from "../components/Membros/Membros";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import AddMember from "../components/Modals/AddMember";
 import EditMember from "../components/Modals/EditMember";
 import PanelNavbar from "../components/Navbar/PanelNavbar";
+import axios from "axios";
 
 export default function ControlPanel() {
   const [membros, setMembros] = useState(true);
   const [settings, setSettings] = useState(false);
   const [addMember, setAddMember] = useState(false);
-  const [editMember, setEditMember] = useState([false, 1]);
+  const [editMember, setEditMember] = useState([false, 0]);
+
   const [members, setMembers] = useState([
     {
-      id: 0,
-      name: "Renan Almeida",
-      role: "Administrador",
-      cpf: "404.580.638-40",
-    },
-    {
-      id: 1,
-      name: "Davi Pimentel",
-      role: "Administrador",
-      cpf: "404.580.638-40",
-    },
-    {
-      id: 2,
-      name: "Nícolas Lopes",
-      role: "Administrador",
-      cpf: "404.580.638-40",
+      id: "",
+      name: "",
+      role: "",
+      cpf: "",
     },
   ]);
 

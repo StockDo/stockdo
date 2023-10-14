@@ -3,7 +3,9 @@ import { GrUserWorker, GrUserAdmin } from "react-icons/gr";
 import { RiAdminFill } from "react-icons/ri";
 import { FaHardHat, FaUserShield } from "react-icons/fa";
 import "animate.css";
+import ReactLoading from "react-loading";
 import { useState } from "react";
+import axios from "axios";
 
 export default function EditMember({
   members,
@@ -14,6 +16,7 @@ export default function EditMember({
   const [error, setError] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [funcionario, setFuncionario] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     name: members[editMember[1]].name,
     cpf: members[editMember[1]].cpf,
@@ -43,6 +46,16 @@ export default function EditMember({
     setError(false);
   };
 
+  const request = {
+    method: "POST",
+    url: "/update_membros",
+    data: {
+      name: data.name,
+      cpf: data.cpf,
+      role: data.role,
+    },
+  };
+
   const handleEdit = (e) => {
     e.preventDefault();
     if (data.cpf === undefined) {
@@ -58,22 +71,28 @@ export default function EditMember({
       return;
     }
     console.log(data);
-    setMembers(
-      members.map((element) => {
-        if (element.id === editMember[1]) {
-          return {
-            ...element,
-            id: members[editMember[1]].id,
-            name: data.name,
-            cpf: data.cpf,
-            role: data.role,
-          };
-        }
-        return element;
+    axios(request)
+      .then(() => {
+        setEditMember(false);
+        document.body.style.overflow = "visible";
       })
-    );
-    setEditMember(false);
-    document.body.style.overflow = "visible";
+      .catch((err) => {
+        console.log(err);
+      });
+    // setMembers(
+    //   members.map((element) => {
+    //     if (element.id === editMember[1]) {
+    //       return {
+    //         ...element,
+    //         id: members[editMember[1]].id,
+    //         name: data.name,
+    //         cpf: data.cpf,
+    //         role: data.role,
+    //       };
+    //     }
+    //     return element;
+    //   })
+    // );
   };
   const handleDelete = (e) => {
     e.preventDefault();
@@ -168,7 +187,17 @@ export default function EditMember({
           <button
             onClick={handleEdit}
             className="px-5 py-2 text-center bg-orange-400 rounded-md">
-            Editar
+            {loading ? (
+              <ReactLoading
+                type="bars"
+                color="#523c08"
+                height={"10%"}
+                width={"10%"}
+                className="m-auto"
+              />
+            ) : (
+              "Editar"
+            )}
           </button>
         </div>
       </form>

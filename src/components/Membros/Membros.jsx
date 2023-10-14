@@ -1,9 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProfilePic from "../../assets/imgs/Members/pfp.jpg";
 import { BsPersonFillAdd } from "react-icons/bs";
 import "animate.css";
+import axios from "axios";
 
-export default function Membros({ members, setAddMember, setEditMember }) {
+export default function Membros({
+  members,
+  setMembers,
+  setAddMember,
+  setEditMember,
+}) {
+  const request = {
+    method: "GET",
+    url: "/membros",
+  };
+  useEffect(() => {
+    axios(request)
+      .then((e) => {
+        setMembers(
+          e.data.map((item) => {
+            return {
+              id: item.ID_MEMBRO,
+              name: item.NM_MEMBRO,
+              role: item.CARGO,
+              cpf: item.CPF,
+            };
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [members]);
   return (
     <>
       <div
@@ -11,7 +39,7 @@ export default function Membros({ members, setAddMember, setEditMember }) {
         {members.map((e) => (
           <div
             className="flex flex-col items-center font-['Open_Sans'] text-lg gap-3 bg-white p-10 rounded-xl shadow-xl max-h-[30rem] animate__animated animate__bounceIn "
-            key={e.id}>
+            key={e.id - 1}>
             <img src={ProfilePic} width={"200px"} className="mb-2 border" />
             <h1 className="text-2xl font-bold font-sans text-center">
               {e.name}

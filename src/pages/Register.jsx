@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import StockDoLogo from "../assets/imgs/stockdo.svg";
+import StockDoLogo from "../assets/imgs/Icons/stockdo.svg";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";

@@ -1,27 +1,45 @@
 import { MdOutlineClose } from "react-icons/md";
-import { GrUserWorker, GrUserAdmin } from "react-icons/gr";
-import { RiAdminFill } from "react-icons/ri";
 import { FaHardHat, FaUserShield } from "react-icons/fa";
 import "animate.css";
 import ReactLoading from "react-loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function EditMember({
-  members,
-  setMembers,
-  editMember,
-  setEditMember,
-}) {
+export default function EditMember({ members, setMembers, setEditMember }) {
   const [error, setError] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [funcionario, setFuncionario] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
+  const [deleteMember, setDeleteMember] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const [data, setData] = useState({
-    name: members[editMember[1]].name,
-    cpf: members[editMember[1]].cpf,
-    role: members[editMember[1]].role,
+    name: "",
+    cpf: "",
+    role: "",
   });
+
+  const request = {
+    method: "POST",
+    url: "/update_member_data",
+    data: {
+      id_member_edit: localStorage.getItem("id_member_edit"),
+    },
+  };
+
+  useEffect(() => {
+    axios(request)
+      .then((e) => {
+        console.log();
+        setData({
+          name: e.data[0].NM_MEMBRO,
+          cpf: e.data[0].CPF,
+          role: e.data[0].CARGO,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const userInput = (e) => {
     const { name, value } = e.target;
@@ -46,18 +64,28 @@ export default function EditMember({
     setError(false);
   };
 
-  const request = {
+  const request_update = {
     method: "POST",
-    url: "/update_membros",
+    url: "/update_members",
     data: {
+      id_member_edit: localStorage.getItem("id_member_edit"),
       name: data.name,
       cpf: data.cpf,
       role: data.role,
     },
   };
 
+  const request_delete = {
+    method: "POST",
+    url: "/delete_member",
+    data: {
+      id_member_edit: localStorage.getItem("id_member_edit"),
+    },
+  };
+
   const handleEdit = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (data.cpf === undefined) {
       setError(true);
       return;
@@ -71,38 +99,44 @@ export default function EditMember({
       return;
     }
     console.log(data);
-    axios(request)
+    axios(request_update)
       .then(() => {
         setEditMember(false);
         document.body.style.overflow = "visible";
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-    // setMembers(
-    //   members.map((element) => {
-    //     if (element.id === editMember[1]) {
-    //       return {
-    //         ...element,
-    //         id: members[editMember[1]].id,
-    //         name: data.name,
-    //         cpf: data.cpf,
-    //         role: data.role,
-    //       };
-    //     }
-    //     return element;
-    //   })
-    // );
   };
   const handleDelete = (e) => {
     e.preventDefault();
-    console.log(members);
-    console.log(members.filter((element) => element.id != editMember[1]));
-    setMembers(members.filter((element) => element.id != editMember[1]));
-    setEditMember(false);
-    document.body.style.overflow = "visible";
-    console.log(members);
-    console.log(data);
+    setDeleteMember(true);
+    if (deleteMember && confirmDelete) {
+      axios(request_delete)
+        .then(() => {
+          setEditMember(false);
+          document.body.style.overflow = "visible";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    // console.log(members);
+    // console.log(
+    //   members.filter(
+    //     (element) => element.id != localStorage.getItem("id_member_edit")
+    //   )
+    // );
+    // setMembers(
+    //   members.filter(
+    //     (element) => element.id != localStorage.getItem("id_member_edit")
+    //   )
+    // );
+    // setEditMember(false);
+    // document.body.style.overflow = "visible";
+    // console.log(members);
+    // console.log(data);
   };
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
@@ -180,9 +214,23 @@ export default function EditMember({
             </button>
             <button
               onClick={handleDelete}
-              className="px-5 py-2 mt-3 text-center text-white bg-red-600 rounded-md">
+              className={`px-5 py-2 mt-3 text-center bg-red-600 text-white ${
+                confirmDelete ? "opacity-100" : deleteMember && "opacity-50"
+              } rounded-md`}>
               Deletar membro
             </button>
+            {deleteMember && (
+              <div className="flex items-center gap-2">
+                <label className="text-base text-red-800">
+                  Deseja realmente deletar esse membro?
+                </label>
+                <input
+                  onClick={() => setConfirmDelete(!confirmDelete)}
+                  type="checkbox"
+                  className="accent-red-700 w-5 h-5 cursor-pointer"
+                />
+              </div>
+            )}
           </div>
           <button
             onClick={handleEdit}

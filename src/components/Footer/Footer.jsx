@@ -1,4 +1,4 @@
-import StockDoLogo from "../../assets/imgs/stockdo.svg";
+import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
@@ -62,13 +62,25 @@ export default function Footer() {
         <ul className="flex flex-col gap-5">
           <li className="font-semibold text-2xl">Termos de uso</li>
           <li>
-            <a onClick={() => navigate("/termos")} className="hover:underline cursor-pointer">Termos</a>
+            <a
+              onClick={() => navigate("/termos")}
+              className="hover:underline cursor-pointer">
+              Termos
+            </a>
           </li>
           <li>
-            <a onClick={() => navigate("/privacidade")} className="hover:underline cursor-pointer">Privacidade</a>
+            <a
+              onClick={() => navigate("/privacidade")}
+              className="hover:underline cursor-pointer">
+              Privacidade
+            </a>
           </li>
           <li>
-            <a onClick={() => navigate("/licenca")} className="hover:underline cursor-pointer">Licença de uso</a>
+            <a
+              onClick={() => navigate("/licenca")}
+              className="hover:underline cursor-pointer">
+              Licença de uso
+            </a>
           </li>
           {/* <li>
             <a className="hover:underline cursor-pointer">
@@ -76,13 +88,15 @@ export default function Footer() {
             </a>
           </li> */}
           <li>
-            <a className="hover:underline cursor-pointer">Gerenciamento de cookies</a>
+            <a className="hover:underline cursor-pointer">
+              Gerenciamento de cookies
+            </a>
           </li>
         </ul>
       </div>
       <p className="text-2xl mt-24">
-        Copyright © 2023 • <span className="font-bold">NoEqual</span>{" "}
-        • Termos de uso
+        Copyright © 2023 • <span className="font-bold">NoEqual</span> • Termos
+        de uso
       </p>
     </div>
   );

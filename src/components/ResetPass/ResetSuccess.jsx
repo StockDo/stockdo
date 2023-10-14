@@ -1,5 +1,5 @@
-import StockDoLogo from "../../assets/imgs/stockdo.svg";
-import Shield from "../../assets/imgs/insurance.png";
+import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
+import Shield from "../../assets/imgs/Icons/insurance.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 

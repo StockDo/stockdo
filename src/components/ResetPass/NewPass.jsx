@@ -1,5 +1,5 @@
-import StockDoLogo from "../../assets/imgs/stockdo.svg";
-import LockLogo from "../../assets/imgs/lock.png";
+import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
+import LockLogo from "../../assets/imgs/Icons/lock.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";

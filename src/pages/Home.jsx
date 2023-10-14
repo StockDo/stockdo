@@ -12,7 +12,7 @@ export default function Home() {
   const planosScroll = () => refPlanos.current.scrollIntoView();
   return (
     <main className="min-h-screen">
-      <div className="bg-[url('./assets/imgs/sd-bg1.png')] bg-cover bg-no-repeat">
+      <div className="bg-[url('./assets/imgs/StockDoBgs/sd-bg1.png')] bg-cover bg-no-repeat">
         <Navbar saibaMaisScroll={saibaMaisScroll} planosScroll={planosScroll} />
         <div className="bg-gradient-to-r from-[rgba(0,0,0,0.83)] h-screen">
           <div className="pt-80 pl-16">

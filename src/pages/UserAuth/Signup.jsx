@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import SignupBackground from "../../assets/imgs/signup-bg.png";
-import StockDoLogo from "../../assets/imgs/stockdo.svg";
+import SignupBackground from "../../assets/imgs/StockDoBgs/signup-bg.png";
+import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "animate.css";

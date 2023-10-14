@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import StockDoLogo from "../../assets/imgs/stockdo.svg";
+import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { useEffect, useState } from "react";
 
 export default function Navbar({ saibaMaisScroll, planosScroll }) {

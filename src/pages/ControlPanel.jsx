@@ -12,7 +12,7 @@ export default function ControlPanel() {
   const [membros, setMembros] = useState(true);
   const [settings, setSettings] = useState(false);
   const [addMember, setAddMember] = useState(false);
-  const [editMember, setEditMember] = useState([false, 0]);
+  const [editMember, setEditMember] = useState(false);
 
   const [members, setMembers] = useState([
     {
@@ -32,10 +32,9 @@ export default function ControlPanel() {
           setAddMember={setAddMember}
         />
       )}
-      {editMember[0] && (
+      {editMember && (
         <EditMember
           members={members}
-          editMember={editMember}
           setMembers={setMembers}
           setEditMember={setEditMember}
         />
@@ -52,9 +51,7 @@ export default function ControlPanel() {
           <Members
             members={members}
             setMembers={setMembers}
-            addMember={addMember}
             setAddMember={setAddMember}
-            editMember={editMember}
             setEditMember={setEditMember}
           />
         )}

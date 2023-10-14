@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
-import Loading from "../assets/imgs/loading.gif";
+import Loading from "../assets/imgs/Icons/loading.gif";
 
 export default function Success() {
   return (

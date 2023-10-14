@@ -1,6 +1,6 @@
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
-import StockDoLogo from "../../assets/imgs/stockdo.svg";
+import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 
 export default function Licenca() {
   return (

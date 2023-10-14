@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import StockDoLogo from "../../assets/imgs/stockdo.svg";
-import EmailGif from "../../assets/imgs/email-auth.gif";
-import CheckAnim from "../../assets/imgs/check.gif";
+import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
+import EmailGif from "../../assets/imgs/EmailAuth/email-auth.gif";
+import CheckAnim from "../../assets/imgs/EmailAuth/check.gif";
 import { useEffect, useState } from "react";
 import "animate.css";
 import axios from "axios";

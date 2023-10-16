@@ -12,7 +12,7 @@ export default function NewPass({ resetSuccess }) {
   //   const [resetSuccess, setResetSuccess] = useState(false);
   const request = {
     method: "POST",
-    url: "/reset_pass",
+    url: `${import.meta.env.VITE_URL}/reset_pass`,
     data: {
       email: localStorage.getItem("email"),
       pass: pass,

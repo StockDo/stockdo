@@ -20,7 +20,7 @@ export default function EditMember({ members, setMembers, setEditMember }) {
 
   const request = {
     method: "POST",
-    url: "/update_member_data",
+    url: `${import.meta.env.VITE_URL}/update_member_data`,
     data: {
       id_member_edit: localStorage.getItem("id_member_edit"),
     },
@@ -66,7 +66,7 @@ export default function EditMember({ members, setMembers, setEditMember }) {
 
   const request_update = {
     method: "POST",
-    url: "/update_members",
+    url: `${import.meta.env.VITE_URL}/update_members`,
     data: {
       id_member_edit: localStorage.getItem("id_member_edit"),
       name: data.name,
@@ -77,7 +77,7 @@ export default function EditMember({ members, setMembers, setEditMember }) {
 
   const request_delete = {
     method: "POST",
-    url: "/delete_member",
+    url: `${import.meta.env.VITE_URL}/delete_member`,
     data: {
       id_member_edit: localStorage.getItem("id_member_edit"),
     },

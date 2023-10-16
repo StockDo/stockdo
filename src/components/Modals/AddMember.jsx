@@ -20,7 +20,7 @@ export default function AddMember({ members, setMembers, setAddMember }) {
 
   const request = {
     method: "POST",
-    url: "add_membros",
+    url: `${import.meta.env.VITE_URL}/add_membros`,
     data: {
       id: data.id,
       name: data.name,

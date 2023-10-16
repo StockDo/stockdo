@@ -17,7 +17,7 @@ export default function EmailAuth() {
   const [authError, setAuthError] = useState(false);
   const request = {
     method: "POST",
-    url: `/auth_code`,
+    url: `${import.meta.env.VITE_URL}/auth_code`,
     data: {
       code: authCode,
     },
@@ -25,7 +25,7 @@ export default function EmailAuth() {
 
   const request_resend = {
     method: "POST",
-    url: `/resend_code`,
+    url: `${import.meta.env.VITE_URL}/resend_code`,
     data: {
       email: localStorage.getItem("emailAuth"),
     },

@@ -28,7 +28,7 @@ export default function Signup() {
 
   const request = {
     method: "POST",
-    url: `/signup`,
+    url: `${import.meta.env.VITE_URL}/signup`,
     data: {
       cnpj: formData.cnpj,
       email: formData.email,

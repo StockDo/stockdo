@@ -18,7 +18,7 @@ export default function Login() {
   });
   const request = {
     method: "POST",
-    url: `/login`,
+    url: `${import.meta.env.VITE_URL}/login`,
     data: {
       cnpj: formData.cnpj,
       pass: formData.pass,

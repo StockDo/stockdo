@@ -12,7 +12,7 @@ export default function VerifyResetPass() {
   const [error, setError] = useState(false);
   const request = {
     method: "POST",
-    url: "/verify_reset",
+    url: `${import.meta.env.VITE_URL}/verify_reset`,
     data: {
       email: email,
     },

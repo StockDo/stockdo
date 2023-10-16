@@ -19,7 +19,7 @@ export default function Membros({
   const [sortDropdown, setSortDropdown] = useState(false);
   const request = {
     method: "GET",
-    url: "/membros",
+    url: `${import.meta.env.VITE_URL}/membros`,
   };
   useEffect(() => {
     axios(request)

@@ -27,7 +27,7 @@ export default function EmailAuthResetPass() {
 
   const request = {
     method: "POST",
-    url: `/auth_code`,
+    url: `${import.meta.env.VITE_URL}/auth_code`,
     data: {
       code: noAuth,
     },

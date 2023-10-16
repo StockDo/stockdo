@@ -38,7 +38,7 @@ export default function Register() {
 
   const request = {
     method: "POST",
-    url: `/register`,
+    url: `${import.meta.env.VITE_URL}/register`,
     data: {
       nome_empresa: formData.nome_empresa,
       nome_prop: formData.nome_prop,

@@ -9,7 +9,7 @@ export default function NavbarAdm() {
     navigate("/login");
   };
   return (
-    <div className="flex justify-between bg-slate-600 p-4 font-['Barlow'] fixed w-full z-50">
+    <div className="flex justify-between bg-slate-600 p-4 font-['Barlow'] fixed w-full z-[100]">
       <h1 className="text-white text-3xl font-bold font-['PT_Sans']">Painel</h1>
       <ul className="flex items-center gap-5 justify-end text-white text-xl">
         <li>

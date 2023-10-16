@@ -45,7 +45,7 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
         </li>
         <li className={auth ? "block" : "hidden"}>
           <a
-            onClick={() => navigate("/control_panel")}
+            onClick={() => navigate("/painel")}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
             Painel<i className="fa-solid fa-layer-group ml-1"></i>
           </a>

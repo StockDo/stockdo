@@ -20,7 +20,7 @@ const ControlPanel = lazy(() => import("./pages/ControlPanel"));
 
 const Private = ({ children }) => {
   const auth = localStorage.getItem("auth");
-  return auth ? children : <Navigate to="/login" />;
+  return !auth ? children : <Navigate to="/login" />;
 };
 
 const NoAuth = ({ children }) => {
@@ -60,7 +60,7 @@ export default function Router() {
         <Route path="/verify_reset" element={<VerifyResetPass />} />
         <Route path="/reset_password" element={<ResetPass />} />
         <Route
-          path="/control_panel"
+          path="/painel"
           element={
             <Private>
               <ControlPanel />

@@ -48,7 +48,6 @@ export default function AddMember({ members, setMembers, setAddMember }) {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    setLoading(true);
     if (data.cpf === undefined) {
       setError(true);
       return;
@@ -61,6 +60,7 @@ export default function AddMember({ members, setMembers, setAddMember }) {
       setError(true);
       return;
     }
+    setLoading(true);
     axios(request)
       .then(() => {
         setLoading(false);
@@ -144,7 +144,6 @@ export default function AddMember({ members, setMembers, setAddMember }) {
           </div>
           <button
             onClick={(e) => {
-              setLoading(true);
               handleAdd(e);
             }}
             className="px-5 py-2 text-center bg-orange-400 rounded-md">

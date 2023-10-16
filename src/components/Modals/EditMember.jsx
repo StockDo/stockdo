@@ -85,7 +85,6 @@ export default function EditMember({ members, setMembers, setEditMember }) {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    setLoading(true);
     if (data.cpf === undefined) {
       setError(true);
       return;
@@ -98,6 +97,7 @@ export default function EditMember({ members, setMembers, setEditMember }) {
       setError(true);
       return;
     }
+    setLoading(true);
     console.log(data);
     axios(request_update)
       .then(() => {
@@ -244,7 +244,7 @@ export default function EditMember({ members, setMembers, setEditMember }) {
                 className="m-auto"
               />
             ) : (
-              "Editar"
+              "Atualizar"
             )}
           </button>
         </div>

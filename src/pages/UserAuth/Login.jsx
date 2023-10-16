@@ -46,7 +46,7 @@ export default function Login() {
         localStorage.setItem("authorizationToken", e.data.token);
         localStorage.setItem("auth", true);
         setError(false);
-        navigate("/registro");
+        navigate("/painel");
       })
       .catch((err) => {
         console.log(err);

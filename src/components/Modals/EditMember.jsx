@@ -5,7 +5,7 @@ import ReactLoading from "react-loading";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function EditMember({ members, setMembers, setEditMember }) {
+export default function EditMember({ setEditMember }) {
   const [error, setError] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [funcionario, setFuncionario] = useState(false);

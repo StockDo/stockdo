@@ -20,7 +20,7 @@ const ControlPanel = lazy(() => import("./pages/ControlPanel"));
 
 const Private = ({ children }) => {
   const auth = localStorage.getItem("auth");
-  return !auth ? children : <Navigate to="/login" />;
+  return auth ? children : <Navigate to="/login" />;
 };
 
 const NoAuth = ({ children }) => {

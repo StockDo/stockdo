@@ -17,7 +17,7 @@ export default function Home() {
         <div className="bg-gradient-to-r from-[rgba(0,0,0,0.83)] h-screen">
           <div className="pt-80 pl-16">
             <h1 className="text-8xl text-white font-['PT_Sans'] max-2xl:text-6xl">
-             DSFAKHFJKSDF
+             StockDo
             </h1>
             <p className="text-2xl font-['Open_Sans'] text-white">
               Agilize o processo, reduza perdas.

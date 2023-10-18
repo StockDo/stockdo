@@ -7,7 +7,7 @@ import ReactLoading from "react-loading";
 import { useState } from "react";
 import axios from "axios";
 
-export default function AddMember({ members, setMembers, setAddMember }) {
+export default function AddMember({ setAddMember }) {
   const [error, setError] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [loading, setLoading] = useState(false);

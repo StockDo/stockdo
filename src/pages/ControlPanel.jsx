@@ -11,33 +11,11 @@ export default function ControlPanel() {
   const [settings, setSettings] = useState(false);
   const [addMember, setAddMember] = useState(false);
   const [editMember, setEditMember] = useState(false);
-  const [sort, setSort] = useState(false);
-
-  const [members, setMembers] = useState([
-    {
-      id: "",
-      name: "",
-      role: "",
-      cpf: "",
-    },
-  ]);
 
   return (
     <>
-      {addMember && (
-        <AddMember
-          members={members}
-          setMembers={setMembers}
-          setAddMember={setAddMember}
-        />
-      )}
-      {editMember && (
-        <EditMember
-          members={members}
-          setMembers={setMembers}
-          setEditMember={setEditMember}
-        />
-      )}
+      {addMember && <AddMember setAddMember={setAddMember} />}
+      {editMember && <EditMember setEditMember={setEditMember} />}
       <NavbarAdm />
       <main className="flex">
         <PanelNavbar
@@ -47,23 +25,7 @@ export default function ControlPanel() {
           setSettings={setSettings}
         />
         {membros && (
-          <Members
-            members={
-              sort
-                ? members.sort((a, b) => {
-                    if (a.name < b.name) {
-                      return -1;
-                    }
-                    return 1;
-                  })
-                : members
-            }
-            setMembers={setMembers}
-            setAddMember={setAddMember}
-            setEditMember={setEditMember}
-            sort={sort}
-            setSort={setSort}
-          />
+          <Members setAddMember={setAddMember} setEditMember={setEditMember} />
         )}
       </main>
       {/* <Footer /> */}

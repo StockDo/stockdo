@@ -2,7 +2,17 @@
 module.exports = {
   content: ["./src/**/**/*.jsx"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        zoomIn: "zoomIn 400ms ease",
+      },
+      keyframes: {
+        zoomIn: {
+          "0%": { transform: "scale(0)" },
+          "100%": { transform: "scale(1)" },
+        },
+      },
+    },
   },
   plugins: [],
 };

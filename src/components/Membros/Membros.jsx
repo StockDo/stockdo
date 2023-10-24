@@ -8,10 +8,17 @@ import axios from "axios";
 import LoadingCards from "./LoadingCards";
 import "animate.css";
 
-export default function Membros({ setAddMember, setEditMember }) {
+export default function Membros({
+  setAddMember,
+  setEditMember,
+  addMember,
+  editMember,
+}) {
   const [loadingContent, setLoadingContent] = useState(true);
   const [sortDropdown, setSortDropdown] = useState(false);
-  const [sort, setSort] = useState(false);
+  const [sortAZ, setSortAZ] = useState(false);
+  const [sortZA, setSortZA] = useState(false);
+  const [sortRecent, setSortRecent] = useState(false);
   const [members, setMembers] = useState([
     {
       id: "",
@@ -28,14 +35,22 @@ export default function Membros({ setAddMember, setEditMember }) {
     axios(request)
       .then((e) => {
         setMembers(
-          e.data.map((item) => {
-            return {
-              id: item.ID_MEMBRO,
-              name: item.NM_MEMBRO,
-              role: item.CARGO,
-              cpf: item.CPF,
-            };
-          })
+          e.data
+            .map((item) => {
+              return {
+                id: item.ID_MEMBRO,
+                name: item.NM_MEMBRO,
+                role: item.CARGO,
+                cpf: item.CPF,
+              };
+            })
+            .sort((a, b) =>
+              sortAZ
+                ? a.name.localeCompare(b.name)
+                : sortZA
+                ? b.name.localeCompare(a.name)
+                : 0
+            )
         );
         setLoadingContent(false);
         console.log("sasa");
@@ -43,20 +58,20 @@ export default function Membros({ setAddMember, setEditMember }) {
       .catch((err) => {
         console.log(err);
       });
-  }, [members]);
+  }, [sortAZ, sortZA, addMember, editMember]);
 
-  const handleAZ = () => {
-    const azMembers = [
-      ...members.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        return 1;
-      }),
-    ];
-    setSortDropdown(false);
-    setMembers(azMembers);
-  };
+  // const handleAZ = () => {
+  //   const azMembers = [
+  //     ...members.sort((a, b) => {
+  //       if (a.name.toLowerCase() < b.name.toLowerCase()) {
+  //         return -1;
+  //       }
+  //       return 1;
+  //     }),
+  //   ];
+  //   setSortDropdown(false);
+  //   setMembers(azMembers);
+  // };
 
   return (
     <>
@@ -75,23 +90,43 @@ export default function Membros({ setAddMember, setEditMember }) {
             />
           </button>
           {sortDropdown && (
-            <div className="absolute top-36 right-24 bg-white border border-[rgba(0,0,0,0.19)] z-50">
+            <div className="absolute top-36 right-32 bg-white border border-[rgba(0,0,0,0.19)] z-50">
               <div className="flex flex-col items-start text-xl min-w-[16rem]">
                 <button
-                  onClick={handleAZ}
+                  onClick={() => {
+                    setSortAZ(true);
+                    setSortZA(false);
+                    setSortRecent(false);
+                    setSortDropdown(false);
+                  }}
                   className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
-                    sort && "bg-orange-300"
+                    sortAZ && "bg-orange-100"
                   }`}>
                   <span>A-Z</span>
                 </button>
-                <button className="flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100">
+                <button
+                  onClick={() => {
+                    setSortZA(true);
+                    setSortAZ(false);
+                    setSortRecent(false);
+                    setSortDropdown(false);
+                  }}
+                  className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
+                    sortZA && "bg-orange-100"
+                  }`}>
                   <span>Z-A</span>
                 </button>
-                <button className="flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100">
+                <button
+                  onClick={() => {
+                    setSortRecent(true);
+                    setSortAZ(false);
+                    setSortZA(false);
+                    setSortDropdown(false);
+                  }}
+                  className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
+                    sortRecent && "bg-orange-100"
+                  }`}>
                   <span>Mais recentes primeiros</span>
-                </button>
-                <button className="flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100">
-                  <span>Últimos adicionados primeiros</span>
                 </button>
               </div>
             </div>

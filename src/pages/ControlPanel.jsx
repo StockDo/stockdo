@@ -25,7 +25,12 @@ export default function ControlPanel() {
           setSettings={setSettings}
         />
         {membros && (
-          <Members setAddMember={setAddMember} setEditMember={setEditMember} />
+          <Members
+            setAddMember={setAddMember}
+            setEditMember={setEditMember}
+            addMember={addMember}
+            editMember={editMember}
+          />
         )}
       </main>
       {/* <Footer /> */}

@@ -11,7 +11,7 @@ export default function AddMember({ setAddMember }) {
   const [error, setError] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [funcionario, setFuncionario] = useState();
+  const [funcionario, setFuncionario] = useState("");
   const [data, setData] = useState({
     name: "",
     cpf: "",
@@ -75,7 +75,7 @@ export default function AddMember({ setAddMember }) {
   };
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
-      <form className="flex flex-col items-center pt-5 pb-16 px-10 bg-white text-xl font-['Open_Sans'] rounded-md animate-zoomIn">
+      <form className="flex flex-col items-center pt-5 pb-16 px-10 bg-white text-xl font-['Open_Sans'] rounded-xl animate-zoomIn">
         <MdOutlineClose
           size={40}
           className="ml-auto text-orange-500 cursor-pointer"

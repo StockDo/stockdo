@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "animate.css";
 import validarCNPJ from "../../utils/cnpj_validation.js";
+import validarCPF from "../../utils/cpf_validation";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
@@ -13,14 +14,14 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    cnpj: "",
+    cpf: "",
     email: "",
     password: "",
     password_repeat: "",
   });
 
   const [validatedFields, setValidatedFields] = useState({
-    cnpj: true,
+    cpf: true,
     email: true,
     password: true,
     password_repeat: true,
@@ -30,7 +31,7 @@ export default function Signup() {
     method: "POST",
     url: `${import.meta.env.VITE_URL}/signup`,
     data: {
-      cnpj: formData.cnpj,
+      cpf: formData.cpf,
       email: formData.email,
       password: formData.password,
     },
@@ -46,11 +47,11 @@ export default function Signup() {
 
     let formattedInput = value;
 
-    if (name === "cnpj") {
+    if (name === "cpf") {
       formattedInput = value
         .replace(/[a-zA-Z\s]/, "")
-        .replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
-        .slice(0, 18);
+        .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+        .slice(0, 14);
     } else if (name === "email") {
       formattedInput = value.slice(0, 80);
     } else if (name === "password") {
@@ -74,10 +75,10 @@ export default function Signup() {
     e.preventDefault();
     console.log(import.meta.env.VITE_KEY);
     let isValid = true;
-    if (validarCNPJ(formData.cnpj) === false) {
+    if (validarCPF(formData.cpf) === false) {
       setValidatedFields({
         ...validatedFields,
-        cnpj: false,
+        cpf: false,
       });
       isValid = false;
     } else if (!/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/.test(formData.email)) {
@@ -156,28 +157,28 @@ export default function Signup() {
                 {showPass ? <BsEyeSlash /> : <BsEye />}
               </button>
               <label
-                htmlFor="cnpj"
+                htmlFor="cpf"
                 className={` ${
-                  validatedFields.cnpj === false &&
+                  validatedFields.cpf === false &&
                   "animate__animated animate__shakeX text-red-600 "
                 }`}>
-                {validatedFields.cnpj === false
-                  ? formData.cnpj === ""
+                {validatedFields.cpf === false
+                  ? formData.cpf === ""
                     ? "Preencha este campo"
-                    : "CNPJ inválido"
-                  : "CNPJ"}
+                    : "CPF inválido"
+                  : "CPF"}
               </label>
               <input
                 type="text"
-                name="cnpj"
-                id="cnpj"
-                value={formData.cnpj}
+                name="cpf"
+                id="cpf"
+                value={formData.cpf}
                 onChange={(e) => {
                   userInput(e);
                   setError(false);
                 }}
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-44 py-2 rounded-md   ${
-                  validatedFields.cnpj === false
+                  validatedFields.cpf === false
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
                     : "focus:border-orange-400"
                 } `}

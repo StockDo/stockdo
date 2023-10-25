@@ -23,8 +23,9 @@ export default function Membros({
     {
       id: "",
       name: "",
-      role: "",
       cpf: "",
+      role: "",
+      pic: "",
     },
   ]);
   const request = {
@@ -32,6 +33,7 @@ export default function Membros({
     url: `${import.meta.env.VITE_URL}/membros`,
   };
   useEffect(() => {
+    setLoadingContent(true);
     axios(request)
       .then((e) => {
         setMembers(
@@ -40,8 +42,9 @@ export default function Membros({
               return {
                 id: item.ID_MEMBRO,
                 name: item.NM_MEMBRO,
-                role: item.CARGO,
                 cpf: item.CPF,
+                role: item.CARGO,
+                pic: item.FOTO,
               };
             })
             .sort((a, b) =>
@@ -140,7 +143,7 @@ export default function Membros({
               <div
                 className="flex flex-col items-center justify-center font-['Open_Sans'] text-lg gap-3 bg-white rounded-xl shadow-xl py-12 min-w-[20rem] break-all"
                 key={index}>
-                <img src={ProfilePic} width={"200px"} className="mb-2 border" />
+                <img src={e.pic} width={"200px"} className="mb-2 border rounded-full w-52 h-52" />
                 <h1 className="text-2xl font-bold font-sans text-center">
                   {e.name}
                 </h1>

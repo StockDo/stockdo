@@ -8,7 +8,7 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
   const auth = localStorage.getItem("auth");
 
   const sairClick = () => {
-    localStorage.removeItem("auth");
+    localStorage.clear();
     navigate("/login");
   };
   return (

@@ -26,6 +26,7 @@ export default function AddMember({ setAddMember }) {
     method: "POST",
     url: `${import.meta.env.VITE_URL}/add_membros`,
     data: {
+      id_empresa: localStorage.getItem("id_empresa"),
       id: data.id,
       name: data.name,
       email: data.email,

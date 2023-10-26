@@ -13,14 +13,14 @@ export default function Login() {
   const [error, setError] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [formData, setFormData] = useState({
-    cnpj: "",
+    cpf: "",
     pass: "",
   });
   const request = {
     method: "POST",
     url: `${import.meta.env.VITE_URL}/login`,
     data: {
-      cnpj: formData.cnpj,
+      cpf: formData.cpf,
       pass: formData.pass,
     },
   };
@@ -30,11 +30,11 @@ export default function Login() {
     const { value } = e.target;
     const formattedInput = value
       .replace(/[a-zA-Z\s]/, "")
-      .replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
-      .slice(0, 18);
+      .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+      .slice(0, 14);
     setFormData({
       ...formData,
-      cnpj: formattedInput,
+      cpf: formattedInput,
     });
   };
 
@@ -44,6 +44,7 @@ export default function Login() {
       .then((e) => {
         console.log(e);
         localStorage.setItem("authorizationToken", e.data.token);
+        localStorage.setItem("id_user", e.data.id_user);
         localStorage.setItem("auth", true);
         setError(false);
         navigate("/painel");
@@ -70,6 +71,8 @@ export default function Login() {
               src={StockDoLogo}
               alt="StockDo logo"
               width="150px"
+              npm
+              r
               className="cursor-pointer m-auto mb-2 pb-5"
               onClick={() => navigate("/")}
             />
@@ -91,13 +94,13 @@ export default function Login() {
                 className={`relative -m-2 self-end top-[8.8rem] mr-2 text-2xl text-orange-600`}>
                 {showPass ? <BsEyeSlash /> : <BsEye />}
               </button>
-              <label htmlFor="cnpj">CNPJ</label>
+              <label htmlFor="cpf">CNPJ</label>
               <input
                 type="text"
-                value={formData.cnpj}
+                value={formData.cpf}
                 onChange={cnpjInput}
-                name="cnpj"
-                id="cnpj"
+                name="cpf"
+                id="cpf"
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md  ${
                   error
                     ? "animate__animated animate__shakeX border-red-600"

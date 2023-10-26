@@ -11,7 +11,7 @@ export default function Register() {
   const [formData, setFormData] = useState({
     nome_empresa: "",
     nome_prop: "",
-    cpf: "",
+    cnpj: "",
     tel_cel: "",
     contato: "",
     cep: "",
@@ -25,7 +25,7 @@ export default function Register() {
   const [validatedFields, setValidatedFields] = useState({
     nome_empresa: "",
     nome_prop: "",
-    cpf: "",
+    cnpj: "",
     tel_cel: "",
     contato: "",
     cep: "",
@@ -40,15 +40,17 @@ export default function Register() {
     method: "POST",
     url: `${import.meta.env.VITE_URL}/register`,
     data: {
+      id_user: localStorage.getItem("id_user"),
       nome_empresa: formData.nome_empresa,
       nome_prop: formData.nome_prop,
-      cpf: formData.cpf,
+      cnpj: formData.cnpj,
       tel_cel: formData.tel_cel,
       contato: formData.contato,
       cep: formData.cep,
       rua: formData.rua,
       bairro: formData.bairro,
       numero: formData.numero,
+      complemento: formData.complemento,
       cidade: formData.cidade,
       estado: formData.estado,
     },
@@ -81,15 +83,14 @@ export default function Register() {
 
   const userInput = (e) => {
     const { name, value } = e.target;
-    let formatCpf;
-    let formatTel;
-    if (name == "cpf") {
-      formatCpf = value
+    let formatCNPJ = formData.cnpj;
+    let formatTel = formData.tel_cel;
+    if (name === "cnpj") {
+      formatCNPJ = value
         .replace(/[a-zA-Z\s]/, "")
-        .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
-        .slice(0, 14);
-    }
-    if (name == "tel_cel") {
+        .replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
+        .slice(0, 18);
+    } else if (name === "tel_cel") {
       formatTel = value
         .replace(/(\d{0})(\d{2})(\d{0})(\d{5})(\d{4})/, "$1($2)$3 $4-$5")
         .slice(0, 15);
@@ -102,7 +103,7 @@ export default function Register() {
     setFormData({
       ...formData,
       [name]: value,
-      cpf: formatCpf,
+      cnpj: formatCNPJ,
       tel_cel: formatTel,
     });
   };
@@ -129,7 +130,7 @@ export default function Register() {
     const formDataValues = [
       "nome_empresa",
       "nome_prop",
-      "cpf",
+      "cnpj",
       "tel_cel",
       "contato",
       "cep",
@@ -159,7 +160,9 @@ export default function Register() {
     if (isNotValid === false) {
       axios(request)
         .then((res) => {
+          console.log(formData);
           console.log(res);
+          localStorage.setItem("id_empresa", formData.cnpj);
           navigate("/planos");
         })
         .catch(({ response }) => {
@@ -186,9 +189,8 @@ export default function Register() {
               <label
                 htmlFor=""
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                  validatedFields.nome_empresa === false
-                    ? "animate__animated animate__shakeX text-red-600"
-                    : null
+                  validatedFields.nome_empresa === false &&
+                  "animate__animated animate__shakeX text-red-600"
                 }`}>
                 {validatedFields.nome_empresa === false
                   ? "Campo obrigatório"
@@ -209,11 +211,34 @@ export default function Register() {
             </div>
             <div className="flex flex-col pb-5 w-full">
               <label
+                htmlFor="cnpj"
+                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
+                  validatedFields.cnpj === false &&
+                  "animate__animated animate__shakeX text-red-600"
+                }`}>
+                {validatedFields.cnpj === false
+                  ? "Campo obrigatório"
+                  : "CNPJ da empresa"}
+              </label>
+              <input
+                type="text"
+                name="cnpj"
+                value={formData.cnpj}
+                onChange={userInput}
+                placeholder="CNPJ da empresa"
+                className={`border border-neutral-300 p-3  ${
+                  validatedFields.cnpj === false
+                    ? "animate__animated animate__shakeX border-red-600"
+                    : "focus:border-orange-400"
+                }`}
+              />
+            </div>
+            <div className="flex flex-col pb-5 w-full">
+              <label
                 htmlFor="nome_prop"
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                  validatedFields.nome_prop === false
-                    ? "animate__animated animate__shakeX text-red-600"
-                    : null
+                  validatedFields.nome_prop === false &&
+                  "animate__animated animate__shakeX text-red-600"
                 }`}>
                 {validatedFields.nome_prop === false
                   ? "Campo obrigatório"
@@ -238,34 +263,8 @@ export default function Register() {
               <label
                 htmlFor=""
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                  validatedFields.cpf === false
-                    ? "animate__animated animate__shakeX text-red-600"
-                    : null
-                }`}>
-                {validatedFields.cpf === false
-                  ? "Campo obrigatório"
-                  : "CPF do proprietário"}
-              </label>
-              <input
-                type="text"
-                name="cpf"
-                value={formData.cpf}
-                onChange={userInput}
-                placeholder="CPF do proprietário"
-                className={`border border-neutral-300 p-3  ${
-                  validatedFields.cpf === false
-                    ? "animate__animated animate__shakeX border-red-600"
-                    : "focus:border-orange-400"
-                }`}
-              />
-            </div>
-            <div className="flex flex-col pb-5 w-full">
-              <label
-                htmlFor=""
-                className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                  validatedFields.tel_cel === false
-                    ? "animate__animated animate__shakeX text-red-600"
-                    : null
+                  validatedFields.tel_cel === false &&
+                  "animate__animated animate__shakeX text-red-600"
                 }`}>
                 {validatedFields.tel_cel === false
                   ? "Campo obrigatório"
@@ -288,9 +287,8 @@ export default function Register() {
               <label
                 htmlFor=""
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                  validatedFields.contato === false
-                    ? "animate__animated animate__shakeX text-red-600"
-                    : null
+                  validatedFields.contato === false &&
+                  "animate__animated animate__shakeX text-red-600"
                 }`}>
                 {validatedFields.contato === false
                   ? "Campo obrigatório"
@@ -319,9 +317,9 @@ export default function Register() {
                 <label
                   htmlFor="local"
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                    cepError || validatedFields.cep === false
-                      ? "animate__animated animate__shakeX text-red-600 "
-                      : null
+                    cepError ||
+                    (validatedFields.cep === false &&
+                      "animate__animated animate__shakeX text-red-600 ")
                   }`}>
                   {validatedFields.cep === false
                     ? "Campo obrigatório"
@@ -349,9 +347,8 @@ export default function Register() {
                 <label
                   htmlFor="local"
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                    validatedFields.rua === false
-                      ? "animate__animated animate__shakeX text-red-600"
-                      : null
+                    validatedFields.rua === false &&
+                    "animate__animated animate__shakeX text-red-600"
                   }`}>
                   {validatedFields.rua === false ? "Campo obrigatório" : "Rua"}
                 </label>
@@ -374,9 +371,8 @@ export default function Register() {
                 <label
                   htmlFor="local"
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                    validatedFields.bairro === false
-                      ? "animate__animated animate__shakeX text-red-600"
-                      : null
+                    validatedFields.bairro === false &&
+                    "animate__animated animate__shakeX text-red-600"
                   }`}>
                   {validatedFields.bairro === false
                     ? "Campo obrigatório"
@@ -399,9 +395,8 @@ export default function Register() {
                 <label
                   htmlFor="local"
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                    validatedFields.numero === false
-                      ? "animate__animated animate__shakeX text-red-600"
-                      : null
+                    validatedFields.numero === false &&
+                    "animate__animated animate__shakeX text-red-600"
                   }`}>
                   {validatedFields.numero === false
                     ? "Campo obrigatório"
@@ -425,6 +420,8 @@ export default function Register() {
                 <input
                   type="text"
                   name="complemento"
+                  value={formData.complemento}
+                  onChange={userInput}
                   placeholder="Complemento"
                   className="border border-neutral-300 p-3  focus:border-orange-400"
                 />
@@ -435,9 +432,8 @@ export default function Register() {
                 <label
                   htmlFor="local"
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                    validatedFields.cidade === false
-                      ? "animate__animated animate__shakeX text-red-600"
-                      : null
+                    validatedFields.cidade === false &&
+                    "animate__animated animate__shakeX text-red-600"
                   }`}>
                   {validatedFields.cidade === false
                     ? "Campo obrigatório"
@@ -460,9 +456,8 @@ export default function Register() {
                 <label
                   htmlFor="local"
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
-                    validatedFields.estado === false
-                      ? "animate__animated animate__shakeX text-red-600"
-                      : null
+                    validatedFields.estado === false &&
+                    "animate__animated animate__shakeX text-red-600"
                   }`}>
                   {validatedFields.estado === false
                     ? "Campo obrigatório"

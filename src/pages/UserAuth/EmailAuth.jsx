@@ -102,9 +102,8 @@ export default function EmailAuth() {
                 className={`w-44 border text-center text-4xl py-2 mt-2 border-[rgba(0,0,0,0.25)]  ${
                   authError === true
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                    : authError === "Success"
-                    ? "animate-pulse text-green-600 border-green-600"
-                    : null
+                    : authError === "Success" &&
+                      "animate-pulse text-green-600 border-green-600"
                 }`}
               />
             </div>

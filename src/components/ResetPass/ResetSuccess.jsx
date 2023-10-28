@@ -1,10 +1,16 @@
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import Shield from "../../assets/imgs/Icons/insurance.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-export default function NewPass() {
+export default function ResetSuccess() {
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div className="flex flex-col p-12 px-16 bg-white rounded-xl">
       <img
@@ -30,7 +36,7 @@ export default function NewPass() {
         <div className="flex flex-col mb-5"></div>
         <button
           className="bg-orange-400 py-2 rounded-lg font-bold"
-          onClick={() => navigate("/login")}>
+          onClick={() => navigate("/login", { state: true })}>
           Entrar
         </button>
       </div>

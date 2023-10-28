@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function NavbarAdm() {
   const navigate = useNavigate();
@@ -6,7 +6,7 @@ export default function NavbarAdm() {
 
   const sairClick = () => {
     localStorage.removeItem("auth");
-    navigate("/login");
+    navigate("/login", { state: true });
   };
   return (
     <div className="flex justify-between bg-slate-600 p-4 font-['Barlow'] fixed w-full z-[100]">

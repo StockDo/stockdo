@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import EmailGif from "../../assets/imgs/EmailAuth/email-auth.gif";
 import CheckAnim from "../../assets/imgs/EmailAuth/check.gif";
@@ -8,6 +8,12 @@ import axios from "axios";
 
 export default function EmailAuthResetPass() {
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, []);
   const [noAuth, setNoAuth] = useState("");
   const formatNoAuth = (value) => {
     setNoAuth(value.replace(/\D/, ""));
@@ -39,7 +45,7 @@ export default function EmailAuthResetPass() {
       .then(() => {
         setAuthError("Success");
         setTimeout(() => {
-          navigate("/reset_password");
+          navigate("/reset_password", { state: true });
         }, 1500);
       })
       .catch((err) => {

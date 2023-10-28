@@ -3,9 +3,17 @@ import Navbar from "../../components/Navbar/Navbar";
 import NewPass from "../../components/ResetPass/NewPass";
 import ResetSuccess from "../../components/ResetPass/ResetSuccess";
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 export default function ResetPass() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, []);
   const [resetSuccess, setResetSuccess] = useState(false);
   const newPass = () => {
     if (localStorage.getItem("resetSuccess")) {

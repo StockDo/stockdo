@@ -1,11 +1,17 @@
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import LockLogo from "../../assets/imgs/Icons/lock.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function NewPass({ resetSuccess }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, []);
   const [pass, setPass] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
   const [error, setError] = useState(false);

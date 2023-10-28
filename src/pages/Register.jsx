@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import StockDoLogo from "../assets/imgs/Icons/stockdo.svg";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
@@ -7,7 +7,23 @@ import axios from "axios";
 import "animate.css";
 
 export default function Register() {
+  const [idUser, setIdUser] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+    console.log(location);
+    axios
+      .post(`${import.meta.env.VITE_URL}/get_id`, {
+        cpf: location.state.cpf,
+      })
+      .then((e) => {
+        console.log(e);
+        setIdUser(e.data.id_user);
+      });
+  }, []);
   const [formData, setFormData] = useState({
     nome_empresa: "",
     nome_prop: "",
@@ -40,7 +56,7 @@ export default function Register() {
     method: "POST",
     url: `${import.meta.env.VITE_URL}/register`,
     data: {
-      id_user: localStorage.getItem("id_user"),
+      id_user: idUser,
       nome_empresa: formData.nome_empresa,
       nome_prop: formData.nome_prop,
       cnpj: formData.cnpj,

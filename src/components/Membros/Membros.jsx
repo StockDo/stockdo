@@ -29,13 +29,17 @@ export default function Membros({
     },
   ]);
   const request = {
-    method: "GET",
+    method: "POST",
     url: `${import.meta.env.VITE_URL}/membros`,
+    data: {
+      id_empresa: localStorage.getItem("id_empresa")
+    }
   };
   useEffect(() => {
     setLoadingContent(true);
     axios(request)
       .then((e) => {
+        console.log(e);
         setMembers(
           e.data
             .map((item) => {
@@ -79,7 +83,7 @@ export default function Membros({
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <div className="flex justify-end pt-24 bg-white border-b fixed w-full">
+        <div className="flex justify-end pt-24 bg-white border-b fixed z-10 w-full">
           <button
             onClick={() => setSortDropdown(!sortDropdown)}
             className="flex justify-center items-center mr-36 mb-10 gap-3 py-1 px-6 border bg-orange-400 font-['Open_Sans'] font-bold text-xl rounded-lg text-white">
@@ -143,7 +147,7 @@ export default function Membros({
               <div
                 className="flex flex-col items-center justify-center font-['Open_Sans'] text-lg gap-3 bg-white rounded-xl shadow-xl py-12 min-w-[20rem] break-all"
                 key={index}>
-                <img src={e.pic} width={"200px"} className="mb-2 border rounded-full w-52 h-52" />
+                <img src={e.pic || ProfilePic} width={"200px"} className="mb-2 border rounded-full w-52 h-52" />
                 <h1 className="text-2xl font-bold font-sans text-center">
                   {e.name}
                 </h1>

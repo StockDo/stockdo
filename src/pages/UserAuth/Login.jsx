@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SignupBackground from "../../assets/imgs/StockDoBgs/signup-bg.png";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "animate.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -10,6 +10,12 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, []);
   const [error, setError] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,7 +31,7 @@ export default function Login() {
     },
   };
 
-  const cnpjInput = (e) => {
+  const cpfInput = (e) => {
     setError(false);
     const { value } = e.target;
     const formattedInput = value
@@ -45,9 +51,10 @@ export default function Login() {
         console.log(e);
         localStorage.setItem("authorizationToken", e.data.token);
         localStorage.setItem("id_user", e.data.id_user);
+        localStorage.setItem("id_empresa", e.data.id_empresa);
         localStorage.setItem("auth", true);
         setError(false);
-        navigate("/painel");
+        navigate("/painel", { state: true });
       })
       .catch((err) => {
         console.log(err);
@@ -85,7 +92,7 @@ export default function Login() {
               autoComplete="on">
               {error && (
                 <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">
-                  CNPJ ou senha inválidos
+                  CPF ou senha inválidos
                 </span>
               )}
               <button
@@ -94,11 +101,11 @@ export default function Login() {
                 className={`relative -m-2 self-end top-[8.8rem] mr-2 text-2xl text-orange-600`}>
                 {showPass ? <BsEyeSlash /> : <BsEye />}
               </button>
-              <label htmlFor="cpf">CNPJ</label>
+              <label htmlFor="cpf">CPF</label>
               <input
                 type="text"
                 value={formData.cpf}
-                onChange={cnpjInput}
+                onChange={cpfInput}
                 name="cpf"
                 id="cpf"
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md  ${
@@ -128,7 +135,7 @@ export default function Login() {
                 }`}
               />
               <span
-                onClick={() => navigate("/verify_reset")}
+                onClick={() => navigate("/verify_reset", { state: true })}
                 className="text-sm mt-2 text-orange-700 hover:underline cursor-pointer">
                 Esqueceu sua senha?
               </span>
@@ -140,7 +147,7 @@ export default function Login() {
               <span className="m-auto mt-4">
                 Não possui uma conta?{" "}
                 <span
-                  onClick={() => navigate("/signup")}
+                  onClick={() => navigate("/signup", { state: true })}
                   className="text-orange-700 hover:underline cursor-pointer">
                   Cadastre-se aqui.
                 </span>

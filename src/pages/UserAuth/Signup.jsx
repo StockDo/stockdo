@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SignupBackground from "../../assets/imgs/StockDoBgs/signup-bg.png";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { useEffect, useState } from "react";
@@ -12,7 +12,12 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export default function Signup() {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, []);
   const [formData, setFormData] = useState({
     cpf: "",
     email: "",
@@ -29,11 +34,10 @@ export default function Signup() {
 
   const request = {
     method: "POST",
-    url: `${import.meta.env.VITE_URL}/signup`,
+    url: `${import.meta.env.VITE_URL}/check_users`,
     data: {
       cpf: formData.cpf,
       email: formData.email,
-      password: formData.password,
     },
   };
 
@@ -54,9 +58,7 @@ export default function Signup() {
         .slice(0, 14);
     } else if (name === "email") {
       formattedInput = value.slice(0, 80);
-    } else if (name === "password") {
-      formattedInput = value.slice(0, 255);
-    } else if (name === "password_repeat") {
+    } else if (name === "password" || name === "password_repeat") {
       formattedInput = value.slice(0, 255);
     }
 
@@ -107,9 +109,15 @@ export default function Signup() {
 
     if (isValid != false) {
       axios(request)
-        .then(() => {
-          localStorage.setItem("emailAuth", formData.email);
-          navigate("/verification");
+        .then((e) => {
+          console.log(e);
+          navigate("/verification", {
+            state: {
+              cpf: formData.cpf,
+              email: formData.email,
+              password: formData.password,
+            },
+          });
         })
         .catch((res) => {
           console.log(res);
@@ -314,7 +322,7 @@ export default function Signup() {
               <span className="m-auto mt-4">
                 Já possui uma conta?{" "}
                 <span
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/login", { state: true })}
                   className="text-orange-700 hover:underline cursor-pointer">
                   Entre aqui.
                 </span>

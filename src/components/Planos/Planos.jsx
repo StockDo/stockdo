@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 export default function Planos() {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ export default function Planos() {
           </div>
         </div>
         <h1
-          onClick={() => navigate("/success")}
+          onClick={() => navigate("/success", { state: true })}
           className="text-xl mt-10 font-bold mx-auto font-['Open_Sans'] cursor-pointer hover:underline">
           Escolher mais tarde <i className="fa-solid fa-play text-lg"></i>
         </h1>

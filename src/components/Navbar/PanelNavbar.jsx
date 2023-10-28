@@ -2,7 +2,7 @@ import { BsInfoCircleFill, BsFillGearFill } from "react-icons/bs";
 import { MdGroup } from "react-icons/md";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 export default function PanelNavbar({
   membros,

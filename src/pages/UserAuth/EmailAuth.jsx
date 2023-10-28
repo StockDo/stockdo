@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import EmailGif from "../../assets/imgs/EmailAuth/email-auth.gif";
 import CheckAnim from "../../assets/imgs/EmailAuth/check.gif";
@@ -8,6 +8,13 @@ import axios from "axios";
 
 export default function EmailAuth() {
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+    console.log(location);
+  }, []);
   const [authCode, setAuthCode] = useState("");
   const formatNoAuth = (value) => {
     setAuthCode(value.replace(/\D/, ""));
@@ -27,7 +34,7 @@ export default function EmailAuth() {
     method: "POST",
     url: `${import.meta.env.VITE_URL}/resend_code`,
     data: {
-      email: localStorage.getItem("emailAuth"),
+      email: location.state.email,
     },
   };
   function resendCount() {
@@ -44,11 +51,20 @@ export default function EmailAuth() {
     e.preventDefault();
     axios(request)
       .then(() => {
-        setAuthError("Success");
-        localStorage.setItem("auth", true);
-        setTimeout(() => {
-          navigate("/registro");
-        }, 1500);
+        console.log(location);
+        axios
+          .post(`${import.meta.env.VITE_URL}/signup`, {
+            cpf: location.state.cpf,
+            email: location.state.email,
+            password: location.state.password,
+          })
+          .then(() => {
+            setAuthError("Success");
+            localStorage.setItem("auth", true);
+            setTimeout(() => {
+              navigate("/registro", { state: { cpf: location.state.cpf } });
+            }, 1500);
+          });
       })
       .catch((err) => {
         console.log(err);

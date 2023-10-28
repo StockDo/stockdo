@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function AddMember({ setAddMember }) {
   const [error, setError] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [funcionario, setFuncionario] = useState("");
@@ -20,6 +21,8 @@ export default function AddMember({ setAddMember }) {
     tel: "",
     role: "",
     pic: "",
+    pass: "",
+    confirm_pass: "",
   });
 
   const request = {
@@ -34,51 +37,56 @@ export default function AddMember({ setAddMember }) {
       cpf: data.cpf,
       role: data.role,
       pic: renderedPicture,
+      pass: data.pass,
     },
   };
 
   const userInput = (e) => {
     const { name, value } = e.target;
-    let formatCpf;
+    let formattedInput;
     if (name === "cpf") {
-      formatCpf = value
+      formattedInput = value
         .replace(/[a-zA-Z\s]/, "")
         .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
         .slice(0, 14);
+    } else if (name === "tel") {
+      formattedInput = value
+        .replace(/[a-zA-Z]/, "")
+        .replace(/(\d{0})(\d{2})(\d{0})(\d{5})(\d{4})/, "$1($2)$3 $4-$5")
+        .slice(0, 15);
+    } else if (
+      name === "name" ||
+      name === "email" ||
+      name === "pass" ||
+      name === "confirm_pass"
+    ) {
+      formattedInput = value.slice(0, 80);
     }
     setData({
       ...data,
-      [name]: value.slice(0, 80),
-      cpf: formatCpf,
+      [name]: formattedInput,
     });
     setError(false);
   };
 
   const handleAdd = (e) => {
     e.preventDefault();
-    if (data.cpf === undefined) {
-      setError(true);
-      return;
-    }
-    if (data.name === "") {
-      setError(true);
-      return;
-    }
-    if (data.role === "") {
+    if (data.cpf === undefined || data.name === "" || data.role === "") {
       setError(true);
       return;
     }
     setLoading(true);
     axios(request)
       .then(() => {
-        setLoading(false);
         setAddMember(false);
         document.body.style.overflow = "visible";
         // setMembers([...members, data]);
       })
       .catch((err) => {
-        console.log(data);
-        console.log(err);
+        setImageError(true);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -99,7 +107,7 @@ export default function AddMember({ setAddMember }) {
 
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
-      <form className="flex flex-col items-center pt-5 pb-16 px-10 bg-white text-xl font-['Open_Sans'] rounded-xl mt-14 animate-zoomIn">
+      <form className="flex flex-col items-center pt-3 pb-6 px-10 bg-white text-xl font-['Open_Sans'] rounded-xl mt-14 animate-zoomIn">
         <MdOutlineClose
           size={40}
           className="ml-auto text-orange-500 cursor-pointer"
@@ -113,6 +121,9 @@ export default function AddMember({ setAddMember }) {
         </h1>
         {error && (
           <span className="text-red-500">Preencha todos os campos</span>
+        )}
+        {imageError && (
+          <span className="text-red-500">Imagem muito grande</span>
         )}
         <div className="flex flex-col">
           <label
@@ -176,8 +187,30 @@ export default function AddMember({ setAddMember }) {
                 className="mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 w-96 py-2 rounded-md"
               />
             </div>
+            <div className="flex flex-col">
+              <label htmlFor="pass">Senha de acesso:</label>
+              <input
+                type="password"
+                value={data.pass}
+                onChange={userInput}
+                id="pass"
+                name="pass"
+                className="mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="confirm_pass">Confirmar senha de acesso:</label>
+              <input
+                type="password"
+                value={data.confirm_pass}
+                onChange={userInput}
+                id="confirm_pass"
+                name="confirm_pass"
+                className="mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 w-96 py-2 rounded-md"
+              />
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-5 py-10">
+          <div className="flex flex-col items-center gap-5 py-8">
             <h1 className="-mb-3">Cargo do membro:</h1>
             <div className="flex justify-center gap-4">
               <button

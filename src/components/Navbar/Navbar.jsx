@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { useEffect, useState } from "react";
 
@@ -9,7 +9,7 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
 
   const sairClick = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/login", { state: true });
   };
   return (
     <div className="flex justify-between bg-neutral-900 p-4 font-['Barlow'] fixed w-full z-50">
@@ -38,14 +38,14 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
         </li>
         <li className={auth ? "hidden" : "block"}>
           <a
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/login", { state: true })}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
             Entrar<i className="fa-solid fa-right-to-bracket ml-1"></i>
           </a>
         </li>
         <li className={auth ? "block" : "hidden"}>
           <a
-            onClick={() => navigate("/painel")}
+            onClick={() => navigate("/painel", { state: true })}
             className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
             Painel<i className="fa-solid fa-layer-group ml-1"></i>
           </a>

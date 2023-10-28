@@ -23,33 +23,14 @@ const Private = ({ children }) => {
   return auth ? children : <Navigate to="/login" />;
 };
 
-const NoAuth = ({ children }) => {
-  const auth = localStorage.getItem("auth");
-  return !auth ? children : <Navigate to="/" />;
-};
-
 export default function Router() {
   return (
     <Suspense>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Home />} />
-        <Route
-          path="/signup"
-          element={
-            <NoAuth>
-              <Signup />
-            </NoAuth>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <NoAuth>
-              <Login />
-            </NoAuth>
-          }
-        />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/planos" element={<Planos />} />
         <Route path="/success" element={<Success />} />
         <Route path="/termos" element={<Termos />} />

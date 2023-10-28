@@ -122,21 +122,6 @@ export default function EditMember({ setEditMember }) {
           console.log(err);
         });
     }
-    // console.log(members);
-    // console.log(
-    //   members.filter(
-    //     (element) => element.id != localStorage.getItem("id_member_edit")
-    //   )
-    // );
-    // setMembers(
-    //   members.filter(
-    //     (element) => element.id != localStorage.getItem("id_member_edit")
-    //   )
-    // );
-    // setEditMember(false);
-    // document.body.style.overflow = "visible";
-    // console.log(members);
-    // console.log(data);
   };
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">

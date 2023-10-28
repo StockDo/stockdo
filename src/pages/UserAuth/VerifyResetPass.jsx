@@ -2,12 +2,18 @@ import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import LockLogo from "../../assets/imgs/Icons/lock.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function VerifyResetPass() {
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, []);
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const request = {
@@ -23,7 +29,7 @@ export default function VerifyResetPass() {
     axios(request)
       .then(() => {
         localStorage.setItem("email", email);
-        navigate("/verification_reset");
+        navigate("/verification_reset", { state: true });
       })
       .catch(() => {
         setError(true);

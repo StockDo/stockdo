@@ -14,7 +14,7 @@ export default function PanelNavbar({
   const [geral, setGeral] = useState(true);
   return (
     <>
-      <div className="flex items-start pt-24 bg-white fixed z-40 top-0 bottom-0 max-h-screen border-r-[1px] border-[rgba(0,0,0,0.14)]">
+      <div className="flex items-start pt-24 bg-white fixed z-40 top-0 bottom-0 border-r-[1px] border-[rgba(0,0,0,0.14)]">
         <div className="flex flex-col">
           <div className="border-b-[1px] pb-[1.93rem] border-[rgba(0,0,0,0.14)]">
             <img

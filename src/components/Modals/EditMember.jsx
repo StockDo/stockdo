@@ -1,5 +1,6 @@
 import { MdOutlineClose } from "react-icons/md";
 import { FaHardHat, FaUserShield } from "react-icons/fa";
+import ProfilePic from "../../assets/imgs/Members/pfp.jpg";
 import "animate.css";
 import ReactLoading from "react-loading";
 import { useEffect, useState } from "react";
@@ -10,12 +11,19 @@ export default function EditMember({ setEditMember }) {
   const [admin, setAdmin] = useState(false);
   const [funcionario, setFuncionario] = useState(false);
   const [loading, setLoading] = useState();
+  const [picture, setPicture] = useState(null);
   const [deleteMember, setDeleteMember] = useState(false);
+  const [renderedPicture, setRenderedPicture] = useState(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [data, setData] = useState({
     name: "",
     cpf: "",
+    email: "",
+    tel: "",
     role: "",
+    pic: "",
+    pass: "",
+    confirm_pass: "",
   });
 
   const request = {
@@ -33,8 +41,13 @@ export default function EditMember({ setEditMember }) {
         setData({
           name: e.data[0].NM_MEMBRO,
           cpf: e.data[0].CPF,
+          tel: e.data[0].TEL,
+          email: e.data[0].EMAIL,
           role: e.data[0].CARGO,
+          pic: e.data[0].FOTO,
         });
+        setPicture(e.data[0].FOTO);
+        setRenderedPicture(e.data[0].FOTO);
       })
       .catch((err) => {
         console.log(err);
@@ -43,24 +56,24 @@ export default function EditMember({ setEditMember }) {
 
   const userInput = (e) => {
     const { name, value } = e.target;
-    let formatCpf;
+    let formattedInput;
     if (name === "cpf") {
-      formatCpf = value
+      formattedInput = value
         .replace(/[a-zA-Z\s]/, "")
         .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
         .slice(0, 14);
-      setData({
-        ...data,
-        [name]: value.slice(0, 80),
-        cpf: formatCpf,
-      });
-    } else {
-      setData({
-        ...data,
-        [name]: value.slice(0, 80),
-      });
+    } else if (name === "tel") {
+      formattedInput = value
+        .replace(/[a-zA-Z]/, "")
+        .replace(/(\d{0})(\d{2})(\d{0})(\d{5})(\d{4})/, "$1($2)$3 $4-$5")
+        .slice(0, 15);
+    } else if (name === "name" || name === "email") {
+      formattedInput = value.slice(0, 80);
     }
-
+    setData({
+      ...data,
+      [name]: formattedInput,
+    });
     setError(false);
   };
 
@@ -71,7 +84,10 @@ export default function EditMember({ setEditMember }) {
       id_member_edit: localStorage.getItem("id_member_edit"),
       name: data.name,
       cpf: data.cpf,
+      tel: data.tel,
+      email: data.email,
       role: data.role,
+      pic: renderedPicture,
     },
   };
 
@@ -81,6 +97,21 @@ export default function EditMember({ setEditMember }) {
     data: {
       id_member_edit: localStorage.getItem("id_member_edit"),
     },
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    setPicture(URL.createObjectURL(file));
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      console.log(base64);
+      setRenderedPicture(base64);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleEdit = (e) => {
@@ -124,16 +155,25 @@ export default function EditMember({ setEditMember }) {
     }
   };
   return (
-    <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
-      <form className="flex flex-col items-center mt-12 pt-5 pb-16 px-10 bg-white text-xl font-['Open_Sans'] rounded-xl animate-zoomIn">
-        <MdOutlineClose
-          size={40}
-          className="ml-auto text-orange-500 cursor-pointer"
-          onClick={() => {
-            setEditMember(false);
-            document.body.style.overflow = "visible";
-          }}
-        />
+    <main
+      onClick={() => setEditMember(false)}
+      onKeyUpCapture={(e) => e.key === "Escape" && setEditMember(false)}
+      className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
+      <form
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="flex flex-col items-center mt-12 pt-6 pb-16 px-10 bg-white text-lg font-['Open_Sans'] rounded-xl animate-zoomIn max-h-[80vh] max-w-[70vw] overflow-y-scroll">
+        <span className="ml-auto">
+          <MdOutlineClose
+            size={40}
+            className="text-orange-500 cursor-pointer"
+            onClick={() => {
+              setEditMember(false);
+              document.body.style.overflow = "visible";
+            }}
+          />
+        </span>
         <h1 className="font-['PT_Sans'] text-3xl mb-5 underline">
           Editar membro
         </h1>
@@ -141,24 +181,68 @@ export default function EditMember({ setEditMember }) {
           <span className="text-red-500">Preencha todos os campos</span>
         )}
         <div className="flex flex-col">
-          <label htmlFor="name">Nome:</label>
+          <label
+            htmlFor="img_upload"
+            className="my-5 border rounded-full self-center">
+            <img
+              src={picture || ProfilePic}
+              className={`m-auto nt-12 border w-36 h-36 rounded-full border-black cursor-pointer hover:brightness-[0.85] ${
+                picture === null && "hover:brightness-[2.5]"
+              }`}
+            />
+          </label>
           <input
-            type="text"
-            value={data.name}
-            onChange={userInput}
-            id="name"
-            name="name"
-            className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 w-96 py-2 rounded-md"
+            onChange={handleImageUpload}
+            type="file"
+            id="img_upload"
+            className="hidden"
           />
-          <label htmlFor="cpf">CPF:</label>
-          <input
-            type="text"
-            value={data.cpf}
-            onChange={userInput}
-            id="cpf"
-            name="cpf"
-            className="mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md"
-          />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col">
+              <label htmlFor="name">Nome:</label>
+              <input
+                type="text"
+                value={data.name}
+                onChange={userInput}
+                id="name"
+                name="name"
+                className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 w-96 py-2 rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="cpf">CPF:</label>
+              <input
+                type="text"
+                value={data.cpf}
+                onChange={userInput}
+                id="cpf"
+                name="cpf"
+                className="mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="text"
+                value={data.email}
+                onChange={userInput}
+                id="email"
+                name="email"
+                className="mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 w-96 py-2 rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="tel">Telefone:</label>
+              <input
+                type="text"
+                value={data.tel}
+                onChange={userInput}
+                id="tel"
+                name="tel"
+                className="mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md"
+              />
+            </div>
+          </div>
           <div className="flex flex-col justify-center gap-5 py-10">
             <h1 className="-mb-3">Cargo do membro:</h1>
             <button
@@ -200,7 +284,9 @@ export default function EditMember({ setEditMember }) {
             <button
               onClick={handleDelete}
               className={`px-5 py-2 mt-3 text-center bg-red-600 text-white ${
-                confirmDelete ? "opacity-100" : deleteMember && "opacity-50"
+                confirmDelete
+                  ? "opacity-100"
+                  : deleteMember && "opacity-50 cursor-not-allowed"
               } rounded-md`}>
               Deletar membro
             </button>
@@ -224,8 +310,8 @@ export default function EditMember({ setEditMember }) {
               <ReactLoading
                 type="bars"
                 color="#523c08"
-                height={"10%"}
-                width={"10%"}
+                height={"5%"}
+                width={"5%"}
                 className="m-auto"
               />
             ) : (

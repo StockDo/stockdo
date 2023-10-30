@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function AddMember({ setAddMember }) {
   const [error, setError] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [admin, setAdmin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [funcionario, setFuncionario] = useState("");
@@ -71,8 +71,23 @@ export default function AddMember({ setAddMember }) {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    if (data.cpf === undefined || data.name === "" || data.role === "") {
+    if (
+      data.cpf === undefined ||
+      data.name === "" ||
+      data.tel === "" ||
+      data.email === "" ||
+      data.pass === ""
+    ) {
       setError(true);
+      setErrorMessage("Preencha todos os campos");
+      return;
+    } else if (data.pass != data.confirm_pass) {
+      setError(true);
+      setErrorMessage("As senhas não se coincidem");
+      return;
+    } else if (data.role === "") {
+      setError(true);
+      setErrorMessage("Selecione um cargo");
       return;
     }
     setLoading(true);
@@ -80,10 +95,10 @@ export default function AddMember({ setAddMember }) {
       .then(() => {
         setAddMember(false);
         document.body.style.overflow = "visible";
-        // setMembers([...members, data]);
       })
       .catch((err) => {
-        setImageError(true);
+        setError(true);
+        setErrorMessage("Imagem muito grande");
       })
       .finally(() => {
         setLoading(false);
@@ -107,24 +122,21 @@ export default function AddMember({ setAddMember }) {
 
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
-      <form className="flex flex-col items-center pt-3 pb-6 px-10 bg-white text-xl font-['Open_Sans'] rounded-xl mt-14 animate-zoomIn">
-        <MdOutlineClose
-          size={40}
-          className="ml-auto text-orange-500 cursor-pointer"
-          onClick={() => {
-            setAddMember(false);
-            document.body.style.overflow = "visible";
-          }}
-        />
+      <form className="flex flex-col items-center pt-12 pb-16 px-10 max-h-[80vh] overflow-y-scroll bg-white text-lg font-['Open_Sans'] rounded-xl mt-14 animate-zoomIn">
+        <span className="ml-auto -mt-6">
+          <MdOutlineClose
+            size={40}
+            className="ml-auto text-orange-500 cursor-pointer"
+            onClick={() => {
+              setAddMember(false);
+              document.body.style.overflow = "visible";
+            }}
+          />
+        </span>
         <h1 className="font-['PT_Sans'] text-3xl underline">
           Adicionar membro
         </h1>
-        {error && (
-          <span className="text-red-500">Preencha todos os campos</span>
-        )}
-        {imageError && (
-          <span className="text-red-500">Imagem muito grande</span>
-        )}
+        {error && <span className="text-red-500 text-xl">{errorMessage}</span>}
         <div className="flex flex-col">
           <label
             htmlFor="img_upload"

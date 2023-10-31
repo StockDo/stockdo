@@ -157,7 +157,6 @@ export default function EditMember({ setEditMember }) {
   return (
     <main
       onClick={() => setEditMember(false)}
-      onKeyUpCapture={(e) => e.key === "Escape" && setEditMember(false)}
       className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
       <form
         onClick={(e) => {

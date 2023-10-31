@@ -122,7 +122,7 @@ export default function AddMember({ setAddMember }) {
 
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
-      <form className="flex flex-col items-center pt-12 pb-16 px-10 max-h-[80vh] overflow-y-scroll bg-white text-lg font-['Open_Sans'] rounded-xl mt-14 animate-zoomIn">
+      <form className="flex flex-col items-center pt-12 pb-8 px-10 max-h-[80vh] overflow-y-scroll bg-white text-lg font-['Open_Sans'] rounded-xl mt-14 animate-zoomIn">
         <span className="ml-auto -mt-6">
           <MdOutlineClose
             size={40}
@@ -136,7 +136,6 @@ export default function AddMember({ setAddMember }) {
         <h1 className="font-['PT_Sans'] text-3xl underline">
           Adicionar membro
         </h1>
-        {error && <span className="text-red-500 text-xl">{errorMessage}</span>}
         <div className="flex flex-col">
           <label
             htmlFor="img_upload"
@@ -259,6 +258,12 @@ export default function AddMember({ setAddMember }) {
               </button>
             </div>
           </div>
+
+          {error && (
+            <span className="text-red-500 m-auto mb-4 text-xl">
+              {errorMessage}
+            </span>
+          )}
 
           <button
             onClick={(e) => {

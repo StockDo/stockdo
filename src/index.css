@@ -15,18 +15,38 @@ html {
   scroll-behavior: smooth;
 }
 
-*::-webkit-scrollbar {
+/* Main scroll bar */
+
+html::-webkit-scrollbar {
   width: 0.6em;
 }
 
-*::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0)
 }
 
-*::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-color: rgb(215, 126, 43);
   border-radius: 5em;
+}
+
+/* Form scroll bars */
+
+form::-webkit-scrollbar {
   width: 1em;
+}
+
+form::-webkit-scrollbar-track {
+  width: 20em;
+  background-color: rgba(0, 0, 0, 0)
+}
+
+form::-webkit-scrollbar-thumb {
+  border: 5px solid rgba(255, 255, 255, 0);
+  background-clip: padding-box;
+  background-color: rgb(215, 126, 43);
+  border-radius: 5em;
+
 }
 
 .scroll::-webkit-scrollbar {
@@ -37,6 +57,7 @@ input::-ms-reveal,
 input::-ms-clear {
   display: none;
 }
+
 
 button,
 input {

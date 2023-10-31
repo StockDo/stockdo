@@ -7,6 +7,7 @@ import "animate.css";
 import axios from "axios";
 import LoadingCards from "./LoadingCards";
 import "animate.css";
+import Options from "../Navbar/Options";
 
 export default function Membros({
   setAddMember,
@@ -15,7 +16,6 @@ export default function Membros({
   editMember,
 }) {
   const [loadingContent, setLoadingContent] = useState(true);
-  const [sortDropdown, setSortDropdown] = useState(false);
   const [sortAZ, setSortAZ] = useState(false);
   const [sortZA, setSortZA] = useState(false);
   const [sortRecent, setSortRecent] = useState(false);
@@ -40,116 +40,55 @@ export default function Membros({
     axios(request)
       .then((e) => {
         console.log(e);
-        setMembers(
-          e.data
-            .map((item) => {
-              return {
-                id: item.ID_MEMBRO,
-                name: item.NM_MEMBRO,
-                cpf: item.CPF,
-                role: item.CARGO,
-                pic: item.FOTO,
-              };
-            })
-            .sort((a, b) =>
+        const getMembers = e.data.map((item) => ({
+          id: item.ID_MEMBRO,
+          name: item.NM_MEMBRO,
+          cpf: item.CPF,
+          role: item.CARGO,
+          pic: item.FOTO,
+        }));
+        sortRecent
+          ? getMembers.reverse()
+          : getMembers.sort((a, b) =>
               sortAZ
                 ? a.name.localeCompare(b.name)
                 : sortZA
                 ? b.name.localeCompare(a.name)
                 : 0
-            )
-        );
+            );
+        setMembers(getMembers);
         setLoadingContent(false);
         console.log("sasa");
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [sortAZ, sortZA, addMember, editMember]);
-
-  // const handleAZ = () => {
-  //   const azMembers = [
-  //     ...members.sort((a, b) => {
-  //       if (a.name.toLowerCase() < b.name.toLowerCase()) {
-  //         return -1;
-  //       }
-  //       return 1;
-  //     }),
-  //   ];
-  //   setSortDropdown(false);
-  //   setMembers(azMembers);
-  // };
+  }, [sortAZ, sortZA, sortRecent, addMember, editMember]);
 
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <div className="flex justify-end pt-24 bg-white border-b fixed z-10 w-full">
-          <button
-            onClick={() => setSortDropdown(!sortDropdown)}
-            className="flex justify-center items-center mr-36 mb-10 gap-3 py-1 px-6 border border-orange-400 font-['Open_Sans'] font-bold text-xl rounded-lg text-orange-400">
-            <PiArrowsDownUpBold size={30} />
-            Ordenar por
-            <AiFillCaretDown
-              size={25}
-              className={`duration-300 transition-all ${
-                sortDropdown && "rotate-180"
-              }`}
-            />
-          </button>
-          {sortDropdown && (
-            <div className="absolute top-36 right-32 bg-white border border-[rgba(0,0,0,0.19)] z-50">
-              <div className="flex flex-col items-start text-xl min-w-[16rem]">
-                <button
-                  onClick={() => {
-                    setSortAZ(true);
-                    setSortZA(false);
-                    setSortRecent(false);
-                    setSortDropdown(false);
-                  }}
-                  className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
-                    sortAZ && "bg-orange-100"
-                  }`}>
-                  <span>A-Z</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setSortZA(true);
-                    setSortAZ(false);
-                    setSortRecent(false);
-                    setSortDropdown(false);
-                  }}
-                  className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
-                    sortZA && "bg-orange-100"
-                  }`}>
-                  <span>Z-A</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setSortRecent(true);
-                    setSortAZ(false);
-                    setSortZA(false);
-                    setSortDropdown(false);
-                  }}
-                  className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
-                    sortRecent && "bg-orange-100"
-                  }`}>
-                  <span>Mais recentes primeiros</span>
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
+        <Options
+          setAddMember={setAddMember}
+          setSortAZ={setSortAZ}
+          setSortZA={setSortZA}
+          sortAZ={sortAZ}
+          sortZA={sortZA}
+          setSortRecent={setSortRecent}
+          sortRecent={sortRecent}
+          setMembers={setMembers}
+          members={members}
+        />
         <div
-          className={`scroll grid grid-cols-4 bg-white ml-80 gap-28 p-28 mt-28 overflow-y-scroll max-2xl:grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1`}>
+          className={`scroll grid grid-cols-3 bg-white ml-96 pr-12 pb-24 mt-44 overflow-y-scroll max-2xl:grid-cols-2 max-xl:grid-cols-1`}>
           {loadingContent && <LoadingCards />}
           {!loadingContent &&
             members.map((e, index) => (
               <div
-                className="flex flex-col items-center justify-center font-['Open_Sans'] text-lg gap-3 bg-white rounded-xl shadow-xl py-12 min-w-[20rem] break-all"
+                className="flex flex-col items-center justify-center font-['Open_Sans'] text-lg gap-3 bg-white rounded-xl shadow-xl py-12 px-6 m-12 max-w-[40vh] max-xl:max-w-[80vh] break-all"
                 key={index}>
                 <img
                   src={e.pic || ProfilePic}
-                  width={"200px"}
                   className="mb-2 border rounded-full shadow-xl w-52 h-52"
                 />
                 <h1 className="text-2xl font-bold font-sans text-center">
@@ -181,7 +120,7 @@ export default function Membros({
               </div>
             ))}
           {!loadingContent && (
-            <div className="flex justify-center items-center min-h-[27rem] max-h-[27rem]">
+            <div className="flex justify-center items-center">
               <BsPersonFillAdd
                 size={130}
                 className="text-orange-400 cursor-pointer"

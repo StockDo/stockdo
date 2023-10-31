@@ -32,16 +32,19 @@ html::-webkit-scrollbar-thumb {
 
 /* Form scroll bars */
 
-form::-webkit-scrollbar {
+form::-webkit-scrollbar,
+div::-webkit-scrollbar {
   width: 1em;
 }
 
-form::-webkit-scrollbar-track {
+form::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
   width: 20em;
   background-color: rgba(0, 0, 0, 0)
 }
 
-form::-webkit-scrollbar-thumb {
+form::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
   border: 5px solid rgba(255, 255, 255, 0);
   background-clip: padding-box;
   background-color: rgb(215, 126, 43);

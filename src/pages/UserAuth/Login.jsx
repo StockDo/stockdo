@@ -1,7 +1,7 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SignupBackground from "../../assets/imgs/StockDoBgs/signup-bg.png";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "animate.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -10,37 +10,31 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export default function Login() {
   const navigate = useNavigate();
-  const location = useLocation();
-  useEffect(() => {
-    if (!location.state) {
-      navigate("/");
-    }
-  }, []);
   const [error, setError] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [formData, setFormData] = useState({
-    cpf: "",
+    cnpj: "",
     pass: "",
   });
   const request = {
     method: "POST",
     url: `${import.meta.env.VITE_URL}/login`,
     data: {
-      cpf: formData.cpf,
+      cnpj: formData.cnpj,
       pass: formData.pass,
     },
   };
 
-  const cpfInput = (e) => {
+  const cnpjInput = (e) => {
     setError(false);
     const { value } = e.target;
     const formattedInput = value
       .replace(/[a-zA-Z\s]/, "")
-      .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
-      .slice(0, 14);
+      .replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5")
+      .slice(0, 18);
     setFormData({
       ...formData,
-      cpf: formattedInput,
+      cnpj: formattedInput,
     });
   };
 
@@ -50,11 +44,9 @@ export default function Login() {
       .then((e) => {
         console.log(e);
         localStorage.setItem("authorizationToken", e.data.token);
-        localStorage.setItem("id_user", e.data.id_user);
-        localStorage.setItem("id_empresa", e.data.id_empresa);
         localStorage.setItem("auth", true);
         setError(false);
-        navigate("/painel", { state: true });
+        navigate("/painel");
       })
       .catch((err) => {
         console.log(err);
@@ -73,14 +65,12 @@ export default function Login() {
               alt="Warehouse background"
             />
           </div>
-          <div className="flex flex-col p-12 py-28 bg-white rounded-e-xl max-lg:rounded-xl">
+          <div className="flex flex-col p-12 py-24 max-h-[80vh] overflow-y-scroll bg-white rounded-e-xl max-lg:rounded-xl">
             <img
               src={StockDoLogo}
               alt="StockDo logo"
               width="150px"
-              npm
-              r
-              className="cursor-pointer m-auto mb-2 pb-5"
+              className="cursor-pointer m-auto mb-2"
               onClick={() => navigate("/")}
             />
             <h1 className="text-3xl font-['PT_Sans'] m-auto">
@@ -92,7 +82,7 @@ export default function Login() {
               autoComplete="on">
               {error && (
                 <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">
-                  CPF ou senha inválidos
+                  CNPJ ou senha inválidos
                 </span>
               )}
               <button
@@ -101,13 +91,13 @@ export default function Login() {
                 className={`relative -m-2 self-end top-[8.8rem] mr-2 text-2xl text-orange-600`}>
                 {showPass ? <BsEyeSlash /> : <BsEye />}
               </button>
-              <label htmlFor="cpf">CPF</label>
+              <label htmlFor="cnpj">CNPJ</label>
               <input
                 type="text"
-                value={formData.cpf}
-                onChange={cpfInput}
-                name="cpf"
-                id="cpf"
+                value={formData.cnpj}
+                onChange={cnpjInput}
+                name="cnpj"
+                id="cnpj"
                 className={`mb-5 mt-1 border border-[rgba(0,0,0,0.25)] pl-2 pr-2 py-2 rounded-md  ${
                   error
                     ? "animate__animated animate__shakeX border-red-600"
@@ -135,7 +125,7 @@ export default function Login() {
                 }`}
               />
               <span
-                onClick={() => navigate("/verify_reset", { state: true })}
+                onClick={() => navigate("/verify_reset")}
                 className="text-sm mt-2 text-orange-700 hover:underline cursor-pointer">
                 Esqueceu sua senha?
               </span>

@@ -129,7 +129,7 @@ export default function Signup() {
   return (
     <>
       <Navbar />
-      <main className="flex justify-center items-center min-h-screen bg-slate-100">
+      <main className="flex justify-center items-center bg-slate-100">
         <div className="bg-slate-400 flex items-center shadow-xl rounded-xl mx-5 my-32">
           <div className="px-8 max-lg:hidden">
             <img
@@ -138,12 +138,12 @@ export default function Signup() {
               alt="Warehouse background"
             />
           </div>
-          <div className="flex flex-col p-12 bg-white rounded-e-xl max-lg:rounded-xl">
+          <div className="flex flex-col p-12 max-h-[80vh] overflow-y-scroll bg-white rounded-e-xl max-lg:rounded-xl">
             <img
               src={StockDoLogo}
               alt="StockDo logo"
               width="150px"
-              className="cursor-pointer m-auto mb-2"
+              className="cursor-pointer m-auto "
               onClick={() => navigate("/")}
             />
             <h1 className="text-3xl font-['PT_Sans'] m-auto">

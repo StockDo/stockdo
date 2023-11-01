@@ -132,8 +132,7 @@ export default function EditMember({ setEditMember }) {
     console.log(data);
     axios(request_update)
       .then(() => {
-        setEditMember(false);
-        document.body.style.overflow = "visible";
+        closeCard();
         setLoading(false);
       })
       .catch((err) => {
@@ -146,17 +145,24 @@ export default function EditMember({ setEditMember }) {
     if (deleteMember && confirmDelete) {
       axios(request_delete)
         .then(() => {
-          setEditMember(false);
-          document.body.style.overflow = "visible";
+          closeCard();
         })
         .catch((err) => {
           console.log(err);
         });
     }
   };
+
+  const closeCard = () => {
+    setEditMember(false);
+    document.body.style.overflow = "visible";
+  };
+
   return (
     <main
-      onClick={() => setEditMember(false)}
+      onClick={() => {
+        closeCard();
+      }}
       className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
       <form
         onClick={(e) => {
@@ -168,8 +174,7 @@ export default function EditMember({ setEditMember }) {
             size={40}
             className="text-orange-500 cursor-pointer"
             onClick={() => {
-              setEditMember(false);
-              document.body.style.overflow = "visible";
+              closeCard();
             }}
           />
         </span>

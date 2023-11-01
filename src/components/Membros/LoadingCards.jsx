@@ -4,7 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 export default function LoadingCards() {
   return (
     <>
-      {Array(16)
+      {Array(9)
         .fill(0)
         .map((_, i) => (
           <div className="flex flex-col items-center gap-5" key={i}>
@@ -12,7 +12,7 @@ export default function LoadingCards() {
               className="flex flex-col"
               baseColor="#efefef"
               highlightColor="#d1d1d1">
-              <Skeleton circle width={150} height={150} />
+              <Skeleton circle width={200} height={200} />
             </SkeletonTheme>
             <SkeletonTheme
               className="flex flex-col"
@@ -24,7 +24,7 @@ export default function LoadingCards() {
               className="flex flex-col"
               baseColor="#efefef"
               highlightColor="#d1d1d1">
-              <Skeleton height={40} width={150} />
+              <Skeleton height={50} width={180} />
             </SkeletonTheme>
           </div>
         ))}

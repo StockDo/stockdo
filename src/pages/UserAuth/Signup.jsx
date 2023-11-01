@@ -130,7 +130,7 @@ export default function Signup() {
     <>
       <Navbar />
       <main className="flex justify-center items-center bg-slate-100">
-        <div className="bg-slate-400 flex items-center shadow-xl rounded-xl mx-5 my-32">
+        <div className="bg-orange-400 flex items-center shadow-xl rounded-xl mx-5 my-28">
           <div className="px-8 max-lg:hidden">
             <img
               src={SignupBackground}
@@ -138,7 +138,7 @@ export default function Signup() {
               alt="Warehouse background"
             />
           </div>
-          <div className="flex flex-col p-12 max-h-[80vh] overflow-y-scroll bg-white rounded-e-xl max-lg:rounded-xl">
+          <div className="flex flex-col p-12 max-h-[85vh] overflow-y-scroll bg-white rounded-e-xl max-lg:rounded-xl">
             <img
               src={StockDoLogo}
               alt="StockDo logo"

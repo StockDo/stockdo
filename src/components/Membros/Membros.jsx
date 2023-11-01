@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import ProfilePic from "../../assets/imgs/Members/pfp.jpg";
 import { BsPersonFillAdd } from "react-icons/bs";
-import { PiArrowsDownUpBold } from "react-icons/pi";
-import { AiFillCaretDown } from "react-icons/ai";
 import "animate.css";
 import axios from "axios";
 import LoadingCards from "./LoadingCards";
@@ -80,7 +78,7 @@ export default function Membros({
           members={members}
         />
         <div
-          className={`scroll grid grid-cols-3 bg-white ml-96 pr-12 pb-24 mt-44 overflow-y-scroll max-2xl:grid-cols-2 max-xl:grid-cols-1`}>
+          className={`scroll grid grid-cols-3 bg-white ml-96 pr-12 pb-24 mt-44 overflow-y-scroll max-2xl:grid-cols-2 max-xl:grid-cols-1 ${loadingContent && "gap-x-52 gap-y-24 mt-48 ml-[35rem]"}`}>
           {loadingContent && <LoadingCards />}
           {!loadingContent &&
             members.map((e, index) => (

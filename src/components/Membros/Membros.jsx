@@ -56,7 +56,6 @@ export default function Membros({
             );
         setMembers(getMembers);
         setLoadingContent(false);
-        console.log("sasa");
       })
       .catch((err) => {
         console.log(err);
@@ -118,7 +117,7 @@ export default function Membros({
               </div>
             ))}
           {!loadingContent && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center w-[30rem]">
               <BsPersonFillAdd
                 size={130}
                 className="text-orange-400 cursor-pointer"

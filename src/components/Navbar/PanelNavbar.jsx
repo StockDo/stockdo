@@ -1,19 +1,20 @@
-import { BsInfoCircleFill, BsFillGearFill } from "react-icons/bs";
+import {
+  BsInfoCircleFill,
+  BsFillGearFill,
+  BsGrid,
+  BsGrid1X2Fill,
+} from "react-icons/bs";
 import { MdGroup } from "react-icons/md";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
+import { BsFillGrid1X2Fill } from "react-icons/bs";
 
-export default function PanelNavbar({
-  membros,
-  setMembros,
-  settings,
-  setSettings,
-}) {
+export default function PanelNavbar({ membros, setMembros, maps, setMaps }) {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex items-start pt-24 bg-white fixed z-40 top-0 bottom-0 border-r-[1px] border-[rgba(0,0,0,0.14)]">
+      <div className="flex items-start pt-24 w-84 bg-white fixed z-40 top-0 bottom-0 border-r-[1px] border-[rgba(0,0,0,0.14)]">
         <div className="flex flex-col">
           <div className="border-b-[1px] pb-[1.93rem] border-[rgba(0,0,0,0.14)]">
             <img
@@ -24,28 +25,12 @@ export default function PanelNavbar({
               onClick={() => navigate("/")}
             />
           </div>
-          {/* <button
-              onClick={() => {
-                setGeral(true);
-                setMembros(false);
-                setSettings(false);
-              }}
-              className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4  pr-24 py-6 border-l-8 x  ${
-                geral
-                  ? "bg-neutral-100 border-orange-400"
-                  : "border-transparent hover:bg-neutral-100 hover:border-neutral-300"
-              }`}>
-              <BsInfoCircleFill
-                className={geral ? "text-orange-400" : "text-neutral-600"}
-              />
-              Geral
-            </button> */}
           <button
             onClick={() => {
               setMembros(true);
-              setSettings(false);
+              setMaps(false);
             }}
-            className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4  pr-24 py-6 border-l-8 x  ${
+            className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4 pr-24 py-6 border-l-8 x  ${
               membros
                 ? "bg-neutral-100 border-orange-400"
                 : "border-transparent hover:bg-neutral-100 hover:border-neutral-300"
@@ -58,17 +43,18 @@ export default function PanelNavbar({
           <button
             onClick={() => {
               setMembros(false);
-              setSettings(true);
+              setMaps(true);
             }}
             className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4  pr-24 py-6 border-l-8 x  ${
-              settings
+              maps
                 ? "bg-neutral-100 border-orange-400"
                 : "border-transparent hover:bg-neutral-100 hover:border-neutral-300"
             }`}>
-            <BsFillGearFill
-              className={settings ? "text-orange-400" : "text-neutral-600"}
+            <BsGrid1X2Fill
+              size={18}
+              className={maps ? "text-orange-400" : "text-neutral-600"}
             />
-            Configurações
+            Mapas
           </button>
         </div>
       </div>

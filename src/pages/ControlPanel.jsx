@@ -5,10 +5,11 @@ import { useState } from "react";
 import AddMember from "../components/Modals/AddMember";
 import EditMember from "../components/Modals/EditMember";
 import PanelNavbar from "../components/Navbar/PanelNavbar";
+import Maps from "../components/Maps";
 
 export default function ControlPanel() {
   const [membros, setMembros] = useState(true);
-  const [settings, setSettings] = useState(false);
+  const [maps, setMaps] = useState(false);
   const [addMember, setAddMember] = useState(false);
   const [editMember, setEditMember] = useState(false);
 
@@ -21,8 +22,8 @@ export default function ControlPanel() {
         <PanelNavbar
           membros={membros}
           setMembros={setMembros}
-          settings={settings}
-          setSettings={setSettings}
+          maps={maps}
+          setMaps={setMaps}
         />
         {membros && (
           <Members
@@ -32,6 +33,8 @@ export default function ControlPanel() {
             editMember={editMember}
           />
         )}
+        {maps && <Maps />}
+        <h1>SASA</h1>
       </main>
       {/* <Footer /> */}
     </>

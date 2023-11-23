@@ -34,7 +34,6 @@ export default function ControlPanel() {
           />
         )}
         {maps && <Maps />}
-        <h1>SASA</h1>
       </main>
       {/* <Footer /> */}
     </>

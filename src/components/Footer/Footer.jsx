@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 export default function Footer() {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center pt-44 pb-12 bg-neutral-900 text-xl text-white font-['Open_Sans']">
+    <div className="flex flex-col items-center pt-44 pb-12 bg-neutral-900 text-xl text-white font-main">
       <div className="flex gap-24">
         <div className="flex flex-col items-center">
           <img src={StockDoLogo} alt="" width="300px" />

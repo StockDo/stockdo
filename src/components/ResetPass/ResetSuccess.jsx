@@ -32,7 +32,7 @@ export default function ResetSuccess() {
           Senha alterada com sucesso!
         </h1>
       </div>
-      <div className="flex flex-col mt-5 font-['Open_Sans']" autoComplete="off">
+      <div className="flex flex-col mt-5 font-main" autoComplete="off">
         <div className="flex flex-col mb-5"></div>
         <button
           className="bg-orange-400 py-2 rounded-lg font-bold"

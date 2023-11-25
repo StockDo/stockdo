@@ -6,7 +6,7 @@ export default function SoftwareScreens() {
   return (
     // Account screen
     <main className="flex flex-col items-center gap-24">
-      <div className="flex items-center gap-10 mt-32 w-[70%] font-['Open_Sans'] text-2xl leading-[4rem] text-justify">
+      <div className="flex items-center gap-10 mt-32 w-[70%] font-main text-2xl leading-[4rem] text-justify">
         <img
           src={mainScreen}
           alt="Account screen"
@@ -25,7 +25,7 @@ export default function SoftwareScreens() {
           <strong>Minha Conta</strong> e <strong>Configurações</strong>.
         </p>
       </div>
-      <div className="flex items-center flex-row-reverse gap-10 mt-32 w-[70%] font-['Open_Sans'] text-2xl leading-[4rem] text-justify">
+      <div className="flex items-center flex-row-reverse gap-10 mt-32 w-[70%] font-main text-2xl leading-[4rem] text-justify">
         <img
           src={accountScreen}
           alt="Account screen"
@@ -42,7 +42,7 @@ export default function SoftwareScreens() {
           completa e personalizada.
         </p>
       </div>
-      <div className="flex items-center gap-10 mt-32 w-[70%] font-['Open_Sans'] text-2xl leading-[4rem] text-justify">
+      <div className="flex items-center gap-10 mt-32 w-[70%] font-main text-2xl leading-[4rem] text-justify">
         <img
           src={settingsScreen}
           alt="Account screen"

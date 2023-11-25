@@ -17,12 +17,12 @@ export default function Home() {
         <div className="bg-gradient-to-r from-[rgba(0,0,0,0.83)] h-screen">
           <div className="pt-80 pl-16">
             <h1 className="text-8xl text-white font-['PT_Sans'] max-2xl:text-6xl">
-             StockDo
+              StockDo
             </h1>
-            <p className="text-2xl font-['Open_Sans'] text-white">
+            <p className="text-2xl font-main text-white">
               Agilize o processo, reduza perdas.
             </p>
-            <div className="flex gap-3 text-2xl font-['Open_Sans']">
+            <div className="flex gap-3 text-2xl font-main">
               <button
                 onClick={saibaMaisScroll}
                 className="bg-orange-500 px-5 py-2 rounded-lg mt-5">

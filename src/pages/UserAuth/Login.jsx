@@ -84,7 +84,7 @@ export default function Login() {
             </h1>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col mt-5 font-['Open_Sans']"
+              className="flex flex-col mt-5 font-main"
               autoComplete="on">
               {error && (
                 <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">

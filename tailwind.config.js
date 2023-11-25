@@ -12,6 +12,9 @@ module.exports = {
           "100%": { transform: "scale(1)" },
         },
       },
+      fontFamily: {
+        main: ["Open Sans"],
+      },
     },
   },
   plugins: [],

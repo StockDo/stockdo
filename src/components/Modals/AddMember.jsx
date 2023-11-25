@@ -122,7 +122,7 @@ export default function AddMember({ setAddMember }) {
 
   return (
     <main className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
-      <form className="flex flex-col items-center pt-12 pb-8 px-10 max-h-[80vh] overflow-y-scroll bg-white text-lg font-['Open_Sans'] rounded-xl mt-14 animate-zoomIn">
+      <form className="flex flex-col items-center pt-12 pb-8 px-10 max-h-[80vh] overflow-y-scroll bg-white text-lg font-main rounded-xl mt-14 animate-zoomIn">
         <span className="ml-auto -mt-6">
           <MdOutlineClose
             size={40}

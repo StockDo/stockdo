@@ -168,7 +168,7 @@ export default function EditMember({ setEditMember }) {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="flex flex-col items-center mt-12 pt-6 pb-16 px-10 bg-white text-lg font-['Open_Sans'] rounded-xl animate-zoomIn max-h-[80vh] max-w-[70vw] overflow-y-scroll">
+        className="flex flex-col items-center mt-12 pt-6 pb-16 px-10 bg-white text-lg font-main rounded-xl animate-zoomIn max-h-[80vh] max-w-[70vw] overflow-y-scroll">
         <span className="ml-auto">
           <MdOutlineClose
             size={40}

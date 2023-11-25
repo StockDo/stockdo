@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import RGL, { WidthProvider } from "react-grid-layout";
-import "../../node_modules/react-grid-layout/css/styles.css";
+import "../../../node_modules/react-grid-layout/css/styles.css";
 // import "../../node_modules/react-resizable/css/styles.css";
 const ReactGridLayout = WidthProvider(RGL);
-export default function Maps() {
+export default function Map() {
   const [edit, setEdit] = useState(false);
   const [newLayout, setNewLayout] = useState([]);
 

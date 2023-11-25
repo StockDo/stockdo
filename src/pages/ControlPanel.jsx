@@ -5,13 +5,15 @@ import { useState } from "react";
 import AddMember from "../components/Modals/AddMember";
 import EditMember from "../components/Modals/EditMember";
 import PanelNavbar from "../components/Navbar/PanelNavbar";
-import Maps from "../components/Maps";
+import Map from "../components/Maps/Map";
+import Maps from "../components/Maps/Maps";
 
 export default function ControlPanel() {
   const [membros, setMembros] = useState(true);
   const [maps, setMaps] = useState(false);
   const [addMember, setAddMember] = useState(false);
   const [editMember, setEditMember] = useState(false);
+  const [map, setMap] = useState(false);
 
   return (
     <>
@@ -20,10 +22,12 @@ export default function ControlPanel() {
       <NavbarAdm />
       <main className="flex">
         <PanelNavbar
-          membros={membros}
           setMembros={setMembros}
-          maps={maps}
+          membros={membros}
           setMaps={setMaps}
+          maps={maps}
+          setMap={setMap}
+          map={map}
         />
         {membros && (
           <Members
@@ -33,7 +37,8 @@ export default function ControlPanel() {
             editMember={editMember}
           />
         )}
-        {maps && <Maps />}
+        {maps && <Maps setMap={setMap} setMaps={setMaps} />}
+        {map && <Map />}
       </main>
       {/* <Footer /> */}
     </>

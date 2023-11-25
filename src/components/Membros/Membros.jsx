@@ -82,7 +82,7 @@ export default function Membros({
         {!loadingContent &&
           members.map((e, index) => (
             <div
-              className="flex flex-col items-center justify-center font-['Open_Sans'] text-lg gap-3 bg-white rounded-xl shadow-xl py-12 px-6 m-12 max-w-[40vh] max-xl:max-w-[80vh] break-all"
+              className="flex flex-col items-center justify-center font-main text-lg gap-3 bg-white rounded-xl shadow-xl py-12 px-6 m-12 max-w-[40vh] max-xl:max-w-[80vh] break-all"
               key={index}>
               <img
                 src={e.pic || ProfilePic}

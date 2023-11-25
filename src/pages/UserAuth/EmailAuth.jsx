@@ -104,7 +104,7 @@ export default function EmailAuth() {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col mt-5 font-['Open_Sans']"
+            className="flex flex-col mt-5 font-main"
             autoComplete="off">
             <div className="flex flex-col items-center mb-5 text-center">
               <label htmlFor="" className="font-['Roboto']">

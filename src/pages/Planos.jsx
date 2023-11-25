@@ -9,11 +9,11 @@ export default function Planos() {
       <Navbar />
       <main className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center mt-16 mx-24">
-          <h1 className="text-5xl font-bold mx-auto mb-16 font-['Open_Sans']">
+          <h1 className="text-5xl font-bold mx-auto mb-16 font-main">
             Escolha um plano de sua preferência:
           </h1>
           <div className="flex gap-24">
-            <div className="flex flex-col gap-7 border-black border pt-5 px-16 pb-12 font-['Open_Sans'] shadow-xl">
+            <div className="flex flex-col gap-7 border-black border pt-5 px-16 pb-12 font-main shadow-xl">
               <h1 className="text-4xl font-bold mx-auto">Plano Básico</h1>
               <ul className="flex flex-col gap-6 list-disc">
                 <li>Armazenamento ilimitado</li>
@@ -31,11 +31,11 @@ export default function Planos() {
                 Experimente por 30 dias
               </a>
             </div>
-            <div className="flex flex-col gap-7 border-black border pt-5 px-16 pb-12 font-['Open_Sans'] shadow-xl">
+            <div className="flex flex-col gap-7 border-black border pt-5 px-16 pb-12 font-main shadow-xl">
               <div className="flex flex-col items-center mx-auto">
                 <h1 className="text-4xl font-bold ">Plano Padrão</h1>
                 <i className="fa-solid fa-crown text-2xl"></i>
-                <span className="text-lg font-['Open_Sans'] -m-2">Popular</span>
+                <span className="text-lg font-main -m-2">Popular</span>
               </div>
               <ul className="flex flex-col gap-6 list-disc">
                 <li>Armazenamento ilimitado</li>
@@ -53,7 +53,7 @@ export default function Planos() {
                 Experimente por 30 dias
               </a>
             </div>
-            <div className="flex flex-col gap-7 border-black border pt-5 px-16 pb-12 font-['Open_Sans'] shadow-xl">
+            <div className="flex flex-col gap-7 border-black border pt-5 px-16 pb-12 font-main shadow-xl">
               <h1 className="text-4xl font-bold mx-auto">Plano Pro</h1>
               <ul className="flex flex-col gap-6 list-disc">
                 <li>Armazenamento ilimitado</li>
@@ -74,7 +74,7 @@ export default function Planos() {
           </div>
           <h1
             onClick={() => navigate("/success", { state: true })}
-            className="text-xl mt-10 font-bold mx-auto font-['Open_Sans'] cursor-pointer hover:underline">
+            className="text-xl mt-10 font-bold mx-auto font-main cursor-pointer hover:underline">
             Escolher mais tarde <i className="fa-solid fa-play text-lg"></i>
           </h1>
         </div>

@@ -60,10 +60,10 @@ export default function NewPass({ resetSuccess }) {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col mt-5 font-['Open_Sans']"
+        className="flex flex-col mt-5 font-main"
         autoComplete="off">
         <div className="flex flex-col mb-5">
-          <label htmlFor="" className="font-['Open_Sans']">
+          <label htmlFor="" className="font-main">
             Nova senha
           </label>
           <input
@@ -72,7 +72,7 @@ export default function NewPass({ resetSuccess }) {
             onChange={(e) => setPass(e.target.value)}
             className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] `}
           />
-          <label htmlFor="" className="font-['Open_Sans'] mt-4">
+          <label htmlFor="" className="font-main mt-4">
             Repita a senha
           </label>
           <input

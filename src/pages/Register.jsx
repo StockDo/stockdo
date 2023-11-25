@@ -196,7 +196,7 @@ export default function Register() {
         <form
           onSubmit={handleSubmit}
           autoComplete="off"
-          className="font-['Open_Sans'] pb-24 max-w-[80rem] w-full px-5">
+          className="font-main pb-24 max-w-[80rem] w-full px-5">
           <h1 className="text-2xl font-['PT_Sans'] my-5 underline">
             Dados da empresa
           </h1>

@@ -1,16 +1,16 @@
-import {
-  BsInfoCircleFill,
-  BsFillGearFill,
-  BsGrid,
-  BsGrid1X2Fill,
-} from "react-icons/bs";
+import { BsGrid1X2Fill } from "react-icons/bs";
 import { MdGroup } from "react-icons/md";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
-import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { BsFillGrid1X2Fill } from "react-icons/bs";
 
-export default function PanelNavbar({ membros, setMembros, maps, setMaps }) {
+export default function PanelNavbar({
+  membros,
+  setMembros,
+  maps,
+  setMaps,
+  setMap,
+  map,
+}) {
   const navigate = useNavigate();
   return (
     <>
@@ -29,6 +29,7 @@ export default function PanelNavbar({ membros, setMembros, maps, setMaps }) {
             onClick={() => {
               setMembros(true);
               setMaps(false);
+              setMap(false);
             }}
             className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4 pr-24 py-6 border-l-8 x  ${
               membros
@@ -44,15 +45,16 @@ export default function PanelNavbar({ membros, setMembros, maps, setMaps }) {
             onClick={() => {
               setMembros(false);
               setMaps(true);
+              setMap(false);
             }}
-            className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4  pr-24 py-6 border-l-8 x  ${
-              maps
+            className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4 pr-24 py-6 border-l-8 x  ${
+              maps || map
                 ? "bg-neutral-100 border-orange-400"
                 : "border-transparent hover:bg-neutral-100 hover:border-neutral-300"
             }`}>
             <BsGrid1X2Fill
               size={18}
-              className={maps ? "text-orange-400" : "text-neutral-600"}
+              className={maps || map ? "text-orange-400" : "text-neutral-600"}
             />
             Mapas
           </button>

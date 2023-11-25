@@ -23,14 +23,14 @@ export default function Options({
             setAddMember(true);
             document.body.style.overflow = "hidden";
           }}
-          className="flex justify-center items-center mb-10 ml-[22.5%] gap-3 py-1 px-6 border border-slate-400 font-['Open_Sans'] font-bold text-xl rounded-lg text-slate-400 hover:bg-slate-50">
+          className="flex justify-center items-center mb-10 ml-[22.5%] gap-3 py-1 px-6 border border-slate-400 font-main font-bold text-xl rounded-lg text-slate-400 hover:bg-slate-50">
           <BsPersonFillAdd size={25} />
           Adicionar membro
         </button>
         <div>
           <button
             onClick={() => setSortDropdown(!sortDropdown)}
-            className="flex justify-center items-center mb-10 gap-3 py-1 px-6 border border-orange-400 font-['Open_Sans'] font-bold text-xl rounded-lg text-orange-400 hover:bg-[#fffdfa]">
+            className="flex justify-center items-center mb-10 gap-3 py-1 px-6 border border-orange-400 font-main font-bold text-xl rounded-lg text-orange-400 hover:bg-[#fffdfa]">
             <PiArrowsDownUpBold size={30} />
             Ordenar por
             <AiFillCaretDown

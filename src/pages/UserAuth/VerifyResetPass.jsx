@@ -60,7 +60,7 @@ export default function VerifyResetPass() {
             </div>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col mt-5 font-['Open_Sans']"
+              className="flex flex-col mt-5 font-main"
               autoComplete="off">
               <div className="flex flex-col mb-5">
                 <label htmlFor="" className="font-['Roboto'] text-xl">

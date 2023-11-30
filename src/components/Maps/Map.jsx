@@ -3,65 +3,54 @@ import axios from "axios";
 import RGL, { WidthProvider } from "react-grid-layout";
 import { FaRegEdit } from "react-icons/fa";
 import "../../../node_modules/react-grid-layout/css/styles.css";
+import AddMap from "../Modals/AddMap";
 // import "../../node_modules/react-resizable/css/styles.css";
 const ReactGridLayout = WidthProvider(RGL);
 export default function Map() {
   const [edit, setEdit] = useState(false);
   const [newLayout, setNewLayout] = useState([]);
   const [removeHover, setRemoveHover] = useState(false);
+  const [addMap, setAddMap] = useState(false);
 
   const [userLayout, setUserLayout] = useState(
-    [
-      { w: 1, h: 1, x: 0, y: 0, i: "0", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 1, y: 1, i: "1", color: "bg-yellow-400" },
-      { w: 1, h: 1, x: 2, y: 0, i: "2", color: "bg-red-400" },
-      { w: 1, h: 1, x: 3, y: 1, i: "3", color: "bg-red-400" },
-      { w: 1, h: 1, x: 4, y: 1, i: "4", color: "bg-yellow-400" },
-      { w: 1, h: 1, x: 5, y: 0, i: "5", color: "bg-yellow-400" },
-      { w: 1, h: 1, x: 6, y: 1, i: "6", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 7, y: 1, i: "7", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 0, y: 1, i: "8", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 1, y: 0, i: "9", color: "bg-red-400" },
-      { w: 1, h: 1, x: 2, y: 0, i: "10", color: "bg-red-400" },
-      { w: 1, h: 1, x: 3, y: 0, i: "11", color: "bg-green-400" },
-      { w: 1, h: 1, x: 4, y: 1, i: "12", color: "bg-green-400" },
-      { w: 1, h: 1, x: 5, y: 1, i: "13", color: "bg-red-400" },
-      { w: 1, h: 1, x: 6, y: 1, i: "14", color: "bg-red-400" },
-      { w: 1, h: 1, x: 7, y: 1, i: "15", color: "bg-yellow-400" },
-      { w: 1, h: 1, x: 0, y: 0, i: "16", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 1, y: 1, i: "17", color: "bg-yellow-400" },
-      { w: 1, h: 1, x: 2, y: 0, i: "18", color: "bg-red-400" },
-      { w: 1, h: 1, x: 3, y: 1, i: "19", color: "bg-red-400" },
-      { w: 1, h: 1, x: 4, y: 1, i: "20", color: "bg-yellow-400" },
-      { w: 1, h: 1, x: 5, y: 0, i: "21", color: "bg-yellow-400" },
-      { w: 1, h: 1, x: 6, y: 1, i: "22", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 7, y: 1, i: "23", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 0, y: 1, i: "24", color: "bg-blue-400" },
-      { w: 1, h: 1, x: 1, y: 0, i: "25", color: "bg-red-400" },
-      { w: 1, h: 1, x: 2, y: 0, i: "26", color: "bg-red-400" },
-      { w: 1, h: 1, x: 3, y: 0, i: "27", color: "bg-green-400" },
-      { w: 1, h: 1, x: 4, y: 1, i: "28", color: "bg-green-400" },
-      { w: 1, h: 1, x: 5, y: 1, i: "29", color: "bg-red-400" },
-      { w: 1, h: 1, x: 6, y: 1, i: "30", color: "bg-red-400" },
-      { w: 1, h: 1, x: 7, y: 1, i: "31", color: "bg-yellow-400" },
-    ]
-    // JSON.parse(localStorage.getItem("layout")) ||
-    //   localStorage.setItem(
-    //     "layout",
-    //     JSON.stringify([
-    //       { w: 1, h: 1, x: 0, y: 0, i: "0" },
-    //       { w: 1, h: 1, x: 0, y: 1, i: "1" },
-    //       { w: 1, h: 1, x: 1, y: 0, i: "2" },
-    //       { w: 1, h: 1, x: 1, y: 1, i: "3" },
-    //       { w: 1, h: 1, x: 2, y: 1, i: "4" },
-    //       { w: 1, h: 1, x: 2, y: 0, i: "5" },
-    //       { w: 1, h: 1, x: 3, y: 0, i: "6" },
-    //       { w: 1, h: 1, x: 6, y: 0, i: "7" },
-    //       { w: 1, h: 1, x: 4, y: 0, i: "8" },
-    //       { w: 1, h: 1, x: 3, y: 1, i: "9" },
-    //       { w: 1, h: 1, x: 4, y: 1, i: "10" },
-    //     ])
-    //   )
+    JSON.parse(localStorage.getItem("layout")) ||
+      localStorage.setItem(
+        "layout",
+        JSON.stringify([
+          { w: 1, h: 1, x: 0, y: 0, i: "0", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 1, y: 1, i: "1", color: "bg-yellow-400" },
+          { w: 1, h: 1, x: 2, y: 0, i: "2", color: "bg-red-400" },
+          { w: 1, h: 1, x: 3, y: 1, i: "3", color: "bg-red-400" },
+          { w: 1, h: 1, x: 4, y: 1, i: "4", color: "bg-yellow-400" },
+          { w: 1, h: 1, x: 5, y: 0, i: "5", color: "bg-yellow-400" },
+          { w: 1, h: 1, x: 6, y: 1, i: "6", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 7, y: 1, i: "7", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 0, y: 1, i: "8", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 1, y: 0, i: "9", color: "bg-red-400" },
+          { w: 1, h: 1, x: 2, y: 0, i: "10", color: "bg-red-400" },
+          { w: 1, h: 1, x: 3, y: 0, i: "11", color: "bg-green-400" },
+          { w: 1, h: 1, x: 4, y: 1, i: "12", color: "bg-green-400" },
+          { w: 1, h: 1, x: 5, y: 1, i: "13", color: "bg-red-400" },
+          { w: 1, h: 1, x: 6, y: 1, i: "14", color: "bg-red-400" },
+          { w: 1, h: 1, x: 7, y: 1, i: "15", color: "bg-yellow-400" },
+          { w: 1, h: 1, x: 0, y: 0, i: "16", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 1, y: 1, i: "17", color: "bg-yellow-400" },
+          { w: 1, h: 1, x: 2, y: 0, i: "18", color: "bg-red-400" },
+          { w: 1, h: 1, x: 3, y: 1, i: "19", color: "bg-red-400" },
+          { w: 1, h: 1, x: 4, y: 1, i: "20", color: "bg-yellow-400" },
+          { w: 1, h: 1, x: 5, y: 0, i: "21", color: "bg-yellow-400" },
+          { w: 1, h: 1, x: 6, y: 1, i: "22", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 7, y: 1, i: "23", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 0, y: 1, i: "24", color: "bg-blue-400" },
+          { w: 1, h: 1, x: 1, y: 0, i: "25", color: "bg-red-400" },
+          { w: 1, h: 1, x: 2, y: 0, i: "26", color: "bg-red-400" },
+          { w: 1, h: 1, x: 3, y: 0, i: "27", color: "bg-green-400" },
+          { w: 1, h: 1, x: 4, y: 1, i: "28", color: "bg-green-400" },
+          { w: 1, h: 1, x: 5, y: 1, i: "29", color: "bg-red-400" },
+          { w: 1, h: 1, x: 6, y: 1, i: "30", color: "bg-red-400" },
+          { w: 1, h: 1, x: 7, y: 1, i: "31", color: "bg-yellow-400" },
+        ])
+      )
   );
 
   // const [layout, setLayout] = useState(
@@ -79,110 +68,103 @@ export default function Map() {
   }, [userLayout]);
 
   return (
-    <div className="flex items-center">
-      <div
-        className={`flex flex-col justify-center pb-32 w-[50rem] shadow-xl bg-white ml-[30rem] mt-44 border border-orange-400 rounded-3xl relative`}>
-        <div className="flex flex-col gap-5 self-center w-[40%]">
-          <button
-            onClick={() => setEdit(!edit)}
-            className="absolute left-10 top-2 flex items-center gap-2 border border-orange-500 text-orange-500 px-2 py-1 rounded-lg hover:!text-white hover:!bg-orange-400 transition-all">
-            <FaRegEdit size={20} /> Editar
-          </button>
-          <div
-            onClick={() => setEdit(!edit)}
-            className="text-center font-bold py-2 bg-orange-400 text-white text-2xl rounded-b-xl">
-            Mapa 1
-          </div>
-
-          {edit && (
+    <>
+      {addMap && (
+        <AddMap
+          setAddMap={setAddMap}
+          setUserLayout={setUserLayout}
+          userLayout={userLayout}
+        />
+      )}
+      <div className="flex items-center">
+        <div
+          className={`flex flex-col justify-center pb-16 w-[50rem] shadow-xl bg-white ml-[30rem] mt-44 border border-orange-400 rounded-3xl relative`}>
+          <div className="flex flex-col gap-5 self-center w-[40%]">
             <button
-              onClick={() => {
-                setUserLayout([
-                  ...userLayout,
-                  {
-                    w: 0,
-                    h: 0,
-                    x: 0,
-                    y: 0,
-                    i: 1,
-                    color: "bg-orange-400",
-                  },
-                ]);
-              }}
-              className="py-1 px-7 border border-slate-500 text-slate-500 text-2xl rounded-md">
-              Adicionar
+              onClick={() => setEdit(!edit)}
+              className="absolute left-10 top-2 flex items-center gap-2 border border-orange-500 text-orange-500 px-2 py-1 rounded-lg hover:!text-white hover:!bg-orange-400 transition-all">
+              <FaRegEdit size={20} /> Editar
             </button>
+            <div className="text-center font-bold py-2 bg-orange-400 text-white text-2xl rounded-b-xl">
+              Mapa 1
+            </div>
+          </div>
+          <ReactGridLayout
+            className="w-[50%] m-auto mt-6"
+            layout={userLayout}
+            cols={8}
+            preventCollision={false}
+            autoSize={true}
+            maxRows={10}
+            isDraggable={edit ? true : false}
+            isResizable={edit ? true : false}
+            // onLayoutChange={handleLayoutChange}
+            // maxRows={2}
+            onDrag={() => {
+              document.body.style.overflow = "hidden";
+            }}
+            onDragStop={() => {
+              document.body.style.overflow = "visible";
+              // removeHover && setLayout(userLayout.filter((e) => e.id != 8));
+            }}
+            onResize={() => {
+              document.body.style.overflow = "hidden";
+            }}
+            onResizeStop={() => {
+              document.body.style.overflow = "visible";
+            }}
+            rowHeight={40}>
+            {userLayout.map((e, i) => (
+              <div
+                key={i}
+                className={`${e.color} select-none rounded-md ${
+                  edit && "hover:cursor-grab active:cursor-grabbing"
+                } ${removeHover && "bg-red-200"}`}></div>
+            ))}
+          </ReactGridLayout>
+          {edit && (
+            <div className="flex gap-6 self-center">
+              <button
+                onClick={() => {
+                  setAddMap(true);
+                }}
+                className="py-1 px-7 border border-slate-500 text-slate-500 text-2xl rounded-md">
+                Adicionar
+              </button>
+              <button
+                onClick={() => {
+                  localStorage.setItem("layout", JSON.stringify(newLayout));
+                  setEdit(false);
+                }}
+                className="bg-slate-400 p-3 text-white text-xl rounded-lg">
+                Salvar
+              </button>
+              <button
+                onClick={() => {
+                  setEdit(false);
+                }}
+                className="bg-slate-300 p-3 text-white text-xl rounded-lg">
+                Cancelar
+              </button>
+            </div>
           )}
         </div>
-        <ReactGridLayout
-          className="w-[50%] m-auto mt-6"
-          layout={userLayout}
-          cols={8}
-          preventCollision={false}
-          isDraggable={edit ? true : false}
-          isResizable={edit ? true : false}
-          // onLayoutChange={handleLayoutChange}
-          // maxRows={2}
-          onDrag={() => {
-            document.body.style.overflow = "hidden";
-          }}
-          onDragStop={() => {
-            document.body.style.overflow = "visible";
-            // removeHover && setLayout(userLayout.filter((e) => e.id != 8));
-          }}
-          rowHeight={40}>
-          {userLayout.map((e, i) => (
-            <div
-              key={i}
-              className={`${e.color} select-none rounded-md ${
-                edit && "hover:cursor-grab active:cursor-grabbing"
-              } ${removeHover && "bg-red-200"}`}></div>
-          ))}
-        </ReactGridLayout>
-        {edit && (
-          <div className="flex self-center gap-6">
-            <button
-              onClick={() => {
-                localStorage.setItem("layout", JSON.stringify(newLayout));
-                setEdit(false);
-              }}
-              className="bg-slate-400 p-3 text-white text-xl rounded-lg">
-              Salvar
-            </button>
-            <button
-              onClick={() => {
-                setEdit(false);
-              }}
-              className="bg-slate-300 p-3 text-white text-xl rounded-lg">
-              Cancelar
-            </button>
-            <button
-              onClick={() => {
-                console.log(newLayout);
-                console.log(layout);
-                console.log(userLayout);
-              }}
-              className="bg-red-400 p-3 text-white text-xl rounded-lg">
-              teste
-            </button>
+        <div className="flex flex-col gap-6 ml-24">
+          <div className="flex gap-2 justify-center">
+            <div className="p-3 rounded-full bg-red-400 self-center"></div>
+            <h1 className="font-bold">Corredor 1</h1>
           </div>
-        )}
-      </div>
-      <div className="flex flex-col gap-6 ml-24">
-        <div className="flex gap-2 justify-center">
-          <div className="p-3 rounded-full bg-red-400 self-center"></div>
-          <h1 className="font-bold">Corredor 1</h1>
-        </div>
-        <div className="flex gap-2 justify-center">
-          <div className="p-3 rounded-full bg-green-400 self-center"></div>
-          <h1 className="font-bold">Corredor 2</h1>
-        </div>
-        <div className="flex gap-2 justify-center">
-          <div className="p-3 rounded-full bg-blue-400 self-center"></div>
-          <h1 className="font-bold">Corredor 3</h1>
+          <div className="justify-center p-2 flex gap-2 ">
+            <div className="p-3 rounded-full bg-green-400 self-center"></div>
+            <h1 className="font-bold">Corredor 2</h1>
+          </div>
+          <div className="flex gap-2 justify-center">
+            <div className="p-3 rounded-full bg-blue-400 self-center"></div>
+            <h1 className="font-bold">Corredor 3</h1>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

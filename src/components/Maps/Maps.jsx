@@ -11,14 +11,15 @@ export default function Maps({ setMap, setMaps }) {
     <div className="min-h-screen">
       <div
         className={`grid grid-cols-4 gap-12 items-center max-2xl:!grid-cols-3 max-xl:!grid-cols-2 max-lg:!grid-cols-1 pb-24 ml-[25rem] mt-44`}>
-        {cardMaps.map(() => (
+        {cardMaps.map((e, i) => (
           <div
+            key={i}
             onClick={() => {
               setMap(true);
               setMaps(false);
             }}
             className="relative flex flex-col items-center bg-neutral-50 border-2 border-neutral-300 px-20 pb-14 pt-20 rounded-3xl cursor-pointer hover:!border-orange-400 group">
-            <h1 className="relative -mt-9 bottom-7 font-bold text-xl font-main">
+            <h1 className="relative text-xl font-bold -mt-9 bottom-7 font-main">
               Mapa 1
             </h1>
             <BsGrid1X2Fill size={85} className="fill-orange-400" />
@@ -36,10 +37,10 @@ export default function Maps({ setMap, setMaps }) {
         ))}
         <button
           onClick={() => setCardMaps([...cardMaps, ""])}
-          className="w-fit m-auto">
+          className="m-auto w-fit">
           <FiPlusSquare
             size={80}
-            className="cursor-pointer text-orange-400 hover:scale-105"
+            className="text-orange-400 cursor-pointer hover:scale-105"
           />
         </button>
       </div>

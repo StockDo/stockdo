@@ -32,6 +32,7 @@
     "nodemailer": "^6.9.5",
     "npm-watch": "^0.11.0",
     "react": "^18.2.0",
+    "react-color": "^2.19.3",
     "react-cropper": "^2.3.3",
     "react-dom": "^18.2.0",
     "react-grid-layout": "^1.4.3",

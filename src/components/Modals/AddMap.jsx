@@ -5,12 +5,20 @@ import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
 import { SketchPicker, PhotoshopPicker } from "react-color";
 import { FaEyeDropper } from "react-icons/fa6";
 
-export default function AddMap({ setAddMap, setUserLayout, userLayout, id }) {
+export default function AddMap({
+  setAddMap,
+  setUserLayout,
+  userLayout,
+  id,
+  legend,
+  setLegend,
+}) {
   const [color, setColor] = useState("bg-red-500");
   const [categories, setCategories] = useState([]);
   const [colorPicker, setColorPicker] = useState({ background: "#FFF" });
   const [openColorPicker, setOpenColorPicker] = useState(false);
   const [acceptColor, setAcceptColor] = useState(false);
+  const [name, setName] = useState("Eletrônicos");
   const handleChangeComplete = (color) => {
     setColorPicker({ background: color.hex });
   };
@@ -45,9 +53,12 @@ export default function AddMap({ setAddMap, setUserLayout, userLayout, id }) {
             <select
               className="w-64 p-1 mt-4 border border-orange-400 rounded-md outline-none cursor-pointer"
               name=""
+              onChange={(e) => setName(e.target.value)}
               id="">
               {categories.map((e, i) => (
-                <option key={i}>{e.NM_CATEGORIA}</option>
+                <option value={e.NM_CATEGORIA} key={i}>
+                  {e.NM_CATEGORIA}
+                </option>
               ))}
             </select>
           </div>
@@ -140,6 +151,13 @@ export default function AddMap({ setAddMap, setUserLayout, userLayout, id }) {
                   color: color,
                   moved: false,
                   static: false,
+                },
+              ]);
+              setLegend([
+                ...legend,
+                {
+                  name: name,
+                  color: color,
                 },
               ]);
               setAddMap(false);

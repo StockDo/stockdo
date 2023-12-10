@@ -13,6 +13,7 @@ export default function Map() {
   const [removeHover, setRemoveHover] = useState(false);
   const [addMap, setAddMap] = useState(false);
   const [id, setId] = useState(0);
+  const [legend, setLegend] = useState([]);
 
   const [userLayout, setUserLayout] = useState(
     JSON.parse(localStorage.getItem("layout"))
@@ -24,9 +25,16 @@ export default function Map() {
   );
 
   const handleLayoutChange = (newLayout) => {
-    setLayout(newLayout);
-    localStorage.setItem("layout", JSON.stringify(userLayout));
-    setNewLayout(newLayout);
+    // setLayout(newLayout);
+    console.log(newLayout);
+    console.log(userLayout);
+    const newArray = newLayout.map((obj) => ({
+      ...obj,
+      color: userLayout[obj.i].color,
+    }));
+    localStorage.setItem("layout", JSON.stringify(newArray));
+    console.log(newArray);
+    // setNewLayout(newLayout);
   };
 
   return (
@@ -37,6 +45,8 @@ export default function Map() {
           setUserLayout={setUserLayout}
           userLayout={userLayout}
           id={id}
+          legend={legend}
+          setLegend={setLegend}
         />
       )}
       <div className="flex items-center">
@@ -109,7 +119,7 @@ export default function Map() {
             <div className="flex self-center gap-6">
               <button
                 onClick={() => {
-                  setId(id + 1);
+                  // setId(id + 1);
                   setAddMap(true);
                 }}
                 className="py-1 text-2xl border rounded-md px-7 border-slate-500 text-slate-500">
@@ -117,7 +127,6 @@ export default function Map() {
               </button>
               <button
                 onClick={() => {
-                  localStorage.setItem("layout", JSON.stringify(userLayout));
                   setEdit(false);
                 }}
                 className="p-3 text-xl text-white rounded-lg bg-slate-400">
@@ -133,19 +142,16 @@ export default function Map() {
             </div>
           )}
         </div>
+
         <div className="flex flex-col gap-6 ml-24">
-          <div className="flex justify-center gap-2">
-            <div className="self-center p-3 bg-red-400 rounded-full"></div>
-            <h1 className="font-bold">Corredor 1</h1>
-          </div>
-          <div className="flex justify-center gap-2 p-2 ">
-            <div className="self-center p-3 bg-green-400 rounded-full"></div>
-            <h1 className="font-bold">Corredor 2</h1>
-          </div>
-          <div className="flex justify-center gap-2">
-            <div className="self-center p-3 bg-blue-400 rounded-full"></div>
-            <h1 className="font-bold">Corredor 3</h1>
-          </div>
+          {legend.map((e, i) => (
+            <div key={i} className="flex justify-center gap-2">
+              <div
+                style={{ backgroundColor: e.color }}
+                className="self-center p-3 bg-red-400 rounded-full"></div>
+              <h1 className="font-bold">{e.name}</h1>
+            </div>
+          ))}
         </div>
       </div>
     </>

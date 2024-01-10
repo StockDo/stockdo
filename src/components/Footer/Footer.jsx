@@ -4,97 +4,99 @@ import { useNavigate, useLocation } from "react-router-dom";
 export default function Footer() {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center pt-44 pb-12 bg-neutral-900 text-xl text-white font-main">
-      <div className="flex gap-24">
+    <div className="flex flex-col items-center pb-12 text-xl text-white pt-44 bg-neutral-900 font-main">
+      <div className="flex flex-wrap justify-center gap-24">
         <div className="flex flex-col items-center">
           <img src={StockDoLogo} alt="" width="300px" />
-          <div className="flex self-start ml-4 gap-4">
+          <div className="flex self-start gap-4 ml-4">
             <a
               href="http://github.com/StockDo"
               target="_blank"
               rel="noopener noreferrer">
-              <i className="fa-brands fa-github text-white text-2xl"></i>
+              <i className="text-2xl text-white fa-brands fa-github"></i>
             </a>
             <a
               href="http://github.com/StockDo"
               target="_blank"
               rel="noopener noreferrer">
-              <i className="fa-brands fa-linkedin text-white text-2xl"></i>
+              <i className="text-2xl text-white fa-brands fa-linkedin"></i>
             </a>
             <a
               href="http://github.com/StockDo"
               target="_blank"
               rel="noopener noreferrer">
-              <i className="fa-brands fa-twitter text-white text-2xl"></i>
+              <i className="text-2xl text-white fa-brands fa-twitter"></i>
             </a>
             <a
               href="http://github.com/StockDo"
               target="_blank"
               rel="noopener noreferrer">
-              <i className="fa-brands fa-youtube text-white text-2xl"></i>
+              <i className="text-2xl text-white fa-brands fa-youtube"></i>
             </a>
           </div>
         </div>
-        <ul className="flex flex-col gap-5">
-          <li className="font-semibold text-2xl">Produto</li>
-          <li>
-            <a className="hover:underline cursor-pointer">Download</a>
-          </li>
-          <li>
-            <a className="hover:underline cursor-pointer">Planos</a>
-          </li>
-          <li>
-            <a className="hover:underline cursor-pointer">Versões</a>
-          </li>
-        </ul>
-        <ul className="flex flex-col gap-5">
-          <li className="font-semibold text-2xl">Suporte</li>
-          <li>
-            <a className="hover:underline cursor-pointer">Central de ajuda</a>
-          </li>
-          <li>
-            <a className="hover:underline cursor-pointer">Fórum</a>
-          </li>
-          <li>
-            <a className="hover:underline cursor-pointer">Contato</a>
-          </li>
-        </ul>
-        <ul className="flex flex-col gap-5">
-          <li className="font-semibold text-2xl">Termos de uso</li>
-          <li>
-            <a
-              onClick={() => navigate("/termos")}
-              className="hover:underline cursor-pointer">
-              Termos
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() => navigate("/privacidade")}
-              className="hover:underline cursor-pointer">
-              Privacidade
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() => navigate("/licenca")}
-              className="hover:underline cursor-pointer">
-              Licença de uso
-            </a>
-          </li>
-          {/* <li>
-            <a className="hover:underline cursor-pointer">
+        <div className="flex gap-12 max-sm:flex-col">
+          <ul className="flex flex-col gap-5">
+            <li className="text-2xl font-semibold">Produto</li>
+            <li>
+              <a className="cursor-pointer hover:underline">Download</a>
+            </li>
+            <li>
+              <a className="cursor-pointer hover:underline">Planos</a>
+            </li>
+            <li>
+              <a className="cursor-pointer hover:underline">Versões</a>
+            </li>
+          </ul>
+          <ul className="flex flex-col gap-5">
+            <li className="text-2xl font-semibold">Suporte</li>
+            <li>
+              <a className="cursor-pointer hover:underline">Central de ajuda</a>
+            </li>
+            <li>
+              <a className="cursor-pointer hover:underline">Fórum</a>
+            </li>
+            <li>
+              <a className="cursor-pointer hover:underline">Contato</a>
+            </li>
+          </ul>
+          <ul className="flex flex-col gap-5">
+            <li className="text-2xl font-semibold">Termos de uso</li>
+            <li>
+              <a
+                onClick={() => navigate("/termos")}
+                className="cursor-pointer hover:underline">
+                Termos
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => navigate("/privacidade")}
+                className="cursor-pointer hover:underline">
+                Privacidade
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => navigate("/licenca")}
+                className="cursor-pointer hover:underline">
+                Licença de uso
+              </a>
+            </li>
+            {/* <li>
+            <a className="cursor-pointer hover:underline">
               Guia
             </a>
           </li> */}
-          <li>
-            <a className="hover:underline cursor-pointer">
-              Gerenciamento de cookies
-            </a>
-          </li>
-        </ul>
+            <li>
+              <a className="cursor-pointer hover:underline">
+                Gerenciamento de cookies
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <p className="text-2xl mt-24">
+      <p className="mx-2 mt-24 text-2xl text-center">
         Copyright © 2023 • <span className="font-bold">NoEqual</span> • Termos
         de uso
       </p>

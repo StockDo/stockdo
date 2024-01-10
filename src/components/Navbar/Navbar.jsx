@@ -1,8 +1,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import StockDoLogo from "../../assets/imgs/Icons/stockdo.svg";
+import { FaEyeDropper } from "react-icons/fa6";
 import { useEffect, useState } from "react";
+import { MdMenu } from "react-icons/md";
+import HomeNavbarMenu from "./HomeNavbarMenu";
 
-export default function Navbar({ saibaMaisScroll, planosScroll }) {
+export default function Navbar({
+  saibaMaisScroll,
+  planosScroll,
+  openMenu,
+  setOpenMenu,
+}) {
   const navigate = useNavigate();
   // const [sair, setSair] = useState(false);
   const auth = localStorage.getItem("auth");
@@ -20,7 +28,7 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
         width={"150px"}
         className="cursor-pointer"
       />
-      <ul className="flex items-center gap-5 justify-end text-white text-xl">
+      <ul className="flex items-center justify-end gap-5 text-xl text-white max-sm:hidden">
         <li>
           <span onClick={() => navigate("/")} className="cursor-pointer">
             Home
@@ -39,25 +47,28 @@ export default function Navbar({ saibaMaisScroll, planosScroll }) {
         <li className={auth ? "hidden" : "block"}>
           <a
             onClick={() => navigate("/login", { state: true })}
-            className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
-            Entrar<i className="fa-solid fa-right-to-bracket ml-1"></i>
+            className="px-3 py-1 text-black bg-orange-400 rounded-lg cursor-pointer">
+            Entrar<i className="ml-1 fa-solid fa-right-to-bracket"></i>
           </a>
         </li>
         <li className={auth ? "block" : "hidden"}>
           <a
             onClick={() => navigate("/painel", { state: true })}
-            className="bg-orange-400 py-1 px-3 rounded-lg text-black cursor-pointer">
-            Painel<i className="fa-solid fa-layer-group ml-1"></i>
+            className="px-3 py-1 text-black bg-orange-400 rounded-lg cursor-pointer">
+            Painel<i className="ml-1 fa-solid fa-layer-group"></i>
           </a>
         </li>
         <li className={auth ? "block" : "hidden"}>
           <a
             onClick={sairClick}
-            className="bg-red-400 py-1 px-3 rounded-lg text-black cursor-pointer">
-            Sair<i className="fa-solid fa-power-off ml-1"></i>
+            className="px-3 py-1 text-black bg-red-400 rounded-lg cursor-pointer">
+            Sair<i className="ml-1 fa-solid fa-power-off"></i>
           </a>
         </li>
       </ul>
+      <button onClick={() => setOpenMenu(!openMenu)} className="sm:hidden">
+        <MdMenu color="#FFF" size={45} />
+      </button>
     </div>
   );
 }

@@ -62,8 +62,8 @@ export default function Login() {
   return (
     <>
       <Navbar />
-      <main className="flex justify-center items-center min-h-screen bg-slate-100">
-        <div className="bg-orange-400 flex items-center shadow-xl rounded-xl mx-5 my-32">
+      <main className="flex items-center justify-center min-h-screen bg-slate-100 max-sm:bg-white">
+        <div className="flex items-center mx-5 my-32 bg-orange-400 shadow-xl rounded-xl max-sm:bg-transparent">
           <div className="px-8 max-lg:hidden">
             <img
               src={SignupBackground}
@@ -76,7 +76,7 @@ export default function Login() {
               src={StockDoLogo}
               alt="StockDo logo"
               width="150px"
-              className="cursor-pointer m-auto mb-2"
+              className="m-auto mb-2 cursor-pointer max-sm:hidden"
               onClick={() => navigate("/")}
             />
             <h1 className="text-3xl font-['PT_Sans'] m-auto">
@@ -87,7 +87,7 @@ export default function Login() {
               className="flex flex-col mt-5 font-main"
               autoComplete="on">
               {error && (
-                <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">
+                <span className="px-2 py-2 mb-2 font-bold text-white bg-red-700">
                   CPF ou senha inválidos
                 </span>
               )}
@@ -132,19 +132,19 @@ export default function Login() {
               />
               <span
                 onClick={() => navigate("/verify_reset")}
-                className="text-sm mt-2 text-orange-700 hover:underline cursor-pointer">
+                className="mt-2 text-sm text-orange-700 cursor-pointer hover:underline">
                 Esqueceu sua senha?
               </span>
               <button
                 type="submit"
-                className="bg-orange-400 mt-7 py-2 rounded-lg font-bold  duration-200 hover:bg-orange-500">
+                className="py-2 font-bold duration-200 bg-orange-400 rounded-lg mt-7 hover:bg-orange-500">
                 Entrar
               </button>
               <span className="m-auto mt-4">
                 Não possui uma conta?{" "}
                 <span
                   onClick={() => navigate("/signup", { state: true })}
-                  className="text-orange-700 hover:underline cursor-pointer">
+                  className="text-orange-700 cursor-pointer hover:underline">
                   Cadastre-se aqui.
                 </span>
               </span>

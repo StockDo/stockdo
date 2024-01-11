@@ -7,10 +7,12 @@ export default function Planos() {
       <h1 className="text-5xl font-bold mx-auto mb-16 font-['PT_Sans'] underline">
         Planos
       </h1>
-      <div className="flex flex-col items-center mx-24">
+      <div className="flex flex-col items-center mx-24 max-sm:mx-12">
         <div className="flex flex-wrap justify-center gap-24">
           <div className="flex flex-col px-16 pt-5 pb-12 bg-white border border-black shadow-xl gap-7 font-main">
-            <h1 className="mx-auto text-4xl font-bold">Plano Básico</h1>
+            <h1 className="mx-auto text-4xl font-bold max-sm:text-2xl">
+              Plano Básico
+            </h1>
             <ul className="flex flex-col gap-6 list-disc">
               <li>Armazenamento ilimitado</li>
               <li>Gerador de relatórios</li>
@@ -29,7 +31,9 @@ export default function Planos() {
           </div>
           <div className="flex flex-col px-16 pt-5 pb-12 bg-white border border-black shadow-xl gap-7 font-main">
             <div className="flex flex-col items-center mx-auto">
-              <h1 className="text-4xl font-bold ">Plano Padrão</h1>
+              <h1 className="text-4xl font-bold max-sm:text-2xl">
+                Plano Padrão
+              </h1>
               <i className="text-2xl fa-solid fa-crown"></i>
               <span className="-m-2 text-lg font-main">Popular</span>
             </div>
@@ -50,7 +54,9 @@ export default function Planos() {
             </a>
           </div>
           <div className="flex flex-col px-16 pt-5 pb-12 bg-white border border-black shadow-xl gap-7 font-main">
-            <h1 className="mx-auto text-4xl font-bold">Plano Pro</h1>
+            <h1 className="mx-auto text-4xl font-bold max-sm:text-2xl">
+              Plano Pro
+            </h1>
             <ul className="flex flex-col gap-6 list-disc">
               <li>Armazenamento ilimitado</li>
               <li>Gerador de relatórios</li>
@@ -68,11 +74,6 @@ export default function Planos() {
             </a>
           </div>
         </div>
-        <h1
-          onClick={() => navigate("/success", { state: true })}
-          className="mx-auto mt-10 text-xl font-bold cursor-pointer font-main hover:underline">
-          Escolher mais tarde <i className="text-lg fa-solid fa-play"></i>
-        </h1>
       </div>
     </main>
   );

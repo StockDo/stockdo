@@ -13,7 +13,7 @@ export default function SoftwareScreens() {
           width={"500px"}
           className="shadow-xl"
         />
-        <p className="max-w-[50%] max-2xl:max-w-[50rem] max-sm:text-center max-sm:text-xl max-sm:leading-[4rem]">
+        <p className="max-w-[50%] max-2xl:max-w-[50rem] max-sm:text-center max-sm:text-lg max-sm:leading-[4rem]">
           A interface principal do software apresenta um conjunto de 8 botões
           localizados no topo da tela, incluindo opções como{" "}
           <strong>Adicionar</strong> <strong>Alterar</strong>{" "}
@@ -32,7 +32,7 @@ export default function SoftwareScreens() {
           width={"500px"}
           className="shadow-xl"
         />
-        <p className="max-w-[50%] max-2xl:max-w-[50rem] max-sm:text-center max-sm:text-xl max-sm:leading-[4rem]">
+        <p className="max-w-[50%] max-2xl:max-w-[50rem] max-sm:text-center max-sm:text-lg max-sm:leading-[4rem]">
           A tela <strong>Minha Conta</strong> exibe informações essenciais sobre
           o usuário, incluindo seu <strong>Nome</strong>, <strong>CPF</strong>,{" "}
           <strong>Endereço de email</strong>,{" "}
@@ -49,7 +49,7 @@ export default function SoftwareScreens() {
           width={"500px"}
           className="shadow-xl"
         />
-        <p className="max-w-[50%] max-2xl:max-w-[50rem] max-sm:text-center max-sm:text-xl max-sm:leading-[4rem]">
+        <p className="max-w-[50%] max-2xl:max-w-[50rem] max-sm:text-center max-sm:text-lg max-sm:leading-[4rem]">
           Dentro da tela de <strong>Configurações</strong>, os usuários podem
           acessar opções relacionadas ao <strong>software</strong>, como{" "}
           <strong>Atalhos do teclado</strong>,{" "}

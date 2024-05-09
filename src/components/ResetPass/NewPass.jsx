@@ -56,12 +56,13 @@ export default function NewPass({ resetSuccess }) {
         onClick={() => navigate("/")}
       />
       <div className="flex flex-col items-center gap-4">
-        <h1 className="text-3xl font-['PT_Sans']">Redefina sua senha</h1>
+        <h1 className="text-xl font-['PT_Sans']">Redefina sua senha</h1>
       </div>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col mt-5 font-main"
-        autoComplete="off">
+        autoComplete="off"
+      >
         <div className="flex flex-col mb-5">
           <label htmlFor="" className="font-main">
             Nova senha
@@ -70,7 +71,7 @@ export default function NewPass({ resetSuccess }) {
             type="password"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
-            className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] `}
+            className={`w-96 border rounded-md py-2 px-2  mt-2 border-[rgba(0,0,0,0.25)] `}
           />
           <label htmlFor="" className="font-main mt-4">
             Repita a senha
@@ -79,7 +80,7 @@ export default function NewPass({ resetSuccess }) {
             type="password"
             value={repeatPass}
             onChange={(e) => setRepeatPass(e.target.value)}
-            className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)] `}
+            className={`w-96 border rounded-md py-2 px-2  mt-2 border-[rgba(0,0,0,0.25)] `}
           />
           {error && (
             <span className="text-red-600 mt-2">
@@ -89,7 +90,8 @@ export default function NewPass({ resetSuccess }) {
         </div>
         <button
           onClick={resetSuccess}
-          className="bg-orange-400 py-2 rounded-lg font-bold">
+          className="bg-orange-400 py-2 rounded-lg font-bold"
+        >
           Alterar senha
         </button>
       </form>

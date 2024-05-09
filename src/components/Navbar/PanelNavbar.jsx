@@ -31,11 +31,12 @@ export default function PanelNavbar({
               setMaps(false);
               setMap(false);
             }}
-            className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4 pr-24 py-6 border-l-8 x  ${
+            className={`flex items-center gap-2  font-['Roboto'] font-bold pl-4 pr-24 py-6 border-l-8 x  ${
               membros
                 ? "bg-neutral-100 border-orange-400"
                 : "border-transparent hover:bg-neutral-100 hover:border-neutral-300"
-            }`}>
+            }`}
+          >
             <MdGroup
               className={membros ? "text-orange-400" : "text-neutral-600"}
             />
@@ -47,11 +48,12 @@ export default function PanelNavbar({
               setMaps(true);
               setMap(false);
             }}
-            className={`flex items-center gap-2 text-xl font-['Roboto'] font-bold pl-4 pr-24 py-6 border-l-8 x  ${
+            className={`flex items-center gap-2  font-['Roboto'] font-bold pl-4 pr-24 py-6 border-l-8 x  ${
               maps || map
                 ? "bg-neutral-100 border-orange-400"
                 : "border-transparent hover:bg-neutral-100 hover:border-neutral-300"
-            }`}>
+            }`}
+          >
             <BsGrid1X2Fill
               size={18}
               className={maps || map ? "text-orange-400" : "text-neutral-600"}

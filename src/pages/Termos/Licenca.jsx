@@ -8,10 +8,10 @@ export default function Licenca() {
       <Navbar />
       <div className="flex flex-col justify-center items-center px-44 pt-32 min-h-screen">
         <img src={StockDoLogo} alt="StockDo logo" width={"350px"} />
-        <h1 className="font-['PT_Sans'] text-5xl bg-neutral-200 px-96 py-2 mt-12">
+        <h1 className="font-['PT_Sans'] text-2xl bg-neutral-200 px-96 py-2 mt-12">
           Licença de uso
         </h1>
-        <ul className="flex flex-col gap-8 text-2xl leading-[3.5rem] pt-12 pb-44">
+        <ul className="flex flex-col gap-8  leading-[3.5rem] pt-12 pb-44">
           <li>
             <span className="font-bold">1. </span>É concedida permissão para
             baixar temporariamente uma cópia dos materiais (informações ou

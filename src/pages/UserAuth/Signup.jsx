@@ -146,13 +146,14 @@ export default function Signup() {
               className="cursor-pointer m-auto "
               onClick={() => navigate("/")}
             />
-            <h1 className="text-3xl font-['PT_Sans'] m-auto">
+            <h1 className="text-xl font-['PT_Sans'] m-auto">
               Cadastre uma conta
             </h1>
             <form
               onSubmit={handleSubmit}
               className="flex flex-col mt-5 font-main"
-              autoComplete="on">
+              autoComplete="on"
+            >
               {error && (
                 <span className="text-white font-bold bg-red-700 px-2 py-2 mb-2">
                   {errorMessage}
@@ -161,7 +162,8 @@ export default function Signup() {
               <button
                 type="button"
                 onClick={() => setShowPass(!showPass)}
-                className={`relative -m-2 self-end top-[14.5rem] mr-2 text-2xl text-orange-600`}>
+                className={`relative -m-2 self-end top-[14.5rem] mr-2  text-orange-600`}
+              >
                 {showPass ? <BsEyeSlash /> : <BsEye />}
               </button>
               <label
@@ -169,7 +171,8 @@ export default function Signup() {
                 className={` ${
                   validatedFields.cpf === false &&
                   "animate__animated animate__shakeX text-red-600 "
-                }`}>
+                }`}
+              >
                 {validatedFields.cpf === false
                   ? formData.cpf === ""
                     ? "Preencha este campo"
@@ -197,7 +200,8 @@ export default function Signup() {
                 className={` ${
                   validatedFields.email === false &&
                   "animate__animated animate__shakeX text-red-600 "
-                }`}>
+                }`}
+              >
                 {validatedFields.email === false
                   ? formData.email === ""
                     ? "Preencha este campo"
@@ -225,7 +229,8 @@ export default function Signup() {
                 className={` ${
                   validatedFields.password === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 {validatedFields.password === false && formData.password === ""
                   ? "Preencha este campo"
                   : "Senha"}
@@ -251,7 +256,8 @@ export default function Signup() {
                 className={` ${
                   validatedFields.password_repeat === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 {validatedFields.password_repeat === false
                   ? formData.password_repeat === ""
                     ? "Preencha este campo"
@@ -277,19 +283,22 @@ export default function Signup() {
                 className={`text-sm ${
                   validatedFields.password === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 <li className="font-bold text-black">
                   A senha deve conter pelo menos:
                 </li>
                 <li
-                  className={formData.password.length >= 8 && "text-green-800"}>
+                  className={formData.password.length >= 8 && "text-green-800"}
+                >
                   Mínimo de 8{" "}
                   {formData.password.length >= 8 && (
                     <i className="fa-solid fa-check ml-1"></i>
                   )}
                 </li>
                 <li
-                  className={/\d/.test(formData.password) && "text-green-800"}>
+                  className={/\d/.test(formData.password) && "text-green-800"}
+                >
                   Um número
                   {/\d/.test(formData.password) && (
                     <i className="fa-solid fa-check ml-1"></i>
@@ -298,7 +307,8 @@ export default function Signup() {
                 <li
                   className={
                     /[A-Z]/.test(formData.password) && "text-green-800"
-                  }>
+                  }
+                >
                   Uma letra maiúscula
                   {/[A-Z]/.test(formData.password) && (
                     <i className="fa-solid fa-check ml-1"></i>
@@ -307,7 +317,8 @@ export default function Signup() {
                 <li
                   className={
                     /[a-z]/.test(formData.password) && "text-green-800"
-                  }>
+                  }
+                >
                   Uma letra minúscula
                   {/[a-z]/.test(formData.password) && (
                     <i className="fa-solid fa-check ml-1"></i>
@@ -316,14 +327,16 @@ export default function Signup() {
               </ul>
               <button
                 type="submit"
-                className="bg-orange-400 mt-7 py-2 rounded-lg font-bold  duration-200 hover:bg-orange-500">
+                className="bg-orange-400 mt-7 py-2 rounded-lg font-bold  duration-200 hover:bg-orange-500"
+              >
                 Cadastrar
               </button>
               <span className="m-auto mt-4">
                 Já possui uma conta?{" "}
                 <span
                   onClick={() => navigate("/login", { state: true })}
-                  className="text-orange-700 hover:underline cursor-pointer">
+                  className="text-orange-700 hover:underline cursor-pointer"
+                >
                   Entre aqui.
                 </span>
               </span>

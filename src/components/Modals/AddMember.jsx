@@ -133,13 +133,12 @@ export default function AddMember({ setAddMember }) {
             }}
           />
         </span>
-        <h1 className="font-['PT_Sans'] text-3xl underline">
-          Adicionar membro
-        </h1>
+        <h1 className="font-['PT_Sans'] text-xl underline">Adicionar membro</h1>
         <div className="flex flex-col">
           <label
             htmlFor="img_upload"
-            className="my-5 border rounded-full self-center">
+            className="my-5 border rounded-full self-center"
+          >
             <img
               src={picture || ProfilePic}
               className={`m-auto nt-12 border w-36 h-36 rounded-full border-black cursor-pointer ${
@@ -236,7 +235,8 @@ export default function AddMember({ setAddMember }) {
                   admin
                     ? "text-orange-400 border-orange-400"
                     : "text-neutral-300"
-                }`}>
+                }`}
+              >
                 <FaHardHat size={50} />
                 <span className="text-lg">Funcionário</span>
               </button>
@@ -252,7 +252,8 @@ export default function AddMember({ setAddMember }) {
                   funcionario
                     ? "text-orange-400 border-orange-400"
                     : "text-neutral-300"
-                }`}>
+                }`}
+              >
                 <FaUserShield size={50} />
                 <span className="text-lg">Administrador</span>
               </button>
@@ -260,16 +261,15 @@ export default function AddMember({ setAddMember }) {
           </div>
 
           {error && (
-            <span className="text-red-500 m-auto mb-4 text-xl">
-              {errorMessage}
-            </span>
+            <span className="text-red-500 m-auto mb-4 ">{errorMessage}</span>
           )}
 
           <button
             onClick={(e) => {
               handleAdd(e);
             }}
-            className="px-5 py-2 text-center bg-orange-400 rounded-md">
+            className="px-5 py-2 text-center bg-orange-400 rounded-md"
+          >
             {loading ? (
               <ReactLoading
                 type="bars"

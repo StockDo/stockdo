@@ -163,12 +163,14 @@ export default function EditMember({ setEditMember }) {
       onClick={() => {
         closeCard();
       }}
-      className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50">
+      className="fixed z-50 w-screen min-h-full flex items-center justify-center bg-black bg-opacity-50"
+    >
       <form
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="flex flex-col items-center mt-12 pt-6 pb-16 px-10 bg-white text-lg font-main rounded-xl animate-zoomIn max-h-[80vh] max-w-[70vw] overflow-y-scroll">
+        className="flex flex-col items-center mt-12 pt-6 pb-16 px-10 bg-white text-lg font-main rounded-xl animate-zoomIn max-h-[80vh] max-w-[70vw] overflow-y-scroll"
+      >
         <span className="ml-auto">
           <MdOutlineClose
             size={40}
@@ -178,7 +180,7 @@ export default function EditMember({ setEditMember }) {
             }}
           />
         </span>
-        <h1 className="font-['PT_Sans'] text-3xl mb-5 underline">
+        <h1 className="font-['PT_Sans'] text-xl mb-5 underline">
           Editar membro
         </h1>
         {error && (
@@ -187,7 +189,8 @@ export default function EditMember({ setEditMember }) {
         <div className="flex flex-col">
           <label
             htmlFor="img_upload"
-            className="my-5 border rounded-full self-center">
+            className="my-5 border rounded-full self-center"
+          >
             <img
               src={picture || ProfilePic}
               className={`m-auto nt-12 border w-36 h-36 rounded-full border-black cursor-pointer hover:brightness-[0.85] ${
@@ -264,7 +267,8 @@ export default function EditMember({ setEditMember }) {
               } ${
                 data.role === "Funcionário" &&
                 "text-orange-400 border-orange-400"
-              }`}>
+              }`}
+            >
               <FaHardHat size={50} />
               <span className="text-lg">Funcionário</span>
             </button>
@@ -281,7 +285,8 @@ export default function EditMember({ setEditMember }) {
               } ${
                 data.role === "Administrador" &&
                 "text-orange-400 border-orange-400"
-              }`}>
+              }`}
+            >
               <FaUserShield size={50} />
               <span className="text-lg">Administrador</span>
             </button>
@@ -291,7 +296,8 @@ export default function EditMember({ setEditMember }) {
                 confirmDelete
                   ? "opacity-100"
                   : deleteMember && "opacity-50 cursor-not-allowed"
-              } rounded-md`}>
+              } rounded-md`}
+            >
               Deletar membro
             </button>
             {deleteMember && (
@@ -309,7 +315,8 @@ export default function EditMember({ setEditMember }) {
           </div>
           <button
             onClick={handleEdit}
-            className="px-5 py-2 text-center bg-orange-400 rounded-md">
+            className="px-5 py-2 text-center bg-orange-400 rounded-md"
+          >
             {loading ? (
               <ReactLoading
                 type="bars"

@@ -23,14 +23,16 @@ export default function Options({
             setAddMember(true);
             document.body.style.overflow = "hidden";
           }}
-          className="flex justify-center items-center mb-10 ml-[22.5%] gap-3 py-1 px-6 border border-slate-400 font-main font-bold text-xl rounded-lg text-slate-400 hover:bg-slate-50">
+          className="flex justify-center items-center mb-10 ml-[22.5%] gap-3 py-1 px-6 border border-slate-400 font-main font-bold  rounded-lg text-slate-400 hover:bg-slate-50"
+        >
           <BsPersonFillAdd size={25} />
           Adicionar membro
         </button>
         <div>
           <button
             onClick={() => setSortDropdown(!sortDropdown)}
-            className="flex justify-center items-center mb-10 gap-3 py-1 px-6 border border-orange-400 font-main font-bold text-xl rounded-lg text-orange-400 hover:bg-[#fffdfa]">
+            className="flex justify-center items-center mb-10 gap-3 py-1 px-6 border border-orange-400 font-main font-bold  rounded-lg text-orange-400 hover:bg-[#fffdfa]"
+          >
             <PiArrowsDownUpBold size={30} />
             Ordenar por
             <AiFillCaretDown
@@ -42,7 +44,7 @@ export default function Options({
           </button>
           {sortDropdown && (
             <div className="absolute top-[80%] bg-white border border-[rgba(0,0,0,0.19)] z-50">
-              <div className="flex flex-col items-start text-xl min-w-[16rem]">
+              <div className="flex flex-col items-start  min-w-[16rem]">
                 <button
                   onClick={() => {
                     setSortAZ(true);
@@ -52,7 +54,8 @@ export default function Options({
                   }}
                   className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
                     sortAZ && "bg-orange-100"
-                  }`}>
+                  }`}
+                >
                   <span>A-Z</span>
                 </button>
                 <button
@@ -64,7 +67,8 @@ export default function Options({
                   }}
                   className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
                     sortZA && "bg-orange-100"
-                  }`}>
+                  }`}
+                >
                   <span>Z-A</span>
                 </button>
                 <button
@@ -77,7 +81,8 @@ export default function Options({
                   }}
                   className={`flex justify-start px-3 py-4 w-full border-b hover:bg-orange-100 ${
                     sortRecent && "bg-orange-100"
-                  }`}>
+                  }`}
+                >
                   <span>Mais recentes primeiros</span>
                 </button>
               </div>

@@ -51,16 +51,18 @@ export default function Map() {
       )}
       <div className="flex items-center">
         <div
-          className={`flex flex-col justify-center pb-16 w-[50rem] shadow-xl bg-white ml-[30rem] mt-44 border border-orange-400 rounded-3xl relative`}>
+          className={`flex flex-col justify-center pb-16 w-[50rem] shadow-xl bg-white ml-[30rem] mt-44 border border-orange-400 rounded-3xl relative`}
+        >
           <div className="flex flex-col gap-5 self-center w-[40%]">
             {userLayout.length > 0 && (
               <button
                 onClick={() => setEdit(!edit)}
-                className="absolute left-10 top-2 flex items-center gap-2 border border-orange-500 text-orange-500 px-2 py-1 rounded-lg hover:!text-white hover:!bg-orange-400 transition-all">
+                className="absolute left-10 top-2 flex items-center gap-2 border border-orange-500 text-orange-500 px-2 py-1 rounded-lg hover:!text-white hover:!bg-orange-400 transition-all"
+              >
                 <FaRegEdit size={20} /> Editar
               </button>
             )}
-            <div className="py-2 text-2xl font-bold text-center text-white bg-orange-400 rounded-b-xl">
+            <div className="py-2  font-bold text-center text-white bg-orange-400 rounded-b-xl">
               Mapa 1
             </div>
           </div>
@@ -89,19 +91,21 @@ export default function Map() {
               onResizeStop={() => {
                 document.body.style.overflow = "visible";
               }}
-              rowHeight={40}>
+              rowHeight={40}
+            >
               {userLayout.map((e, i) => (
                 <div
                   key={i}
                   style={{ backgroundColor: e.color }}
                   className={`${e.color} select-none rounded-md ${
                     edit && "hover:cursor-grab active:cursor-grabbing"
-                  } ${removeHover && "bg-red-200"}`}></div>
+                  } ${removeHover && "bg-red-200"}`}
+                ></div>
               ))}
             </ReactGridLayout>
           ) : (
             <div className="flex flex-col items-center gap-6 pt-10">
-              <h1 className="text-2xl font-bold select-none opacity-20">
+              <h1 className=" font-bold select-none opacity-20">
                 Nenhum mapa adicionado.
               </h1>
               <TbLayoutGridAdd size={200} className="text-neutral-200" />
@@ -109,7 +113,8 @@ export default function Map() {
                 onClick={() => {
                   setAddMap(true);
                 }}
-                className="px-16 py-2 font-semibold text-white bg-orange-400 rounded-xl">
+                className="px-16 py-2 font-semibold text-white bg-orange-400 rounded-xl"
+              >
                 Adicionar mapa
               </button>
             </div>
@@ -122,21 +127,23 @@ export default function Map() {
                   // setId(id + 1);
                   setAddMap(true);
                 }}
-                className="py-1 text-2xl border rounded-md px-7 border-slate-500 text-slate-500">
+                className="py-1  border rounded-md px-7 border-slate-500 text-slate-500"
+              >
                 Adicionar
               </button>
               <button
                 onClick={() => {
                   setEdit(false);
                 }}
-                className="p-3 text-xl text-white rounded-lg bg-slate-400">
+                className="p-3  text-white rounded-lg bg-slate-400"
+              >
                 Salvar
               </button>
               {/* <button
                 onClick={() => {
                   setEdit(false);
                 }}
-                className="p-3 text-xl text-white rounded-lg bg-slate-300">
+                className="p-3  text-white rounded-lg bg-slate-300">
                 Cancelar
               </button> */}
             </div>
@@ -148,7 +155,8 @@ export default function Map() {
             <div key={i} className="flex justify-center gap-2">
               <div
                 style={{ backgroundColor: e.color }}
-                className="self-center p-3 bg-red-400 rounded-full"></div>
+                className="self-center p-3 bg-red-400 rounded-full"
+              ></div>
               <h1 className="font-bold">{e.name}</h1>
             </div>
           ))}

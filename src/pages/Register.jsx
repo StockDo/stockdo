@@ -192,14 +192,13 @@ export default function Register() {
       <Navbar />
       <div className="flex flex-col items-center">
         <img src={StockDoLogo} width={"300px"} className="mb-12 mt-32" />
-        <h1 className="text-4xl font-['PT_Sans'] mb-5">Registro da empresa</h1>
+        <h1 className="text-xl font-['PT_Sans'] mb-5">Registro da empresa</h1>
         <form
           onSubmit={handleSubmit}
           autoComplete="off"
-          className="font-main pb-24 max-w-[80rem] w-full px-5">
-          <h1 className="text-2xl font-['PT_Sans'] my-5 underline">
-            Dados da empresa
-          </h1>
+          className="font-main pb-24 max-w-[80rem] w-full px-5"
+        >
+          <h1 className=" font-['PT_Sans'] my-5 underline">Dados da empresa</h1>
           <div className="flex gap-4">
             <div className="flex flex-col pb-5 w-full">
               <label
@@ -207,7 +206,8 @@ export default function Register() {
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                   validatedFields.nome_empresa === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 {validatedFields.nome_empresa === false
                   ? "Campo obrigatório"
                   : "Nome da empresa"}
@@ -231,7 +231,8 @@ export default function Register() {
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                   validatedFields.cnpj === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 {validatedFields.cnpj === false
                   ? "Campo obrigatório"
                   : "CNPJ da empresa"}
@@ -255,7 +256,8 @@ export default function Register() {
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                   validatedFields.nome_prop === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 {validatedFields.nome_prop === false
                   ? "Campo obrigatório"
                   : "Nome do proprietário"}
@@ -281,7 +283,8 @@ export default function Register() {
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                   validatedFields.tel_cel === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 {validatedFields.tel_cel === false
                   ? "Campo obrigatório"
                   : "Telefone/Cel."}
@@ -305,7 +308,8 @@ export default function Register() {
                 className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                   validatedFields.contato === false &&
                   "animate__animated animate__shakeX text-red-600"
-                }`}>
+                }`}
+              >
                 {validatedFields.contato === false
                   ? "Campo obrigatório"
                   : "Contato (ex. WhatsApp, Email)"}
@@ -324,7 +328,7 @@ export default function Register() {
               />
             </div>
           </div>
-          <h1 className="text-2xl font-['PT_Sans'] my-5 underline">
+          <h1 className=" font-['PT_Sans'] my-5 underline">
             Endereço da empresa
           </h1>
           <div className="flex flex-col gap-4">
@@ -336,12 +340,13 @@ export default function Register() {
                     cepError ||
                     (validatedFields.cep === false &&
                       "animate__animated animate__shakeX text-red-600 ")
-                  }`}>
+                  }`}
+                >
                   {validatedFields.cep === false
                     ? "Campo obrigatório"
                     : cepError
-                    ? "CEP inválido"
-                    : "CEP"}
+                      ? "CEP inválido"
+                      : "CEP"}
                 </label>
                 <input
                   type="text"
@@ -354,8 +359,8 @@ export default function Register() {
                     validatedFields.cep === false
                       ? "animate__animated animate__shakeX border-red-600"
                       : cepError
-                      ? "animate__animated animate__shakeX text-red-600 border-red-600"
-                      : "focus:border-orange-400"
+                        ? "animate__animated animate__shakeX text-red-600 border-red-600"
+                        : "focus:border-orange-400"
                   }`}
                 />
               </div>
@@ -365,7 +370,8 @@ export default function Register() {
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                     validatedFields.rua === false &&
                     "animate__animated animate__shakeX text-red-600"
-                  }`}>
+                  }`}
+                >
                   {validatedFields.rua === false ? "Campo obrigatório" : "Rua"}
                 </label>
                 <input
@@ -389,7 +395,8 @@ export default function Register() {
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                     validatedFields.bairro === false &&
                     "animate__animated animate__shakeX text-red-600"
-                  }`}>
+                  }`}
+                >
                   {validatedFields.bairro === false
                     ? "Campo obrigatório"
                     : "Bairro"}
@@ -413,7 +420,8 @@ export default function Register() {
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                     validatedFields.numero === false &&
                     "animate__animated animate__shakeX text-red-600"
-                  }`}>
+                  }`}
+                >
                   {validatedFields.numero === false
                     ? "Campo obrigatório"
                     : "Número"}
@@ -450,7 +458,8 @@ export default function Register() {
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                     validatedFields.cidade === false &&
                     "animate__animated animate__shakeX text-red-600"
-                  }`}>
+                  }`}
+                >
                   {validatedFields.cidade === false
                     ? "Campo obrigatório"
                     : "Cidade"}
@@ -474,7 +483,8 @@ export default function Register() {
                   className={`after:content-['*'] after:text-red-600 after:pl-1 ${
                     validatedFields.estado === false &&
                     "animate__animated animate__shakeX text-red-600"
-                  }`}>
+                  }`}
+                >
                   {validatedFields.estado === false
                     ? "Campo obrigatório"
                     : "Estado"}
@@ -493,7 +503,7 @@ export default function Register() {
                 />
               </div>
             </div>
-            <button className="px-24 py-4 bg-orange-400 m-auto rounded-xl text-2xl font-['PT_Sans'] mt-10 hover:bg-orange-500 duration-200">
+            <button className="px-24 py-4 bg-orange-400 m-auto rounded-xl  font-['PT_Sans'] mt-10 hover:bg-orange-500 duration-200">
               Finalizar cadastro
             </button>
           </div>

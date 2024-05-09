@@ -28,7 +28,7 @@ export default function ResetSuccess() {
         onClick={() => navigate("/")}
       />
       <div className="flex flex-col items-center gap-4">
-        <h1 className="text-3xl font-['PT_Sans']">
+        <h1 className="text-xl font-['PT_Sans']">
           Senha alterada com sucesso!
         </h1>
       </div>
@@ -36,7 +36,8 @@ export default function ResetSuccess() {
         <div className="flex flex-col mb-5"></div>
         <button
           className="bg-orange-400 py-2 rounded-lg font-bold"
-          onClick={() => navigate("/login", { state: true })}>
+          onClick={() => navigate("/login", { state: true })}
+        >
           Entrar
         </button>
       </div>

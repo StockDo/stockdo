@@ -25,7 +25,7 @@ export default function Navbar({ saibaMaisScroll }) {
           width={"150px"}
           className="cursor-pointer"
         />
-        <ul className="flex items-center justify-end gap-5 text-xl text-white max-sm:hidden">
+        <ul className="flex items-center justify-end gap-5  text-white max-sm:hidden">
           <li>
             <span onClick={() => navigate("/")} className="cursor-pointer">
               Home
@@ -39,28 +39,32 @@ export default function Navbar({ saibaMaisScroll }) {
           <li>
             <span
               onClick={() => navigate("/planos")}
-              className="cursor-pointer">
+              className="cursor-pointer"
+            >
               Planos
             </span>
           </li>
           <li className={auth ? "hidden" : "block"}>
             <a
               onClick={() => navigate("/login", { state: true })}
-              className="px-3 py-1 text-black bg-orange-400 rounded-lg cursor-pointer">
+              className="px-3 py-1 text-black bg-orange-400 rounded-lg cursor-pointer"
+            >
               Entrar<i className="ml-1 fa-solid fa-right-to-bracket"></i>
             </a>
           </li>
           <li className={auth ? "block" : "hidden"}>
             <a
               onClick={() => navigate("/painel", { state: true })}
-              className="px-3 py-1 text-black bg-orange-400 rounded-lg cursor-pointer">
+              className="px-3 py-1 text-black bg-orange-400 rounded-lg cursor-pointer"
+            >
               Painel<i className="ml-1 fa-solid fa-layer-group"></i>
             </a>
           </li>
           <li className={auth ? "block" : "hidden"}>
             <a
               onClick={sairClick}
-              className="px-3 py-1 text-black bg-red-400 rounded-lg cursor-pointer">
+              className="px-3 py-1 text-black bg-red-400 rounded-lg cursor-pointer"
+            >
               Sair<i className="ml-1 fa-solid fa-power-off"></i>
             </a>
           </li>

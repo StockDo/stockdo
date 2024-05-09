@@ -56,14 +56,15 @@ export default function VerifyResetPass() {
               onClick={() => navigate("/")}
             />
             <div className="flex flex-col items-center gap-4">
-              <h1 className="text-3xl font-['PT_Sans']">Redefina sua senha</h1>
+              <h1 className="text-xl font-['PT_Sans']">Redefina sua senha</h1>
             </div>
             <form
               onSubmit={handleSubmit}
               className="flex flex-col mt-5 font-main"
-              autoComplete="off">
+              autoComplete="off"
+            >
               <div className="flex flex-col mb-5">
-                <label htmlFor="" className="font-['Roboto'] text-xl">
+                <label htmlFor="" className="font-['Roboto'] ">
                   Insira seu email
                 </label>
                 <input
@@ -73,7 +74,7 @@ export default function VerifyResetPass() {
                     setEmail(e.target.value);
                     setError(false);
                   }}
-                  className={`w-96 border rounded-md py-2 px-2 text-xl mt-2 border-[rgba(0,0,0,0.25)]  ${
+                  className={`w-96 border rounded-md py-2 px-2  mt-2 border-[rgba(0,0,0,0.25)]  ${
                     error && "border-red-600"
                   }`}
                 />

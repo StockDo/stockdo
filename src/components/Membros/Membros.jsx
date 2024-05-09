@@ -50,8 +50,8 @@ export default function Membros({
               sortAZ
                 ? a.name.localeCompare(b.name)
                 : sortZA
-                ? b.name.localeCompare(a.name)
-                : 0
+                  ? b.name.localeCompare(a.name)
+                  : 0
             );
         setMembers(getMembers);
         setLoadingContent(false);
@@ -77,20 +77,20 @@ export default function Membros({
       <div
         className={`scroll grid grid-cols-3 bg-white ml-96 pr-12 pb-24 mt-44 overflow-y-scroll max-2xl:grid-cols-2 max-xl:grid-cols-1 ${
           loadingContent && "gap-x-52 gap-y-24 mt-48 ml-[35rem]"
-        }`}>
+        }`}
+      >
         {loadingContent && <LoadingCards />}
         {!loadingContent &&
           members.map((e, index) => (
             <div
               className="flex flex-col items-center justify-center font-main text-lg gap-3 bg-white rounded-xl shadow-xl py-12 px-6 m-12 max-w-[40vh] max-xl:max-w-[80vh] break-all"
-              key={index}>
+              key={index}
+            >
               <img
                 src={e.pic || ProfilePic}
                 className="mb-2 border rounded-full shadow-xl w-52 h-52"
               />
-              <h1 className="text-2xl font-bold font-sans text-center">
-                {e.name}
-              </h1>
+              <h1 className=" font-bold font-sans text-center">{e.name}</h1>
               <p>
                 <span className="font-bold">CPF:</span> {e.cpf}
               </p>
@@ -101,7 +101,8 @@ export default function Membros({
                     e.role === "Administrador"
                       ? "text-red-600"
                       : "text-orange-600"
-                  }>
+                  }
+                >
                   {e.role}
                 </span>
               </p>
@@ -111,7 +112,8 @@ export default function Membros({
                   setEditMember(true);
                   document.body.style.overflow = "hidden";
                 }}
-                className="bg-slate-500 text-white text-xl py-2 px-12 rounded-xl font-bold mt-3">
+                className="bg-slate-500 text-white  py-2 px-12 rounded-xl font-bold mt-3"
+              >
                 Editar
               </button>
             </div>

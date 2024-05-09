@@ -95,7 +95,7 @@ export default function EmailAuth() {
             onClick={() => navigate("/")}
           />
           <div className="flex flex-col items-center gap-4">
-            <h1 className="text-3xl font-['PT_Sans']">Verifique seu email</h1>
+            <h1 className="text-xl font-['PT_Sans']">Verifique seu email</h1>
             <div className="flex flex-col items-center font-['Roboto']">
               <span className="">
                 Enviamos um email com o código para o seu email
@@ -105,7 +105,8 @@ export default function EmailAuth() {
           <form
             onSubmit={handleSubmit}
             className="flex flex-col mt-5 font-main"
-            autoComplete="off">
+            autoComplete="off"
+          >
             <div className="flex flex-col items-center mb-5 text-center">
               <label htmlFor="" className="font-['Roboto']">
                 Código de verificação:
@@ -115,7 +116,7 @@ export default function EmailAuth() {
                 maxLength={4}
                 value={authCode}
                 onChange={(e) => formatNoAuth(e.target.value)}
-                className={`w-44 border text-center text-4xl py-2 mt-2 border-[rgba(0,0,0,0.25)]  ${
+                className={`w-44 border text-center text-xl py-2 mt-2 border-[rgba(0,0,0,0.25)]  ${
                   authError === true
                     ? "animate__animated animate__shakeX text-red-600 border-red-600"
                     : authError === "Success" &&
@@ -145,7 +146,8 @@ export default function EmailAuth() {
                 resend === 0
                   ? `text-orange-700 cursor-pointer hover:underline`
                   : `text-neutral-700 opacity-50 cursor-not-allowed select-none`
-              }>
+              }
+            >
               {resend === 0
                 ? "Reenviar código."
                 : `Reenviar código (${resend}s).`}

@@ -35,7 +35,7 @@ export default function AddMap({
   }, []);
   return (
     <main className="fixed z-50 flex items-center justify-center w-screen min-h-full bg-black bg-opacity-50">
-      <div className="relative flex flex-col gap-8 bg-white text-xl w-[50rem] rounded-xl animate-zoomIn">
+      <div className="relative flex flex-col gap-8 bg-white  w-[50rem] rounded-xl animate-zoomIn">
         <img src={StockDoLogo} width={130} className="absolute left-0 p-4" />
         <span className="p-2 ml-auto">
           <MdOutlineClose
@@ -54,7 +54,8 @@ export default function AddMap({
               className="w-64 p-1 mt-4 border border-orange-400 rounded-md outline-none cursor-pointer"
               name=""
               onChange={(e) => setName(e.target.value)}
-              id="">
+              id=""
+            >
               {categories.map((e, i) => (
                 <option value={e.NM_CATEGORIA} key={i}>
                   {e.NM_CATEGORIA}
@@ -73,7 +74,8 @@ export default function AddMap({
                 }}
                 className={`${
                   color === "bg-red-500" && "border-2 border-black"
-                } rounded-full self-center bg-red-500 p-4`}></button>
+                } rounded-full self-center bg-red-500 p-4`}
+              ></button>
               <button
                 onClick={() => {
                   setColor("bg-green-500");
@@ -82,7 +84,8 @@ export default function AddMap({
                 }}
                 className={`${
                   color === "bg-green-500" && "border-2 border-black"
-                } rounded-full self-center bg-green-500 p-4`}></button>
+                } rounded-full self-center bg-green-500 p-4`}
+              ></button>
               <button
                 onClick={() => {
                   setColor("bg-blue-500");
@@ -91,7 +94,8 @@ export default function AddMap({
                 }}
                 className={`${
                   color === "bg-blue-500" && "border-2 border-black"
-                } rounded-full self-center bg-blue-500 p-4`}></button>
+                } rounded-full self-center bg-blue-500 p-4`}
+              ></button>
               <button
                 onClick={() => {
                   setColor("bg-neutral-500");
@@ -100,7 +104,8 @@ export default function AddMap({
                 }}
                 className={`${
                   color === "bg-neutral-500" && "border-2 border-black"
-                } rounded-full self-center bg-neutral-500 p-4`}></button>
+                } rounded-full self-center bg-neutral-500 p-4`}
+              ></button>
               <button
                 onClick={() => {
                   setColor("bg-yellow-500");
@@ -109,18 +114,21 @@ export default function AddMap({
                 }}
                 className={`${
                   color === "bg-yellow-500" && "border-2 border-black"
-                } rounded-full self-center bg-yellow-500 p-4`}></button>
+                } rounded-full self-center bg-yellow-500 p-4`}
+              ></button>
               {(openColorPicker || acceptColor) && (
                 <button
                   style={{ backgroundColor: colorPicker.background }}
-                  className={`rounded-full self-center p-4 border-2 border-black`}></button>
+                  className={`rounded-full self-center p-4 border-2 border-black`}
+                ></button>
               )}
               <button
                 onClick={() => {
                   setColor(colorPicker.background);
                   setOpenColorPicker(!openColorPicker);
                   setColor("");
-                }}>
+                }}
+              >
                 <FaEyeDropper />
               </button>
             </div>
@@ -162,7 +170,8 @@ export default function AddMap({
               ]);
               setAddMap(false);
             }}
-            className="px-12 py-2 bg-orange-400 rounded-xl">
+            className="px-12 py-2 bg-orange-400 rounded-xl"
+          >
             Adicionar
           </button>
         </div>

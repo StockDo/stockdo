@@ -79,13 +79,14 @@ export default function Login() {
               className="m-auto mb-2 cursor-pointer max-sm:hidden"
               onClick={() => navigate("/")}
             />
-            <h1 className="text-3xl font-['PT_Sans'] m-auto">
+            <h1 className="text-xl font-['PT_Sans'] m-auto">
               Entre em sua conta
             </h1>
             <form
               onSubmit={handleSubmit}
               className="flex flex-col mt-5 font-main"
-              autoComplete="on">
+              autoComplete="on"
+            >
               {error && (
                 <span className="px-2 py-2 mb-2 font-bold text-white bg-red-700">
                   CPF ou senha inválidos
@@ -94,7 +95,8 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setShowPass(!showPass)}
-                className={`relative -m-2 self-end top-[8.8rem] mr-2 text-2xl text-orange-600`}>
+                className={`relative -m-2 self-end top-[8.8rem] mr-2  text-orange-600`}
+              >
                 {showPass ? <BsEyeSlash /> : <BsEye />}
               </button>
               <label htmlFor="cpf">CPF</label>
@@ -132,19 +134,22 @@ export default function Login() {
               />
               <span
                 onClick={() => navigate("/verify_reset")}
-                className="mt-2 text-sm text-orange-700 cursor-pointer hover:underline">
+                className="mt-2 text-sm text-orange-700 cursor-pointer hover:underline"
+              >
                 Esqueceu sua senha?
               </span>
               <button
                 type="submit"
-                className="py-2 font-bold duration-200 bg-orange-400 rounded-lg mt-7 hover:bg-orange-500">
+                className="py-2 font-bold duration-200 bg-orange-400 rounded-lg mt-7 hover:bg-orange-500"
+              >
                 Entrar
               </button>
               <span className="m-auto mt-4">
                 Não possui uma conta?{" "}
                 <span
                   onClick={() => navigate("/signup", { state: true })}
-                  className="text-orange-700 cursor-pointer hover:underline">
+                  className="text-orange-700 cursor-pointer hover:underline"
+                >
                   Cadastre-se aqui.
                 </span>
               </span>
